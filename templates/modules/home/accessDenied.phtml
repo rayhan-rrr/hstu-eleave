@@ -1,0 +1,296 @@
+<?php
+
+ use App\Helper\Includes\NumberToWord;
+ use App\Helper\Includes\BanglaConverter;
+
+  include $this->getTemplatePath().'php_includes/db_conx.php';
+//include $this->getTemplatePath().'chk.phtml';
+
+// var_dump($this->getAttributes('title'));
+// die();
+
+//var_dump($auth['user']);
+
+   $hasSuccess = '';
+
+  if (isset($_SESSION['success'])) {
+      
+      $_Success = $_SESSION['success'];
+
+      $_SESSION['success'] = '';
+    }
+
+  if (isset($_SESSION['error'])) {
+      
+      $_Error = $_SESSION['error'];
+
+      $_SESSION['error'] = '';
+    }
+
+  if (isset($_SESSION['msg'])) {
+    
+    $_Message = $_SESSION['msg'];
+
+    $_SESSION['msg'] = '';
+  }
+
+?>
+
+
+<?
+
+use App\Models\Sales\SalesDueSchedules;
+
+$schedules = SalesDueSchedules::where('schedule_date', date("Y-m-d"))->get();
+
+$todaysCollectable = 0;
+
+foreach ($schedules as $schedule) {
+  $todaysCollectable += $schedule->amount;
+}
+
+$schedules = SalesDueSchedules::where('paid_at', date("Y-m-d"))->get();
+
+$totalCollection = 0;
+
+foreach ($schedules as $schedule) {
+  $totalCollection += $schedule->amount;
+}
+
+$missedSchedules = SalesDueSchedules::where('schedule_date', '<', date("Y-m-d"))->where('has_paid', 0)->get();
+
+$missedTotal = 0;
+
+foreach ($missedSchedules as $schedule) {
+  $missedTotal += $schedule->amount;
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+<? print $this->fetch('/ui_includes/head.phtml'); ?>
+
+
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- --mod: menu wrapper custom end -->
+  <? print $this->fetch('/ui_includes/main_navigation.phtml'); ?>
+  <!-- --mod: menu wrapper custom end -->
+  
+  <div class="wrapper page-wrapper">
+
+    <header class="main-header">
+      <? print $this->fetch('/ui_includes/header.phtml'); ?>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <?// print $this->fetch('/ui_includes/leftpanel.phtml'); ?>
+
+    <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+    <!-- Content Header (Page header)-->
+
+    <section class="content-header">
+      
+      <?php if (isset($_Error) && $_Error == 'error') { ?>
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <p><? echo $_Message; ?></p>
+        </div>
+      <?php } ?>
+
+
+      <?php if (isset($_Success) && $_Success == 'success') { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <? echo $_Message;?>
+        </div>
+      <?php } ?>
+      
+    </section>
+
+
+
+    <section class="content">
+      
+  
+
+
+
+
+
+      <div class="col-md-12 bg-danger">
+      
+
+        <h3 class="text-red text-center text-red">Access Denied!</h3>
+
+      </div>
+
+
+
+    </section>
+
+
+
+      
+  </div>
+
+
+
+
+
+         
+
+
+
+
+  <!-- footer -->
+  <? print $this->fetch('/ui_includes/footer.phtml'); ?>
+
+  <!-- Control Sidebar -->
+  <? print $this->fetch('/ui_includes/control-sidebar.phtml'); ?>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 2.2.3 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.6 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Sparkline -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/sparkline/jquery.sparkline.min.js"></script>
+
+<!-- jQuery Knob Chart -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/knob/jquery.knob.js"></script>
+<!-- daterangepicker -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/moment.min.js"></script>
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/daterangepicker/daterangepicker.js"></script>
+<!-- datepicker -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/datepicker/bootstrap-datepicker.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- Slimscroll -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/app.min.js"></script>
+<!-- sidebar toggle -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/sidebar-toggle.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/pages/dashboard.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/demo.js"></script>
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/zebra_datepicker.min.js"></script>
+
+
+<script>
+  
+ //The Calender
+  $("#calendar").datepicker({  todayHighlight: true, dateFormat: 'yy-mm-dd' }).on('changeDate', function(e) {
+        // `e` here contains the extra attributes
+        var dateTime = e.date;
+        
+        var month = dateTime.getMonth()+1;
+        month = ("0" + month).slice(-2);
+        var day = dateTime.getDate();
+        day = ("0" + day).slice(-2);
+        var year = dateTime.getFullYear();
+        var strDateTime =  dateTime.getFullYear() + "-" + month + "-" + day;
+
+        $(".calenderOverlay").show();
+
+        jQuery.ajax({
+
+            url : '/public/dashboard/getschedulecal',
+            type : 'post',
+            data : {
+              'selected_date' : strDateTime,
+            },
+            success : function(response) {
+
+
+
+              data = JSON.parse(response);
+
+
+              if (data.msg=='success') {
+
+                $("#collectable").html(data.collectable+" TK")
+                $("#collected").html(data.collected+" TK")
+                $("#rescheduled").html(data.rescheduled+" TK")
+
+                $("#date").html(day + '-' + month + '-' + year);
+                $("#viewschedule").attr('href', '/collection/viewschedules/'+strDateTime);
+
+              }
+
+              $(".calenderOverlay").hide();
+
+            }
+          });
+        
+
+
+    });;
+
+  //for initial state
+  var dateTime = new Date();
+        
+        var month = dateTime.getMonth()+1;
+        month = ("0" + month).slice(-2);
+        var day = dateTime.getDate();
+        day = ("0" + day).slice(-2);
+        var year = dateTime.getFullYear();
+        var strDateTime =  dateTime.getFullYear() + "-" + month + "-" + day;
+  jQuery.ajax({
+
+    url : '/public/dashboard/getschedulecal',
+    type : 'post',
+    data : {
+      'selected_date' : strDateTime,
+    },
+    success : function(response) {
+
+
+
+      data = JSON.parse(response);
+
+
+      if (data.msg=='success') {
+
+        $("#collectable").html(data.collectable+" TK")
+        $("#collected").html(data.collected+" TK")
+        $("#rescheduled").html(data.rescheduled+" TK")
+
+        $("#date").html(day + '-' + month + '-' + year);
+
+        $("#viewschedule").attr('href', '/collection/viewschedules/'+strDateTime);
+
+      }
+
+      $(".calenderOverlay").hide();
+
+    }
+  });
+
+
+
+
+
+</script>
+</body>
+</html>

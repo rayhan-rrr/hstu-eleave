@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<core_config>
+    <install>
+        <date>28/01/2018</date>
+    </install>
+      <default_setup>
+        <connection>
+            <driver>mysql</driver>
+            <host>localhost</host>
+            <username>root</username>
+            <password>1234</password>
+            <dbname>leaveapp</dbname>
+            <charset>utf8</charset>
+            <collation>utf8_unicode_ci</collation>
+            <prefix></prefix>
+            <active>0</active>
+            <key>rrrlabems</key>
+        </connection>
+    </default_setup>
+</core_config>

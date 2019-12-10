@@ -1,0 +1,248 @@
+<?php
+
+ use App\Helper\Includes\NumberToWord;
+ use App\Helper\Includes\BanglaConverter;
+
+  include $this->getTemplatePath().'php_includes/db_conx.php';
+
+  $hasSuccess = '';
+
+  if (isset($_SESSION['success'])) {
+      
+      $hasSuccess = $_SESSION['success'];
+
+      $_SESSION['success'] = '';
+    }  
+
+  
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+<? print $this->fetch('/ui_includes/head.phtml'); ?>
+
+<!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/iCheck/all.css">
+
+<style type="text/css">
+
+</style>
+<!-- jQuery Confirmation -->
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>dist/css/jquery-confirm.min.css">
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-treeview/bootstrap-treeview.min.css"></script>
+
+
+<style type="text/css">
+.list-group-item {
+padding: 5px 15px !important;
+}
+</style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- --mod: menu wrapper custom end -->
+  <? print $this->fetch('/ui_includes/main_navigation.phtml'); ?>
+  <!-- --mod: menu wrapper custom end -->
+  
+  <div class="wrapper page-wrapper">
+
+    <header class="main-header">
+      <? print $this->fetch('/ui_includes/header.phtml'); ?>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <?// print $this->fetch('/ui_includes/leftpanel.phtml'); ?>
+
+    <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    
+
+
+
+    <!-- Main content -->
+    <section class="content">
+
+      <div class="row">
+        <div class="col-md-12">
+          <!-- here -->
+            <!-- Horizontal Form -->
+          <div class="box box-info">
+            
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" id="addproductform" role="form" action="/user/addrole" method="post">
+              
+
+              <?php echo $csrf['field']; ?>
+
+
+              <div class="box-body">
+                <!-- name -->
+                <div class="form-group <? if(isset($errors['name'])) echo 'has-error' ?>" id="categoryf">
+                  <h4 class="col-sm-8"><b>Role Name: </b><? echo $role->name; ?></h4>
+                  
+                </div>
+
+                <div class="form-group <? if(isset($errors['description'])) echo 'has-error' ?>" id="categoryf">
+                  <h5 class="col-sm-8"><b>Role Description: </b><? echo $role->description; ?></h5>
+                  
+                </div>
+                <hr>
+                
+                <!-- Module wise permissions -->
+                  <div class="col-md-4">
+                    <h4><b>Role Permisions: </b></h4>
+                  </div>
+                  <div class="form-group col-md-8">
+                    
+                    
+                    <div class="col-sm-8">
+                      <div id="treeview-checkable" class=""></div>
+                    </div>
+
+                  
+                  </div>
+
+
+
+
+
+  
+              </div>
+              <!-- /.box-body -->
+              
+              <!-- /.box-footer -->
+            </form>
+          </div>
+          <!-- /.box -->
+          <!-- here end -->
+          <!-- /.box -->
+        </div>
+        <!-- end of add category form -->
+
+        <div class="col-md-6">
+          
+        </div>
+        <!-- /.col -->
+      </div>
+    </section>
+
+    <!-- /.content -->
+
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+
+  <!-- footer -->
+  <? print $this->fetch('/ui_includes/footer.phtml'); ?>
+
+  <!-- Control Sidebar -->
+  <? print $this->fetch('/ui_includes/control-sidebar.phtml'); ?>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap.min.js"></script>
+
+<!-- bootstrap-confirmation.min.js -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap-confirmation.min.js"></script>
+
+
+<!-- FastClick -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/app.min.js"></script>
+<!-- sidebar toggle -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/sidebar-toggle.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/demo.js"></script>
+
+<!-- Select2 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2.full.min.js"></script>
+
+<!-- iCheck 1.0.1 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/iCheck/icheck.min.js"></script>
+
+<!-- bootstrap-confirmation.min.js -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap-confirmation.min.js"></script>
+<!-- jQuery Confirmation -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/jquery-confirm.min.js"></script>
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+
+<script>
+  
+  $('[data-toggle=confirmation]').confirmation({
+  rootSelector: '[data-toggle=confirmation]',
+  // other options
+  });
+</script>
+
+<script>
+
+  //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass: 'iradio_flat-green'
+    });
+
+  
+</script>
+
+<script type="text/javascript">
+
+      $(function() {
+
+        var checkedResources = [];
+
+        var resources = null;
+
+         jQuery.ajax({
+            url : '/user/geteditresources/<? echo $role->id;?>',
+            type : 'get',
+            data : {
+              user : <? echo $_SESSION['user'];?>, 
+            },
+            success : function(data) {
+              
+                  output = JSON.parse(data);
+
+                  resources = output.treeview;
+
+
+                  // console.error(resources);
+
+
+                  var $checkableTree = $('#treeview-checkable').treeview({
+                    data: resources,
+                    showIcon: false,
+                    multiSelect: true,
+                    showCheckbox: true,
+                    expanded: true,
+                    levels: 3,
+                    
+                  });
+
+
+                    
+            }
+              
+         });
+
+         
+      });
+    </script>
+
+</body>
+</html>

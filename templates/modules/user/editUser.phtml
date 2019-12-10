@@ -1,0 +1,436 @@
+<?php
+
+ use App\Helper\Includes\NumberToWord;
+ use App\Helper\Includes\BanglaConverter;
+
+  include $this->getTemplatePath().'php_includes/db_conx.php';
+
+  $hasSuccess = '';
+
+  if (isset($_SESSION['success'])) {
+      
+      $hasSuccess = $_SESSION['success'];
+
+      $_SESSION['success'] = '';
+    }  
+
+  
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+<? print $this->fetch('/ui_includes/head.phtml'); ?>
+
+<!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/iCheck/all.css">
+
+<style type="text/css">
+
+</style>
+<!-- jQuery Confirmation -->
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>dist/css/jquery-confirm.min.css">
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-treeview/bootstrap-treeview.min.css"></script>
+
+
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- --mod: menu wrapper custom end -->
+  <? print $this->fetch('/ui_includes/main_navigation.phtml'); ?>
+  <!-- --mod: menu wrapper custom end -->
+  
+  <div class="wrapper page-wrapper">
+
+    <header class="main-header">
+      <? print $this->fetch('/ui_includes/header.phtml'); ?>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <?// print $this->fetch('/ui_includes/leftpanel.phtml'); ?>
+
+    <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    
+
+
+
+    <!-- Main content -->
+    <section class="content">
+
+      <div class="row">
+        <div class="col-md-12">
+          <!-- here -->
+            <!-- Horizontal Form -->
+          <div class="box box-info">
+            
+            <div class="box-content">
+              <div class="box-header bg-aqua-active">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="box-title">Edit User Account</h3>
+              </div>
+              <form class="form-horizontal" role="form" action="/user/edituser/<? echo $user->id; ?>" method="post">
+              <div class="box-body">
+                <div class="box-body" id="refundcontent">
+
+                  
+
+                    <?php echo $csrf['field']; ?>
+
+                      <div class="form-group <? if(isset($errors['role'])) echo 'has-error' ?>">
+                        <label for="role" class="col-md-3 control-label">User Role *</label>
+                        <div class="col-md-9">
+                          <select name="role" required id="role" class="form-control">
+                            <option value="">Please Select</option>
+                          <?php
+
+
+                          $sql = "SELECT * FROM `admin_role` WHERE `active`=1;";
+                          $result = mysqli_query($db_conx,$sql );
+                          $total_cat = mysqli_num_rows($result);
+                          if($total_cat>0){
+                            
+                            while($row = mysqli_fetch_array($result)){
+                              if ($user->role==$row['id']) {
+                                echo "<option value=".$row['id']." selected>".$row['name']."</option>";
+                              } else echo "<option value=".$row['id'].">".$row['name']."</option>";
+                              
+                              }
+                            }
+                          ?>
+                            
+                          </select>
+                          <? if(isset($errors['role'])) { ?>
+                            <span class="help-block"><? //echo $errors['password'][0]; ?> Select a Role</span>
+                          <? } ?>
+                        </div>
+                      </div>
+
+                    
+                      <div class="form-group <? if(isset($errors['username'])) echo 'has-error' ?>">
+                        <label for="username" class="col-sm-3 control-label">Username *</label>
+
+                        <div class="col-sm-9">
+                          <input name="username" type="text" required class="form-control" id="newusername" placeholder="Enter Username" value="<? echo $user->username; ?>">
+
+                          <div class='overlay' id="usernamecheck" style="display: none;"><i class='fa fa-refresh fa-spin'></i></div>
+                          <div class='overlay' id="newusernamecheckok" style="display: none;"><i class='fa fa-check' style='color: green;'></i></div>
+                          <div class="col-sm-10" id="newusernameWarning"> </div>
+
+                        
+                          <? if(isset($errors['username'])) { ?>
+                          <span class="help-block"><? echo $errors['username'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+
+                        <!-- <div class="col-sm-9">
+                          <h5><? echo $user->username; ?></h5>
+                        </div> -->
+
+                        
+
+
+                      </div>
+
+                      <div class="form-group <? if(isset($errors['name'])) echo 'has-error' ?>">
+                        <label for="name" class="col-sm-3 control-label">Name *</label>
+
+                        <div class="col-sm-9">
+                          <input name="name" type="text" required class="form-control" id="name" placeholder="Enter Name" value="<? echo $user->name; ?>">
+                        
+                          <? if(isset($errors['name'])) { ?>
+                          <span class="help-block"><? echo $errors['name'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+
+                        
+
+
+                      </div>
+
+                      <div class="form-group <? if(isset($errors['description'])) echo 'has-error' ?>">
+                        <label for="description" class="col-sm-3 control-label">Description *</label>
+
+                        <div class="col-sm-9">
+                          <input name="description" type="text" required class="form-control" id="description" placeholder="Enter Description" value="<?  echo $user->description; ?>">
+                        
+                          <? if(isset($errors['description'])) { ?>
+                          <span class="help-block"><? echo $errors['description'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+
+                        
+
+
+                      </div>
+
+
+                      
+                      <div class="form-group <? if(isset($errors['mobile'])) echo 'has-error' ?>">
+                        <label for="mobile" class="col-sm-3 control-label">Mobile Number *</label>
+
+                        <div class="col-sm-9">
+                          <input name="mobile" type="text" class="form-control" id="mobile" placeholder="Enter Mobile Number" value="<? echo $user->mobile; ?>">
+                        
+                          <? if(isset($errors['mobile'])) { ?>
+                          <span class="help-block"><? echo $errors['mobile'][0]; ?> </span>
+
+                          <? } ?>
+                        </div>
+
+                        
+
+
+                      </div>
+
+
+                      <div class="form-group <? if(isset($errors['email'])) echo 'has-error' ?>">
+                        <label for="email" class="col-sm-3 control-label">Email</label>
+
+                        <div class="col-sm-9">
+                          <input name="email" type="text" class="form-control" id="email" placeholder="Enter Email" value="<? echo $user->email; ?>">
+                        
+                          <? if(isset($errors['email'])) { ?>
+                          <span class="help-block"><? echo $errors['email'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+
+                        
+
+
+                      </div>
+
+                      <div class="form-group <? if(isset($errors['nid'])) echo 'has-error' ?>">
+                        <label for="nid" class="col-sm-3 control-label">National ID</label>
+
+                        <div class="col-sm-9">
+                          <input name="nid" type="text" class="form-control" id="nid" placeholder="Enter National ID" value="<? echo $user->nid; ?>">
+                        
+                          <? if(isset($errors['nid'])) { ?>
+                          <span class="help-block"><? echo $errors['nid'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+
+                        
+
+
+                      </div>
+                      
+
+                      <div class="form-group <? if(isset($errors['address'])) echo 'has-error' ?>">
+                        <label for="address" class="col-sm-3 control-label">Address</label>
+
+                        <div class="col-sm-9">
+                          <input name="address" type="text" class="form-control" id="address" placeholder="Enter Address" value="<? echo $user->address; ?>">
+                        
+                          <? if(isset($errors['address'])) { ?>
+                          <span class="help-block"><? $errors['address'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+                      </div>
+
+                      <div class="form-group <? if(isset($errors['salary'])) echo 'has-error' ?>">
+                        <label for="salary" class="col-sm-3 control-label">Salary</label>
+
+                        <div class="col-sm-9">
+                          <input name="salary" type="text" class="form-control" id="salary" placeholder="Enter Monthly Salary" value="<? echo $user->salary; ?>">
+                        
+                          <? if(isset($errors['salary'])) { ?>
+                          <span class="help-block"><? echo $errors['salary'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+                      </div>
+
+                      <div class="form-group <? if(isset($errors['password'])) echo 'has-error' ?>">
+                        <label for="password" class="col-sm-3 control-label">New Password</label>
+
+                        <div class="col-sm-9">
+                          <input name="password" type="password" class="form-control" id="password" placeholder="Leave Blank if you do not want to change.">
+                        
+                          <? if(isset($errors['password'])) { ?>
+                          <span class="help-block"><? $errors['password'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+                      </div>
+
+                      <div class="form-group <? if(isset($errors['retypepassword'])) echo 'has-error' ?>">
+                        <label for="retypepassword" class="col-sm-3 control-label">Retype New Password</label>
+
+                        <div class="col-sm-9">
+                          <input name="retypepassword" type="password" class="form-control" id="retypepassword" placeholder="Leave Blank if you do not want to change.">
+                        
+                          <? if(isset($errors['retypepassword'])) { ?>
+                          <span class="help-block"><? $errors['retypepassword'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+                      </div>
+
+                      <div class="form-group <? if(isset($errors['retypepassword'])) echo 'has-error' ?>">
+                        <label for="retypepassword" class="col-sm-3 control-label">Status *</label>
+
+                        <div class="col-sm-9">
+                          <select class="form-control" name="status" required>
+                            <option value="1" <? if ($user->is_active==1) {
+                              echo "selected";
+                            } ?>>Enabled</option>
+                            <option value="0" <? if ($user->is_active==0) {
+                              echo "selected";
+                            } ?>>Disabled</option>
+                          </select>
+                        
+                          <? if(isset($errors['retypepassword'])) { ?>
+                          <span class="help-block"><? $errors['retypepassword'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+                      </div>
+                  
+
+                      
+
+                      
+                      
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-success pull-right col-sm-4" style="margin-top: 0px;"><i class="fa fa-check"></i> Update User</button>
+                
+              </div>
+              </form>
+              
+            </div>
+
+
+          </div>
+          <!-- /.box -->
+          <!-- here end -->
+          <!-- /.box -->
+        </div>
+        <!-- end of add category form -->
+
+        <div class="col-md-6">
+          
+        </div>
+        <!-- /.col -->
+      </div>
+    </section>
+
+    <!-- /.content -->
+
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+
+  <!-- footer -->
+  <? print $this->fetch('/ui_includes/footer.phtml'); ?>
+
+  <!-- Control Sidebar -->
+  <? print $this->fetch('/ui_includes/control-sidebar.phtml'); ?>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap.min.js"></script>
+
+<!-- bootstrap-confirmation.min.js -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap-confirmation.min.js"></script>
+
+
+<!-- FastClick -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/app.min.js"></script>
+<!-- sidebar toggle -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/sidebar-toggle.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/demo.js"></script>
+
+<!-- Select2 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2.full.min.js"></script>
+
+<!-- iCheck 1.0.1 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/iCheck/icheck.min.js"></script>
+
+<!-- bootstrap-confirmation.min.js -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap-confirmation.min.js"></script>
+<!-- jQuery Confirmation -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/jquery-confirm.min.js"></script>
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+
+<script>
+  
+  $('[data-toggle=confirmation]').confirmation({
+  rootSelector: '[data-toggle=confirmation]',
+  // other options
+  });
+</script>
+
+<script>
+
+  //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass: 'iradio_flat-green'
+    });
+
+  
+
+    $('#newusername').keyup(function () {
+
+            var username = jQuery('#newusername').val();
+
+          
+              jQuery("#newusernameWarning").hide();
+
+              jQuery("#newusernamecheckok").hide();
+                      
+              jQuery("#newusernamecheck").show();
+
+              jQuery.ajax({
+                  url : '/public/user/checkusername',
+                  type : 'post',
+                  data : {
+                    username : username
+                  },
+                  success : function(data) {
+                    
+                        jQuery("#newusernamecheck").hide();
+                          
+                            if(data=='taken'){
+                                jQuery("#newusernameWarning").show();
+                                jQuery("#newusernameWarning").html("This username has already been used. Please use a different one.");
+                                
+                            }
+                            if(data=='nottaken'){
+                                jQuery("#newusernamecheckok").show();
+                            }  
+                        }
+               });      
+          });
+</script>
+
+
+
+</body>
+</html>

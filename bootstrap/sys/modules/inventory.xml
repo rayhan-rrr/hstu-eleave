@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+    		<name>Inventory</name>
+            <active>true</active>
+            <frontPath>inventory</frontPath>
+            <version>1.0</version>
+    </modules>
+</config>

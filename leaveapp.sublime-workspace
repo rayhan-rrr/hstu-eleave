@@ -1,0 +1,1778 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"strt",
+				"strtotime"
+			],
+			[
+				"Fo",
+				"Forwarded"
+			],
+			[
+				"doc",
+				"docket"
+			],
+			[
+				"app",
+				"application"
+			],
+			[
+				"Gene",
+				"Generated"
+			],
+			[
+				"Off",
+				"Office"
+			],
+			[
+				"oo",
+				"OfficeOrders"
+			],
+			[
+				"off",
+				"office_order"
+			],
+			[
+				"_",
+				"_SESSION"
+			],
+			[
+				"final",
+				"final_action"
+			],
+			[
+				"by",
+				"byUser"
+			],
+			[
+				"te",
+				"text-center"
+			],
+			[
+				"Ap",
+				"ApplicationForwarding"
+			],
+			[
+				"Adm",
+				"Administrative"
+			],
+			[
+				"for",
+				"forwardings"
+			],
+			[
+				"stat",
+				"status"
+			],
+			[
+				"Re",
+				"Registrar"
+			],
+			[
+				"da",
+				"data"
+			],
+			[
+				"op",
+				"options"
+			],
+			[
+				"na",
+				"name"
+			],
+			[
+				"use",
+				"users"
+			],
+			[
+				"Ad",
+				"Admin"
+			],
+			[
+				"de",
+				"designation"
+			],
+			[
+				"col",
+				"col-md-6"
+			],
+			[
+				"se",
+				"select2"
+			],
+			[
+				"F",
+				"FALSE"
+			],
+			[
+				"reco",
+				"recommend"
+			],
+			[
+				"fa",
+				"faculty"
+			],
+			[
+				"facu",
+				"faculty_id"
+			],
+			[
+				"lo",
+				"local_inv"
+			],
+			[
+				"pu",
+				"pull-right"
+			],
+			[
+				"att",
+				"changesAttach"
+			],
+			[
+				"App",
+				"Applications"
+			],
+			[
+				"me",
+				"memorandum"
+			],
+			[
+				"text",
+				"text-center"
+			],
+			[
+				"no",
+				"no-print"
+			],
+			[
+				"re",
+				"required\tAttr"
+			],
+			[
+				"le",
+				"leaveType"
+			],
+			[
+				"form",
+				"form-control"
+			],
+			[
+				"inc",
+				"inchegeDept"
+			],
+			[
+				"ms",
+				"msg"
+			],
+			[
+				"Incg",
+				"inchargeInfo"
+			],
+			[
+				"sa",
+				"save"
+			],
+			[
+				"od",
+				"oldIncharge"
+			],
+			[
+				"ol",
+				"oldIncharge"
+			],
+			[
+				"btn-",
+				"btn-sm"
+			],
+			[
+				"inch",
+				"incharge"
+			],
+			[
+				"des",
+				"description"
+			],
+			[
+				"vc",
+				"vcInfo"
+			],
+			[
+				"all",
+				"allusers"
+			],
+			[
+				"jso",
+				"json_encode"
+			],
+			[
+				"prin",
+				"print_r"
+			],
+			[
+				"al",
+				"alreadyUsed"
+			],
+			[
+				"us",
+				"user"
+			],
+			[
+				"user",
+				"userId"
+			],
+			[
+				"pas",
+				"password"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"ma",
+				"maxlength\tAttr"
+			],
+			[
+				"dep",
+				"dept"
+			],
+			[
+				"req",
+				"request"
+			],
+			[
+				"tea",
+				"teacher"
+			],
+			[
+				"ema",
+				"email"
+			],
+			[
+				"em",
+				"emailfield"
+			],
+			[
+				"depart",
+				"department"
+			],
+			[
+				"ite",
+				"itemProblem"
+			],
+			[
+				"ser",
+				"ServicingItems"
+			],
+			[
+				"age",
+				"agentId"
+			],
+			[
+				"Servicing",
+				"ServicingAgents"
+			],
+			[
+				"to",
+				"totalProfit"
+			],
+			[
+				"toa",
+				"totalCharge"
+			],
+			[
+				"item",
+				"itemFee"
+			],
+			[
+				"tot",
+				"totalCost"
+			],
+			[
+				"fee",
+				"fee"
+			],
+			[
+				"cusmr",
+				"customer"
+			],
+			[
+				"delive",
+				"delivery"
+			],
+			[
+				"custme",
+				"customer"
+			],
+			[
+				"Dis",
+				"Discarded"
+			],
+			[
+				"rep",
+				"reported_problem"
+			],
+			[
+				"Se",
+				"ServicingItemProblem"
+			],
+			[
+				"seria",
+				"serial_id"
+			],
+			[
+				"border",
+				"with-border"
+			],
+			[
+				"box",
+				"box-header"
+			],
+			[
+				"Supp",
+				"SupplierInvoiceItemSerials"
+			],
+			[
+				"products",
+				"ProductSerial"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"js",
+				"json_encode"
+			],
+			[
+				"produc",
+				"productSerial"
+			],
+			[
+				"Products",
+				"Products"
+			],
+			[
+				"invo",
+				"invoiceSerial"
+			],
+			[
+				"Sal",
+				"SalesInvoiceItems"
+			],
+			[
+				"produ",
+				"product"
+			],
+			[
+				"Product",
+				"ProductSerial"
+			],
+			[
+				"cha",
+				"change"
+			],
+			[
+				"custom_cg",
+				"custom_charge"
+			],
+			[
+				"Pro",
+				"Probable"
+			],
+			[
+				"gepar",
+				"getParam"
+			],
+			[
+				"Servi",
+				"Servicing"
+			],
+			[
+				"sta",
+				"status"
+			],
+			[
+				"Admin",
+				"AdminRole"
+			],
+			[
+				"wi",
+				"width\tproperty"
+			],
+			[
+				"st",
+				"style\tAttr"
+			],
+			[
+				"deli",
+				"delivery_slip"
+			],
+			[
+				"sli",
+				"slip"
+			],
+			[
+				"cus",
+				"customer_mobile"
+			],
+			[
+				"mode",
+				"model"
+			],
+			[
+				"crea",
+				"created_at"
+			],
+			[
+				"customer",
+				"customer_name"
+			],
+			[
+				"tra",
+				"trackingNo"
+			],
+			[
+				"Process",
+				"Processing"
+			],
+			[
+				"del",
+				"delivery_slip"
+			],
+			[
+				"De",
+				"Delivery"
+			],
+			[
+				"Crea",
+				"Created"
+			],
+			[
+				"it",
+				"item"
+			],
+			[
+				"wh",
+				"where"
+			],
+			[
+				"Ser",
+				"ServicingSlip"
+			],
+			[
+				"pro",
+				"processing"
+			],
+			[
+				"sol",
+				"solved_at"
+			],
+			[
+				"out",
+				"outsourced"
+			],
+			[
+				"if",
+				"if\tif …"
+			],
+			[
+				"end",
+				"endif"
+			],
+			[
+				"est",
+				"est_days"
+			],
+			[
+				"prio",
+				"priorityPost"
+			],
+			[
+				"pir",
+				"priorityPost"
+			],
+			[
+				"Su",
+				"Successfully"
+			],
+			[
+				"pos",
+				"post"
+			],
+			[
+				"Proce",
+				"processing"
+			],
+			[
+				"ac",
+				"action\tAttr"
+			],
+			[
+				"tech",
+				"technician"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/routes.php",
+			"settings":
+			{
+				"buffer_size": 6055,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Controllers/FormController.php",
+			"settings":
+			{
+				"buffer_size": 33055,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/application/allToAdministrative.phtml",
+			"settings":
+			{
+				"buffer_size": 7446,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/user/addAdministrativeUser.phtml",
+			"settings":
+			{
+				"buffer_size": 18024,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/user/allUsers.phtml",
+			"settings":
+			{
+				"buffer_size": 7223,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/application/viewOrder.phtml",
+			"settings":
+			{
+				"buffer_size": 17634,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/home/home.phtml",
+			"settings":
+			{
+				"buffer_size": 17266,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/application/applicationView.phtml",
+			"settings":
+			{
+				"buffer_size": 37706,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Models/OfficeOrders.php",
+			"settings":
+			{
+				"buffer_size": 272,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/application/generateOrder.phtml",
+			"settings":
+			{
+				"buffer_size": 13584,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/application/pendingToVC.phtml",
+			"settings":
+			{
+				"buffer_size": 7446,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/application/pendingToRegisrar.phtml",
+			"settings":
+			{
+				"buffer_size": 7458,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/auth/completeProfile.phtml",
+			"settings":
+			{
+				"buffer_size": 5826,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Controllers/Auth/AuthController.php",
+			"settings":
+			{
+				"buffer_size": 8516,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/application/toAdministrative.phtml",
+			"settings":
+			{
+				"buffer_size": 7423,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/application/allAppsRegisrar.phtml",
+			"settings":
+			{
+				"buffer_size": 7552,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 4166 files for \"Registrer\"\n\n/Users/Rubel/Documents/leavelab/leaveapp/app/Controllers/FormController.php:\n  475  \n  476  \t\t\t} else{\n  477: \t\t\t\t$registrer = Admin::where('designation', 'Registrar')->where('active',1)->first();\n  478  \n  479: \t\t\t\t$toUser = $registrer->id;\n  480: \t\t\t\t$toDesignation = \"Registrer\";\n  481  \t\t\t\t$byDesignation = \"Dean\";\n  482  \n  ...\n  531  \t\t\t\t$user = Admin::find($_SESSION['user']);\n  532  \n  533: \t\t\t\t$forwardings = ApplicationForwarding::where('by_designation', 'Dean')->where('to_designation', 'Registrer')->where('active', 1)->get();\n  534  \n  535  \t\t\t\t$this->container->view->addAttribute('user', $user);\n\n/Users/Rubel/Documents/leavelab/leaveapp/public/plugins/ckeditor/plugins/specialchar/dialogs/lang/da.js:\n    4  */\n    5  CKEDITOR.plugins.setLang(\"specialchar\",\"da\",{euro:\"Euro-tegn\",lsquo:\"Venstre enkelt anførselstegn\",rsquo:\"Højre enkelt anførselstegn\",ldquo:\"Venstre dobbelt anførselstegn\",rdquo:\"Højre dobbelt anførselstegn\",ndash:\"Bindestreg\",mdash:\"Tankestreg\",iexcl:\"Omvendt udråbstegn\",cent:\"Cent-tegn\",pound:\"Pund-tegn\",curren:\"Kurs-tegn\",yen:\"Yen-tegn\",brvbar:\"Brudt streg\",sect:\"Paragraftegn\",uml:\"Umlaut\",copy:\"Copyright-tegn\",ordf:\"Feminin ordinal indikator\",laquo:\"Venstre dobbel citations-vinkel\",not:\"Negation\",\n    6: reg:\"Registreret varemærke tegn\",macr:\"Macron\",deg:\"Grad-tegn\",sup2:\"Superscript to\",sup3:\"Superscript tre\",acute:\"Prim-tegn\",micro:\"Mikro-tegn\",para:\"Pilcrow-tegn\",middot:\"Punkt-tegn\",cedil:\"Cedille\",sup1:\"Superscript et\",ordm:\"Maskulin ordinal indikator\",raquo:\"Højre dobbel citations-vinkel\",frac14:\"En fjerdedel\",frac12:\"En halv\",frac34:\"En tredjedel\",iquest:\"Omvendt udråbstegn\",Agrave:\"Stort A med accent grave\",Aacute:\"Stort A med accent aigu\",Acirc:\"Stort A med cirkumfleks\",Atilde:\"Stort A med tilde\",\n    7  Auml:\"Stort A med umlaut\",Aring:\"Stort Å\",AElig:\"Stort Æ\",Ccedil:\"Stort C med cedille\",Egrave:\"Stort E med accent grave\",Eacute:\"Stort E med accent aigu\",Ecirc:\"Stort E med cirkumfleks\",Euml:\"Stort E med umlaut\",Igrave:\"Stort I med accent grave\",Iacute:\"Stort I med accent aigu\",Icirc:\"Stort I med cirkumfleks\",Iuml:\"Stort I med umlaut\",ETH:\"Stort Ð (edd)\",Ntilde:\"Stort N med tilde\",Ograve:\"Stort O med accent grave\",Oacute:\"Stort O med accent aigu\",Ocirc:\"Stort O med cirkumfleks\",Otilde:\"Stort O med tilde\",\n    8  Ouml:\"Stort O med umlaut\",times:\"Gange-tegn\",Oslash:\"Stort Ø\",Ugrave:\"Stort U med accent grave\",Uacute:\"Stort U med accent aigu\",Ucirc:\"Stort U med cirkumfleks\",Uuml:\"Stort U med umlaut\",Yacute:\"Stort Y med accent aigu\",THORN:\"Stort Thorn\",szlig:\"Lille eszett\",agrave:\"Lille a med accent grave\",aacute:\"Lille a med accent aigu\",acirc:\"Lille a med cirkumfleks\",atilde:\"Lille a med tilde\",auml:\"Lille a med umlaut\",aring:\"Lilla å\",aelig:\"Lille æ\",ccedil:\"Lille c med cedille\",egrave:\"Lille e med accent grave\",\n\n/Users/Rubel/Documents/leavelab/leaveapp/public/plugins/ckeditor/plugins/specialchar/dialogs/lang/nb.js:\n    4  */\n    5  CKEDITOR.plugins.setLang(\"specialchar\",\"nb\",{euro:\"Eurosymbol\",lsquo:\"Venstre enkelt anførselstegn\",rsquo:\"Høyre enkelt anførselstegn\",ldquo:\"Venstre dobbelt anførselstegn\",rdquo:\"Høyre anførsesltegn\",ndash:\"Kort tankestrek\",mdash:\"Lang tankestrek\",iexcl:\"Omvendt utropstegn\",cent:\"Centsymbol\",pound:\"Pundsymbol\",curren:\"Valutategn\",yen:\"Yensymbol\",brvbar:\"Brutt loddrett strek\",sect:\"Paragraftegn\",uml:\"Tøddel\",copy:\"Copyrighttegn\",ordf:\"Feminin ordensindikator\",laquo:\"Venstre anførselstegn\",not:\"Negasjonstegn\",\n    6: reg:\"Registrert varemerke-tegn\",macr:\"Makron\",deg:\"Gradsymbol\",sup2:\"Hevet totall\",sup3:\"Hevet tretall\",acute:\"Akutt aksent\",micro:\"Mikrosymbol\",para:\"Avsnittstegn\",middot:\"Midtstilt prikk\",cedil:\"Cedille\",sup1:\"Hevet ettall\",ordm:\"Maskulin ordensindikator\",raquo:\"Høyre anførselstegn\",frac14:\"Fjerdedelsbrøk\",frac12:\"Halvbrøk\",frac34:\"Tre fjerdedelers brøk\",iquest:\"Omvendt spørsmålstegn\",Agrave:\"Stor A med grav aksent\",Aacute:\"Stor A med akutt aksent\",Acirc:\"Stor A med cirkumfleks\",Atilde:\"Stor A med tilde\",\n    7  Auml:\"Stor A med tøddel\",Aring:\"Stor Å\",AElig:\"Stor Æ\",Ccedil:\"Stor C med cedille\",Egrave:\"Stor E med grav aksent\",Eacute:\"Stor E med akutt aksent\",Ecirc:\"Stor E med cirkumfleks\",Euml:\"Stor E med tøddel\",Igrave:\"Stor I med grav aksent\",Iacute:\"Stor I med akutt aksent\",Icirc:\"Stor I med cirkumfleks\",Iuml:\"Stor I med tøddel\",ETH:\"Stor Edd/stungen D\",Ntilde:\"Stor N med tilde\",Ograve:\"Stor O med grav aksent\",Oacute:\"Stor O med akutt aksent\",Ocirc:\"Stor O med cirkumfleks\",Otilde:\"Stor O med tilde\",Ouml:\"Stor O med tøddel\",\n    8  times:\"Multiplikasjonstegn\",Oslash:\"Stor Ø\",Ugrave:\"Stor U med grav aksent\",Uacute:\"Stor U med akutt aksent\",Ucirc:\"Stor U med cirkumfleks\",Uuml:\"Stor U med tøddel\",Yacute:\"Stor Y med akutt aksent\",THORN:\"Stor Thorn\",szlig:\"Liten dobbelt-s/Eszett\",agrave:\"Liten a med grav aksent\",aacute:\"Liten a med akutt aksent\",acirc:\"Liten a med cirkumfleks\",atilde:\"Liten a med tilde\",auml:\"Liten a med tøddel\",aring:\"Liten å\",aelig:\"Liten æ\",ccedil:\"Liten c med cedille\",egrave:\"Liten e med grav aksent\",eacute:\"Liten e med akutt aksent\",\n\n/Users/Rubel/Documents/leavelab/leaveapp/public/plugins/ckeditor/plugins/specialchar/dialogs/lang/no.js:\n    4  */\n    5  CKEDITOR.plugins.setLang(\"specialchar\",\"no\",{euro:\"Eurosymbol\",lsquo:\"Venstre enkelt anførselstegn\",rsquo:\"Høyre enkelt anførselstegn\",ldquo:\"Venstre dobbelt anførselstegn\",rdquo:\"Høyre anførsesltegn\",ndash:\"Kort tankestrek\",mdash:\"Lang tankestrek\",iexcl:\"Omvendt utropstegn\",cent:\"Centsymbol\",pound:\"Pundsymbol\",curren:\"Valutategn\",yen:\"Yensymbol\",brvbar:\"Brutt loddrett strek\",sect:\"Paragraftegn\",uml:\"Tøddel\",copy:\"Copyrighttegn\",ordf:\"Feminin ordensindikator\",laquo:\"Venstre anførselstegn\",not:\"Negasjonstegn\",\n    6: reg:\"Registrert varemerke-tegn\",macr:\"Makron\",deg:\"Gradsymbol\",sup2:\"Hevet totall\",sup3:\"Hevet tretall\",acute:\"Akutt aksent\",micro:\"Mikrosymbol\",para:\"Avsnittstegn\",middot:\"Midtstilt prikk\",cedil:\"Cedille\",sup1:\"Hevet ettall\",ordm:\"Maskulin ordensindikator\",raquo:\"Høyre anførselstegn\",frac14:\"Fjerdedelsbrøk\",frac12:\"Halvbrøk\",frac34:\"Tre fjerdedelers brøk\",iquest:\"Omvendt spørsmålstegn\",Agrave:\"Stor A med grav aksent\",Aacute:\"Stor A med akutt aksent\",Acirc:\"Stor A med cirkumfleks\",Atilde:\"Stor A med tilde\",\n    7  Auml:\"Stor A med tøddel\",Aring:\"Stor Å\",AElig:\"Stor Æ\",Ccedil:\"Stor C med cedille\",Egrave:\"Stor E med grav aksent\",Eacute:\"Stor E med akutt aksent\",Ecirc:\"Stor E med cirkumfleks\",Euml:\"Stor E med tøddel\",Igrave:\"Stor I med grav aksent\",Iacute:\"Stor I med akutt aksent\",Icirc:\"Stor I med cirkumfleks\",Iuml:\"Stor I med tøddel\",ETH:\"Stor Edd/stungen D\",Ntilde:\"Stor N med tilde\",Ograve:\"Stor O med grav aksent\",Oacute:\"Stor O med akutt aksent\",Ocirc:\"Stor O med cirkumfleks\",Otilde:\"Stor O med tilde\",Ouml:\"Stor O med tøddel\",\n    8  times:\"Multiplikasjonstegn\",Oslash:\"Stor Ø\",Ugrave:\"Stor U med grav aksent\",Uacute:\"Stor U med akutt aksent\",Ucirc:\"Stor U med cirkumfleks\",Uuml:\"Stor U med tøddel\",Yacute:\"Stor Y med akutt aksent\",THORN:\"Stor Thorn\",szlig:\"Liten dobbelt-s/Eszett\",agrave:\"Liten a med grav aksent\",aacute:\"Liten a med akutt aksent\",acirc:\"Liten a med cirkumfleks\",atilde:\"Liten a med tilde\",auml:\"Liten a med tøddel\",aring:\"Liten å\",aelig:\"Liten æ\",ccedil:\"Liten c med cedille\",egrave:\"Liten e med grav aksent\",eacute:\"Liten e med akutt aksent\",\n\n/Users/Rubel/Documents/leavelab/leaveapp/public/plugins/ckeditor/plugins/specialchar/dialogs/lang/sv.js:\n    4  */\n    5  CKEDITOR.plugins.setLang(\"specialchar\",\"sv\",{euro:\"Eurotecken\",lsquo:\"Enkelt vänster citattecken\",rsquo:\"Enkelt höger citattecken\",ldquo:\"Dubbelt vänster citattecken\",rdquo:\"Dubbelt höger citattecken\",ndash:\"Snedstreck\",mdash:\"Långt tankstreck\",iexcl:\"Inverterad utropstecken\",cent:\"Centtecken\",pound:\"Pundtecken\",curren:\"Valutatecken\",yen:\"Yentecken\",brvbar:\"Brutet lodrätt streck\",sect:\"Paragraftecken\",uml:\"Diaeresis\",copy:\"Upphovsrättstecken\",ordf:\"Feminit ordningstalsindikator\",laquo:\"Vänsterställt dubbelt vinkelcitationstecken\",\n    6: not:\"Icke-tecken\",reg:\"Registrerad\",macr:\"Macron\",deg:\"Grader\",sup2:\"Upphöjt två\",sup3:\"Upphöjt tre\",acute:\"Akut accent\",micro:\"Mikrotecken\",para:\"Alinea\",middot:\"Centrerad prick\",cedil:\"Cedilj\",sup1:\"Upphöjt en\",ordm:\"Maskulina ordningsändelsen\",raquo:\"Högerställt dubbelt vinkelcitationstecken\",frac14:\"Bråktal - en kvart\",frac12:\"Bråktal - en halv\",frac34:\"Bråktal - tre fjärdedelar\",iquest:\"Inverterat frågetecken\",Agrave:\"Stort A med grav accent\",Aacute:\"Stort A med akutaccent\",Acirc:\"Stort A med circumflex\",\n    7  Atilde:\"Stort A med tilde\",Auml:\"Stort A med diaresis\",Aring:\"Stort A med ring ovan\",AElig:\"Stort Æ\",Ccedil:\"Stort C med cedilj\",Egrave:\"Stort E med grav accent\",Eacute:\"Stort E med aktuaccent\",Ecirc:\"Stort E med circumflex\",Euml:\"Stort E med diaeresis\",Igrave:\"Stort I med grav accent\",Iacute:\"Stort I med akutaccent\",Icirc:\"Stort I med circumflex\",Iuml:\"Stort I med diaeresis\",ETH:\"Stort Eth\",Ntilde:\"Stort N med tilde\",Ograve:\"Stort O med grav accent\",Oacute:\"Stort O med aktuaccent\",Ocirc:\"Stort O med circumflex\",\n    8  Otilde:\"Stort O med tilde\",Ouml:\"Stort O med diaeresis\",times:\"Multiplicera\",Oslash:\"Stor Ø\",Ugrave:\"Stort U med grav accent\",Uacute:\"Stort U med akutaccent\",Ucirc:\"Stort U med circumflex\",Uuml:\"Stort U med diaeresis\",Yacute:\"Stort Y med akutaccent\",THORN:\"Stort Thorn\",szlig:\"Litet dubbel-s/Eszett\",agrave:\"Litet a med grav accent\",aacute:\"Litet a med akutaccent\",acirc:\"Litet a med circumflex\",atilde:\"Litet a med tilde\",auml:\"Litet a med diaeresis\",aring:\"Litet a med ring ovan\",aelig:\"Bokstaven æ\",\n\n/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/application/applicationView.phtml:\n  142                <p><b>Departmental Memorandum:</b> <?= $application->d_memorandum ?></p>\n  143                <p>To,</p>\n  144:               <p>Registrer,</p>\n  145                <p>Hajee Mohammad Danesh Science & Technology University</p>\n  146                <p>Dinajpur</p>\n  ...\n  230                      <hr>\n  231                      <?\n  232:                   } else ($forwarding->to_designation=='Registrer'){\n  233  \n  234                      $to_user = Admin::find($forwarding->to_user);\n  ...\n  321                  if (AdminDetails::checkIfChairman($_SESSION['user'])){\n  322                    echo \"Dean\";\n  323:                 } else echo \"Registrer\";\n  324                    ?></h3>\n  325                </div>\n\n/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/home/home.phtml:\n  266                    <p><?\n  267                    $user = Admin::find($_SESSION['user']);\n  268:                   echo ApplicationForwarding::where('by_designation', 'Dean')->where('to_designation', 'Registrer')->where('active', 1)->count(); ?></p>\n  269                  </div>\n  270                  <div class=\"icon\">\n\n12 matches across 7 files\n",
+			"settings":
+			{
+				"buffer_size": 10767,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "app/Helper/AdminDetails.php",
+			"settings":
+			{
+				"buffer_size": 4825,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/user/vcrgSetup.phtml",
+			"settings":
+			{
+				"buffer_size": 15509,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Controllers/HomeController.php",
+			"settings":
+			{
+				"buffer_size": 1663,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 389.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 524.0
+	},
+	"console":
+	{
+		"height": 153.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/Rubel/Documents/leavelab/leaveapp",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Auth",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Controllers",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Controllers/Auth",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Helper",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Models",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/application",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/auth",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/home",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/user",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/ui_includes"
+	],
+	"file_history":
+	[
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Controllers/AccountController.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Models/Applications.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/application/pendingToRegisrar.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/ui_includes/leftpanel.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Controllers/FormController.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/user/addAdministrativeUser.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Models/ApplicationForwarding.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/application/allApplicationCD.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/application/waitingRecomCD.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/ui_includes/header.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/application/waitingRecomChairman.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Auth/Auth.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Controllers/Auth/AuthController.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Helper/AdminDetails.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/user/user.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/application/applicationEdit.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/application/applicationView.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/application/newApplication.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Models/FixedUsers.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/application/allApplications.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/application/allDraftApplications.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/auth/login.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/auth/register.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Models/LeaveTypes.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/user/fixedUsers.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/user/vcrgSetup.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/user/inchargeSetup.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/auth/completeProfile.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/auth/confirmation.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Models/Admin.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Models/Model/Applications.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/ui_includes/footer.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/home/accessDenied.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/ui_includes/head.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/home/home.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Controllers/HomeController.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/ui_includes/control-sidebar.phtml",
+		"/Users/Rubel/Desktop/WORKS/AdminLTE-2.3.11/index.html",
+		"/Users/Rubel/Documents/leavelab/leaveapp/public/dist/css/AdminLTE.css",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/ui_includes/main_navigation.phtml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/bootstrap/sys/config.xml",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/php_includes/db_conx.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/php_includes/db_conx2.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Models/AdminLogin.php",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Database/DbConnect.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingDeliverItems.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/ServicingItems.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/CollectionController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingDailyReportResult.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/ServicingItemProblem.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingItemsDeliverable.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/newServicing.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingInvoiceView.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingDailyReport.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingTaskByTechnician.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/NotificationsController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/ui_includes/footer.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/ui_includes/header.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Helper/AdminDetails.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingItemsProcessing.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/newPurchase.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/AccountController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingItemDetails.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/RmaserviceController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingItemsAll.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/ServicingDeliverySlip.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/outsourceAgentSetup.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/allOutsourceAgents.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/SuppliersController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/ServicingAgents.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/public/plugins/ckeditor/plugins/pastefromword/filter/default.js",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/auth/login.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/printServicingTracking.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/ServicingSlip.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/inventory/serialTrackingResult.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/returnPurchase.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/SalesController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/newRmaSlip.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/editInvoice.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/allrescSchedules.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/scheduledDueCollection.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/dueCollection.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/report/salesreport/dailyCombinedReport2.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/report/salesreport/dailyCombinedReport.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/invoicePayment.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/advanceSlip.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/collectionSlipDetails.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/PaymentCollectionslip.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/editHistory.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/SupInvItemsEdited.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/SupplierInvoice.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/viewMissedSchedules.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/returnInvoice.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/viewRescheduledDetails.phtml",
+		"/Users/Rubel/Downloads/inoERP-master/inoerp/inoerp_server/modules/inv/receipt/class_inv_receipt_v.inc",
+		"/Users/Rubel/Documents/leavelab/leaveapp/vendor/monolog/monolog/tests/Monolog/Processor/GitProcessorTest.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/collectionComSlipDetails.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/Sales/SalesDueSchedules.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/Sales/AdvanceSlip.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/rmaSlip.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/rmaInvItemSelection.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/Sales/SalesReturnSlip.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/returneSlipFull.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/returneSlipPatrial.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/pendingRmaItems.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/bootstrap/app.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/newRmaReceiveSelection.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/customers/ledgerResult.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/newRmaReceive.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/rmaShippingSlip.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/RmaItems.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/RmaSerials.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/RmaShipping.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/advSlipEdit.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/ui_includes/head.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/home/home.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/colSlipEdit.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/public/plugins/ckeditor/ckeditor.js",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/allRmaSlips.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/customers/creditNoteView.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/customers/paybackSlip.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/payments/viewSlip.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/bak.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/cancelReturne.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/inv_payment_backup.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/invoiceDetailsInfo.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/oldInvoicePayment.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/returnedInvoice.phtml"
+	],
+	"find":
+	{
+		"height": 42.0
+	},
+	"find_in_files":
+	{
+		"height": 110.0,
+		"where_history":
+		[
+			"<open folders>,<open files>,<current file>",
+			"<open folders>",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Successfully Submitted to memorandum!",
+			"toAdministrative",
+			"Recommend To VC",
+			"recommend to vc",
+			"application",
+			"securityChkPasswordRcVC",
+			"recommendToVC",
+			"markApplication",
+			"Assign Memorandum",
+			"mark/for",
+			"print",
+			"applicationEdit",
+			"markApplication",
+			"Reviewed And Marked to",
+			"approve",
+			"select2",
+			"securityChkpassVC",
+			"finalActionVC",
+			"diagnoseSection",
+			"checkpasswordsec",
+			"passwordErr",
+			"securityChkPassword",
+			"diagnoseSection",
+			"checkpasswordsec",
+			"passwordErr",
+			"securityChkPassword",
+			"securityChkpass",
+			"Recommendation:",
+			"applicationvi",
+			"$user",
+			"$application->status",
+			"select2",
+			"width",
+			"securityClose",
+			"select2",
+			"diagnoseSection",
+			"checkpasswordsec",
+			"passwordErr",
+			"securityChkPassword",
+			"securityChkpass",
+			"Registrer",
+			"><?=",
+			"AdminDetails",
+			"by_designaion",
+			"select2",
+			"Applications:",
+			"Application:",
+			"ApplicationForwarding:",
+			"applications:",
+			"ApplicationForwarding:",
+			"applications:",
+			"$_SESSION['user']",
+			"applications:",
+			"passwordErr",
+			"checkpasswordsec",
+			"diagnoseSection",
+			"checkpassAction",
+			"/public/auth/checkpass",
+			"securityChkPassword",
+			"Registrer",
+			"modal",
+			"passwordErr",
+			"getTeacherInfo",
+			"ApplicationForwarding",
+			"appplication",
+			"memo",
+			"$_Message",
+			"Link to complete profile has been",
+			"email here",
+			"AdminDetails",
+			"SalesDueSchedules",
+			"wysihtml5",
+			"compose-textarea",
+			"wysihtml5",
+			"select2",
+			"FormController",
+			"$request->getParam('description')",
+			"successfully created account",
+			"$response->withRedirect(",
+			"FixedUsers",
+			"email",
+			"y-m-d",
+			"Y-m-d",
+			"email",
+			"newusernamecheckok",
+			"national id",
+			"new",
+			"_SESSION",
+			"user",
+			"$auth['user']",
+			"sql",
+			"AdminRolePermission",
+			"main",
+			"href=\"",
+			"src",
+			"href=\"",
+			"src=",
+			"Invalid Username!",
+			"loginerror",
+			"password",
+			"username",
+			"$_SESSION['user']",
+			"attemp",
+			"password_ha",
+			"login",
+			"Y-m-d",
+			"vali",
+			"password_hash",
+			"getParam",
+			"faculty",
+			"getTeachers",
+			"change",
+			"plugins"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 7,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/routes.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6055,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4702,
+								4721
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2780.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/Controllers/FormController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 33055,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								32151,
+								32151
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 23318.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "templates/modules/application/allToAdministrative.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7446,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4482,
+								4482
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2674.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "templates/modules/user/addAdministrativeUser.phtml",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 18024,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2728,
+								2735
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2129.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "templates/modules/user/allUsers.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7223,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3698,
+								3698
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2548.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "templates/modules/application/viewOrder.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17634,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7107,
+								7107
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5180.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "templates/modules/home/home.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17266,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12492,
+								12492
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5473.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "templates/modules/application/applicationView.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 37706,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4392,
+								4392
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3140.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "app/Models/OfficeOrders.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 272,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								211,
+								221
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "templates/modules/application/generateOrder.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13584,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3093,
+								3152
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2373.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "templates/modules/application/pendingToVC.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7446,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								7446
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2935.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "templates/modules/application/pendingToRegisrar.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7458,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								7458
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2126.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "templates/modules/auth/completeProfile.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5826,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1984,
+								1984
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "app/Controllers/Auth/AuthController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8516,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6429,
+								6433
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "templates/modules/application/toAdministrative.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7423,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4496,
+								4496
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2811.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "templates/modules/application/allAppsRegisrar.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7552,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2775,
+								2775
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10767,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										153,
+										162
+									],
+									[
+										265,
+										274
+									],
+									[
+										309,
+										318
+									],
+									[
+										537,
+										546
+									],
+									[
+										1291,
+										1300
+									],
+									[
+										3481,
+										3490
+									],
+									[
+										5706,
+										5715
+									],
+									[
+										7971,
+										7980
+									],
+									[
+										9745,
+										9754
+									],
+									[
+										10010,
+										10019
+									],
+									[
+										10262,
+										10271
+									],
+									[
+										10619,
+										10628
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								10622,
+								10622
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3263.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 19,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "app/Helper/AdminDetails.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4825,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2379,
+								2390
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1512.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "templates/modules/user/vcrgSetup.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15509,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6366,
+								6366
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "app/Controllers/HomeController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1663,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								628,
+								628
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 44.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "",
+	"project": "leaveapp.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 772.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 405.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

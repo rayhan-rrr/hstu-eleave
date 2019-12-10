@@ -1,0 +1,882 @@
+<?
+
+use App\Models\Admin;
+include $this->getTemplatePath().'php_includes/db_conx.php';
+
+  $adminRole = Admin::find($_SESSION['user'])->role;
+
+$menusql = "SELECT DISTINCT admin_resources.module FROM admin_role_permission LEFT JOIN admin_resources on admin_role_permission.resource=admin_resources.id WHERE admin_role_permission.role_id=$adminRole";
+
+$query=mysqli_query($db_conx, $menusql);
+$num_row = mysqli_num_rows($query);
+
+$menu_modules  = array();
+
+if ($num_row>0) {
+  while( $row=mysqli_fetch_array($query) ) {
+
+    array_push($menu_modules, $row['module']);
+
+  }
+}
+$GLOBALS['modules'] = $menu_modules;
+?>
+
+
+<div class="menu-wrapper _fixed no-print">
+    <a href="#" class="logo">
+        <img class="logo-img" src="/retadesk/retadesk_logo.png" alt="RetaDesk - Retail Business Assistant"/>
+    </a>
+
+    <nav class="admin__menu">
+      <ul id="nav" role="menubar">
+
+          <?
+          if (in_array("dashboard", $menu_modules)) { ?>
+
+          <li class="item-dashboard _current _active level-0 nav_parent" id="menu-dashboard" role="menu-item">
+            <a href="/" class="_active">
+              <i class="main_navigation fa fa-dashboard"></i><br>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <?} 
+
+          if (in_array("inventory", $menu_modules)) { ?>
+          
+          <!-- ------- inventory------ -->
+          <li class="item-system  parent  level-0 nav_parent" id="menu-inventory" aria-haspopup="true" role="menu-item">
+            <a href="#" class="">
+              <i class="main_navigation fa fa-cubes"></i><br>
+              <span>Inventory</span>
+            </a>
+            <div class="submenu" aria-expanded="false">
+              <strong class="submenu-title">Inventory</strong> <!-- shows the popup heading-->
+                
+                  <ul role="menu">
+                      <li class="column">
+                          <ul role="menu">
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Category</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/inventory/category/create"   class="">
+                                              <span>Create Category</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/inventory/category"   class="">
+                                              <span>View All Categories</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Brands</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/inventory/brands/create"   class="">
+                                              <span>Create Brand</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/inventory/brands"   class="">
+                                              <span>View All Brands</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Product Groups</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/inventory/groups/create"   class="">
+                                              <span>Create Group</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/inventory/groups"   class="">
+                                              <span>View All Groups</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              
+                              
+                          </ul>
+                      </li>
+                      <li class="column">
+                          <ul role="menu">
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Products</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/products/new" class="">
+                                              <span>Product Setup</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/products/all" class="">
+                                              <span>View All Products</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Stock Report</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/inventory/report" class="">
+                                              <span>View Stock Report</span>
+                                            </a>
+                                          </li>
+
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/report/stock/sales" class="">
+                                              <span>Stock Sales Report</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Serial Tracking</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/inventory/serial/search" class="">
+                                              <span>Find Serial</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              
+                          </ul>
+                      </li>
+                  </ul>
+              </div>
+          </li>
+          <!-- ------- inventory end ------ -->
+
+          <?}
+          if (in_array("sales", $menu_modules)) { ?>
+
+          <!-- ------- sales------ -->
+          <li class="item-system  parent  level-0 nav_parent" id="menu-sales" aria-haspopup="true" role="menu-item">
+            <a href="#" class="">
+              <i class="main_navigation fa fa-tags"></i><br>
+              <span>Sales</span>
+            </a>
+            <div class="submenu" aria-expanded="false">
+              <strong class="submenu-title">Sales</strong> <!-- shows the popup heading-->
+                
+                  <ul role="menu">
+                      <li class="column">
+                          <ul role="menu">
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>New Sale</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/sales/create" class="">
+                                              <span>Create New Invoice</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Invoices</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/sales/unpaid/all" class="">
+                                              <span>Unpaid Invoices</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/sales/all"   class="">
+                                              <span>All Invoices</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/sales/returned"   class="">
+                                              <span>Returned Invoices</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/sales/returnslips"   class="">
+                                              <span>Return Slips</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>                              
+                              
+                          </ul>
+                      </li>
+                      <li class="column">
+                          <ul role="menu">
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Sales Report</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/report/sales/today"   class="">
+                                              <span>Today's Sales Report</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/report/sales/daily"   class="">
+                                              <span>Date Wise Sales Report</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/report/combined/daily1"   class="">
+                                              <span>Date Wise Combined Report 1</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/report/combined/daily2"   class="">
+                                              <span>Date Wise Combined Report 2</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/report/combined/monthly"   class="">
+                                              <span>Month Wise Combined Report</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/report/due/individual"   class="">
+                                              <span>Individual Due Report</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              
+                          </ul>
+                      </li>
+                  </ul>
+              </div>
+          </li>
+          <!-- ------- sales end------ -->
+
+          <?}
+          if (in_array("suppliers", $menu_modules)) { ?>
+          <!-- ------- suppliers------ -->
+
+          <li class="item-system  parent  level-0 nav_parent" id="menu-suppliers" aria-haspopup="true" role="menu-item">
+            <a href="#" class="">
+              <i class="main_navigation fa fa-truck"></i><br>
+              <span>Suppliers</span>
+            </a>
+            <div class="submenu" aria-expanded="false">
+              <strong class="submenu-title">Suppliers</strong> <!-- shows the popup heading-->
+                
+                  <ul role="menu">
+                      <li class="column">
+                          <ul role="menu">
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Purchase</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/suppliers/purchase/new" class="">
+                                              <span>Create New Purchase</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/suppliers/purchase/all" class="">
+                                              <span>View Purchase</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Suppliers</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/suppliers/new" class="">
+                                              <span>Supplier Setup</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/suppliers" class="">
+                                              <span>View Suppliers</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              
+                              
+                          </ul>
+                          <ul role="menu">
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Payment</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/suppliers/payment" class="">
+                                              <span>Make Payment</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              
+                          </ul>
+                      </li>
+                      <li class="column">
+                          
+                          <ul role="menu">
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Ledger</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/suppliers/ledger" class="">
+                                              <span>View Supplier Ledger</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/suppliers/balancereport" class="">
+                                              <span>Supplier Balance Report</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              
+                          </ul>
+                          <ul role="menu">
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Purchase Report</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/suppliers/purchase/report" class="">
+                                              <span>View Purchase Report</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              
+                          </ul>
+                      </li>
+                  </ul>
+              </div>
+          </li>
+          <!-- ------- purchase end ------ -->
+
+          <?}
+          if (in_array("customers", $menu_modules)) { ?>
+          <!-- ------- customers ------ -->
+
+          <li class="item-sales  parent level-0 nav_parent" id="menu-customers" aria-haspopup="true" role="menu-item">
+            <a href="#" class="">
+              <i class="main_navigation fa fa-users"></i><br>
+              <span>Customers</span>
+            </a>
+            <div class="submenu" aria-expanded="false">
+              <strong class="submenu-title">Customers</strong>
+              
+                  <ul role="menu">
+                      <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Operations</span></strong>
+                          <div class="submenu">
+                              <ul role="menu">
+                                  <li class="level-2" role="menu-item"><a href="" class="">
+                                    <a href="/customers/new">
+                                      <span>Create Customer</span>
+                                    </a>
+                                  </li>
+                                  <li class="level-2" role="menu-item"><a href=""   class="">
+                                    <a href="/customers">
+                                      <span>View Customers</span>
+                                    </a>
+                                  </li>
+                                  <li class="level-2" role="menu-item"><a href=""   class="">
+                                    <a href="/customers/ledger">
+                                      <span>Customer Ledger</span>
+                                    </a>
+                                  </li>
+                                  <li class="level-2" role="menu-item"><a href=""   class="">
+                                    <a href="/customers/creditnote/new">
+                                      <span>Create Credit Note</span>
+                                    </a>
+                                  </li>
+                                  <li class="level-2" role="menu-item"><a href=""   class="">
+                                    <a href="/customers/creditnotes">
+                                      <span>View Credit Notes</span>
+                                    </a>
+                                  </li>
+
+                                  <li class="level-2" role="menu-item"><a href=""   class="">
+                                    <a href="/customers/paybackslips">
+                                      <span>View Payback Slips</span>
+                                    </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </li>
+
+          <!-- ------- customers end ------ -->
+
+          <?}
+          if (in_array("accounts", $menu_modules)) { ?>
+          <!-- ------- Accounts ------ -->
+
+          <li class="item-system  parent  level-0 nav_parent" id="menu-accounts" aria-haspopup="true" role="menu-item">
+            <a href="#" class="">
+              <i class="main_navigation fa fa-bank"></i><br>
+              <span>Accounts</span>
+            </a>
+            <div class="submenu" aria-expanded="false">
+              <strong class="submenu-title">Accounts</strong> <!-- shows the popup heading-->
+                
+                  <ul role="menu">
+                      <li class="column">
+                          <ul role="menu">
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Banks</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts/banksetup" class="">
+                                              <span>Bank Setup</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts/banks" class="">
+                                              <span>View Bank Accounts</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts/fundtransfer" class="">
+                                              <span>Fund Transfer</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Cheques</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts/unprocessedcheque" class="">
+                                              <span>Unprocessed Cheques</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts/processedcheque" class="">
+                                              <span>Processed Cheques</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Overview</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts" class="">
+                                              <span>Accounts Overview</span>
+                                            </a>
+                                          </li>
+
+                                          <!-- <li class="level-2" role="menu-item">
+                                            <a href="/accounts/cashflow/daily" class="">
+                                              <span>Daily Cash Flow</span>
+                                            </a>
+                                          </li> -->
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="column">
+                          <ul role="menu">
+                              
+
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Expenditure</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts/spendings" class="">
+                                              <span>Spending Sectors</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts/spendings/entry" class="">
+                                              <span>Expenditure Entry</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts/spendings/returnentry" class="">
+                                              <span>Expenditure Return Entry</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts/spendings/report" class="">
+                                              <span>Expenditure Report</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+
+                                  </div>
+                              </li>
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Salary & Loans</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts/salary/pay" class="">
+                                              <span>Pay Salary</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts/salary/report" class="">
+                                              <span>Salary Report</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts/loan" class="">
+                                              <span>Give Loan</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts/loans/all" class="">
+                                              <span>All Loans</span>
+                                            </a>
+                                          </li>
+
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts/loans/payment" class="">
+                                              <span>Loan Collection</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                      
+                                  </div>
+                              </li>
+                              
+                          </ul>
+                      </li>
+                  </ul>
+              </div>
+          </li>
+          <!-- ------- Accounts end ------ -->
+
+          <?}
+          if (in_array("collection", $menu_modules)) { ?>
+          
+          <!-- ------- collection ------ -->
+          <li class="item-system parent level-0 nav_parent" id="menu-collection" aria-haspopup="true" role="menu-item">
+            <a href="#" class="">
+              <i class="main_navigation fa fa-money"></i><br>
+              <span>Collection</span>
+            </a>
+            <div class="submenu" aria-expanded="false">
+              <strong class="submenu-title">Collection</strong> <!-- shows the popup heading-->
+                
+                  <ul role="menu">
+                      <li class="column">
+                          <ul role="menu">
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>All Collections</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/collection/due" class="">
+                                              <span>Collection</span>
+                                            </a>
+                                          </li>
+
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/sales/olddueentry" class="">
+                                              <span>Old Dues Entry</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Schedules</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/collection/pendingschedules" class="">
+                                              <span>Pending/Unprocesses Schedules</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/collection/rescheduledscs" class="">
+                                              <span>Rescheduled Schedules</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/collection/partialpaidsc" class="">
+                                              <span>Partially Collected Schedules</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/collection/paidschedules" class="">
+                                              <span>Collected Schedules</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="column">
+                          <ul role="menu">
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Overview</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/accounts" class="">
+                                              <span>Accounts Overview</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Slips & Notes</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/collection/advanceslips" class="">
+                                              <span>Advance Slips</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/collection/collectionslips" class="">
+                                              <span>Payment Collection Slips</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                              
+                          </ul>
+
+                      </li>
+                  </ul>
+              </div>
+          </li>
+          <!-- ------- collection end ------ -->
+
+          <?}
+          if (in_array("rmaservice", $menu_modules)) { ?>
+          <!-- ------- RMA & Servicing ------ -->
+          <li class="item-settings last  parent level-0 nav_parent" id="menu-customers" aria-haspopup="true" role="menu-item">
+            <a href="#" class="">
+              <i class="main_navigation fa fa-ambulance"></i><br>
+              <span>RMA & Servicing</span>
+            </a>
+            <div class="submenu" aria-expanded="false">
+              <strong class="submenu-title">RMA & Servicing</strong>
+              
+                  <ul role="menu">
+                      <li class="column">
+                          <ul role="menu">
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>RMA</span></strong>
+                                  <!-- <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/rmaservice/rma/new" class="">
+                                              <span>New RMA Slip</span>
+                                            </a>
+                                          </li>
+
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/rmaservice/rma/allslips" class="">
+                                              <span>All RMA Slips</span>
+                                            </a>
+                                          </li>
+
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/rmaservice/rma/pending" class="">
+                                              <span>Pending RMA Items</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/rmaservice/rmareceive/new" class="">
+                                              <span>Receive RMA Items</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/rmaservice/rmareceive/new" class="">
+                                              <span>Deliver Items</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div> -->
+                              </li>
+                              
+                          </ul>
+                      </li>
+                      <li class="column">
+                          <ul role="menu">
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Servicing</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/servicing" class="">
+                                              <span>New Servicing Slip</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/servicing/pending" class="">
+                                              <span>Pending Items</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/servicing/processing" class="">
+                                              <span>Items Processing</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/servicing/deliverable" class="">
+                                              <span>Ready To Deliver</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/servicing/allitems" class="">
+                                              <span>All Items</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/servicing/report/daily" class="">
+                                              <span>Daily Report</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+
+                              
+                              
+                          </ul>
+
+                          <ul role="menu">
+                              <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Outsourcing</span></strong>
+                                  <div class="submenu">
+                                      <ul role="menu">
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/servicing/outsource/setup" class="">
+                                              <span>Setup Agent</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/servicing/outsource/agents" class="">
+                                              <span>All Agents</span>
+                                            </a>
+                                          </li>
+                                          <li class="level-2" role="menu-item">
+                                            <a href="/servicing/outsource/receiveback" class="">
+                                              <span>Receive Back Item</span>
+                                            </a>
+                                          </li>
+                                          
+                                      </ul>
+                                  </div>
+                              </li>
+                          </ul>
+
+                      </li>
+
+                  </ul>
+              </div>
+          </li>
+          <!-- ------- RMA & Servicing end ------ -->
+          <?}
+          ?>
+
+          <?
+          if (in_array("profile", $menu_modules)) { ?>
+          <!-- ------- profile ------ -->
+          <li class="item-partners level-0 nav_parent" id="menu-profile" aria-haspopup="true" role="menu-item">
+            <a href="/user" class="">
+              <i class="main_navigation fa fa-user"></i><br>
+              <span>Profile</span>
+            </a>
+          </li>
+          <!-- ------- profile end ------ -->
+          <?}
+          ?>
+
+
+          <?
+          if (in_array("settings", $menu_modules)) { ?>
+          <!-- ------- settings ------ -->
+          <li class="item-settings last  parent level-0 nav_parent" id="menu-customers" aria-haspopup="true" role="menu-item">
+            <a href="#" class="">
+              <i class="main_navigation fa fa-gears"></i><br>
+              <span>Settings</span>
+            </a>
+            <div class="submenu" aria-expanded="false">
+              <strong class="submenu-title">Settings</strong>
+              
+                  <ul role="menu">
+                      <li class="parent  level-1" role="menu-item"><strong class="submenu-group-title" role="presentation"><span>Operations</span></strong>
+                          <div class="submenu">
+                              <ul role="menu">
+                                  <li class="level-2" role="menu-item"><a href="" class="">
+                                    <a href="/settings/system">
+                                      <span>System Configuration</span>
+                                    </a>
+                                  </li>
+                                  <li class="level-2" role="menu-item"><a href=""   class="">
+                                    <a href="/settings/invoices">
+                                      <span>Invoice Configuration</span>
+                                    </a>
+                                  </li>
+
+                                  <li class="level-2" role="menu-item"><a href=""   class="">
+                                    <a href="/settings/backup">
+                                      <span>Download Database Backup</span>
+                                    </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </li>
+          <!-- ------- settings end ------ -->
+          <?}
+          ?>
+      </ul>
+    </nav>
+
+  </div>

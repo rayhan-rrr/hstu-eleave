@@ -1,0 +1,97 @@
+<?
+use App\Helper\Permission\AccessControl;
+?>
+
+<div class="col-md-12">
+  <div class="box box-primary">
+    <div class="box-header">
+      <? 
+      //access control
+      //view roles -> resource=64
+      if (AccessControl::getPermission(64)) {
+       ?>
+      <h2 class="box-title col-sm-4">Available Roles</h2>
+
+      <?}?>
+      <? 
+      //access control
+      //create role -> resource=6
+      if (AccessControl::getPermission(6)) {
+       ?>
+      <a id="" class="btn btn-info pull-right col-sm-2" style="margin-top: 0px;" href="/user/addrole">
+          <i class="fa fa-plus-square"></i> Create Role
+        </a>
+      <?}?>
+    </div>
+    <? 
+    //access control
+    //view roles -> resource=64
+    if (AccessControl::getPermission(64)) {
+    ?>
+      <div class="box-body">
+        <table id="self-login-history" class="table table-bordered table-hover">
+          <thead>
+          <tr>
+
+            <th>SL</th>
+            <th>Role</th>
+            <th>Description</th>
+            <th>Created</th>
+            <? 
+            //access control
+            //edit roles -> resource=67
+            if (AccessControl::getPermission(67)) {
+             ?>
+            <th>Action</th>
+            <?}?>
+          </tr>
+          </thead>
+            
+          <tbody>
+
+            <?
+
+            $userid = $_SESSION['user'];
+            $sql = "SELECT * FROM admin_role;";
+            $result = mysqli_query($db_conx,$sql );
+        
+            $total_result = mysqli_num_rows($result);
+        
+            if($total_result>0){
+          
+            $count = 0;
+            while($row = mysqli_fetch_array($result)){
+
+            ?>
+            <tr role="row">
+              <td><? echo ++$count; ?></td>
+              <td><a href="/user/role/details/<? echo $row['id']; ?>"><? echo $row['name'] ?></a></td>
+              <td><? echo $row['description'] ?></td>
+              <td><? echo $row['created_at'] ?></td>
+              <? 
+              //access control
+              //edit roles -> resource=67
+              if (AccessControl::getPermission(67)) {
+               ?>
+              <td><a href="/user/editroleresources/<? echo $row['id']; ?>">Edit</a></td>
+              <?}?>
+
+
+            </tr>
+          
+            <?
+              }}
+            ?>
+          
+          </tbody>
+
+          <tfoot>
+
+          </tfoot>
+
+        </table>
+      </div>
+    <?}?>
+
+  </div>
+</div>

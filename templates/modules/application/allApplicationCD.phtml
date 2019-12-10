@@ -1,0 +1,246 @@
+<?php
+
+ use App\Helper\Includes\NumberToWord;
+ use App\Helper\AdminDetails;
+
+use App\Models\FixedUsers;
+use App\Models\LeaveTypes;
+use App\Models\Applications;
+use App\Models\ApplicationForwarding;
+use App\Models\Admin;
+
+include $this->getTemplatePath().'php_includes/db_conx.php';
+
+  $hasSuccess = '';
+
+  if (isset($_SESSION['success'])) {
+      
+      $_Success = $_SESSION['success'];
+
+      $_SESSION['success'] = '';
+    }
+
+  if (isset($_SESSION['error'])) {
+      
+      $_Error = $_SESSION['error'];
+
+      $_SESSION['error'] = '';
+    }
+
+  if (isset($_SESSION['msg'])) {
+    
+    $_Message = $_SESSION['msg'];
+
+    $_SESSION['msg'] = '';
+  }
+
+?>
+
+
+<?php
+if ($auth['user']->img!="") {
+    $usrimg = 'profileimg/'.$auth['user']->img;
+  } else {
+    $usrimg = 'dist/img/avatar.png';
+  }
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+<? print $this->fetch('/ui_includes/head.phtml'); ?>
+  
+  <!-- Select2 -->
+<link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2.min.css">
+<!-- <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2-flat-theme.min.css"> -->
+<link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2-bootstrap.min.css">
+
+<!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <style type="text/css">
+    
+    .profile-user-img{
+      width: 150px;
+    }
+  </style>
+  
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+  
+  <div class="wrapper page-wrapper">
+
+    <header class="main-header">
+      <? print $this->fetch('/ui_includes/header.phtml'); ?>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <? print $this->fetch('/ui_includes/leftpanel.phtml'); ?>
+
+    <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+
+
+    <section class="content-header">
+
+      <?php if (isset($_Error) && $_Error == 'error') { ?>
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <? echo $_Message; ?>
+        </div>
+      <?php } ?>
+
+
+      <?php if (isset($_Success) && $_Success == 'success') { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <? echo $_Message;?>
+        </div>
+      <?php } ?>
+
+      <!-- /.row -->
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <!-- Profile Image -->
+          <div class="box box-success">
+            <div class="box-header">
+              <h3 class="box-title">All Applications By Teachers</h3>
+            </div>
+            <div class="box-body">
+             <table id="employee-grid" class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>SL</th>
+                    <th>Teacher</th>
+                    <th>Type</th>
+                    <th>Subject</th>
+                    <th>Days</th>
+                    <th>Created</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?
+                  $count =0;  
+                  if (count($forwardings)) {
+                    foreach ($forwardings as $forwarding) {
+
+                      $application = Applications::find($forwarding->application);
+                     ?>
+                     <tr>
+                       <td><?= ++$count ?></td>
+                       <td><?= Admin::find($application->user)->name ?></td>
+                       <td><?= LeaveTypes::find($application->type)->name ?></td>
+                       <td><a href="/application/<?= $application->id ?>" target="_blank"><?= $application->subject ?></a></td>
+                       <td><?= $application->days ?></td>
+                       <td><?= date('d/m/Y h:i:sA', strtotime($application->created_at)) ?></td>
+                       <td><?= $application->status ?></td>
+                     </tr>
+                     <?
+                    }
+                  }
+                  ?>
+                  <tr>
+                    
+                  </tr>
+               
+             </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+          <!-- <p class=""><b>ঠিকানা</b></p> <p class="text-right"><a><?php echo $address; ?></a></p> -->
+
+          
+        </div>
+
+
+
+
+        <!-- /.col -->
+
+        <!-- /.col -->
+
+        <!-- --------------------- modals block for edit profile --------------------- -->
+
+      </div>
+
+      <div class="row">
+
+        <?// include $this->getTemplatePath().'/modules/user/AdminAllUsers.phtml'; ?>
+
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+
+        <?// include $this->getTemplatePath().'/modules/user/AdminRoles.phtml'; ?>
+
+      </div>
+      <!-- /.row -->
+      
+    </section>
+
+
+    
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+  <!-- footer -->
+  <? print $this->fetch('/ui_includes/footer.phtml'); ?>
+
+  <!-- Control Sidebar -->
+  <? print $this->fetch('/ui_includes/control-sidebar.phtml'); ?>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap.min.js"></script>
+
+<!-- bootstrap-confirmation.min.js -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap-confirmation.min.js"></script>
+
+<!-- DataTables -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
+
+<!-- FastClick -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/app.min.js"></script>
+<!-- sidebar toggle -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/sidebar-toggle.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/demo.js"></script>
+<!-- Select2 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2.full.min.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script>
+  $(function () {
+    //Add text editor
+    $("#compose-textarea").wysihtml5();
+  });
+</script>
+
+
+
+
+</body>
+</html>

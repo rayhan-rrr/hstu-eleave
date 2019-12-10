@@ -1,0 +1,539 @@
+<?php
+
+ use App\Helper\Includes\NumberToWord;
+
+ use App\Models\AdminRole;
+
+include $this->getTemplatePath().'php_includes/db_conx.php';
+
+  $hasSuccess = '';
+
+  if (isset($_SESSION['success'])) {
+      
+      $_Success = $_SESSION['success'];
+
+      $_SESSION['success'] = '';
+    }
+
+  if (isset($_SESSION['error'])) {
+      
+      $_Error = $_SESSION['error'];
+
+      $_SESSION['error'] = '';
+    }
+
+  if (isset($_SESSION['msg'])) {
+    
+    $_Message = $_SESSION['msg'];
+
+    $_SESSION['msg'] = '';
+  }
+
+    
+?>
+
+
+<?php
+if ($auth['user']->img!="") {
+    $usrimg = 'profileimg/'.$auth['user']->img;
+  } else {
+    $usrimg = 'dist/img/avatar.png';
+  }
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+<? print $this->fetch('/ui_includes/head.phtml'); ?>
+
+  <style type="text/css">
+    
+    .profile-user-img{
+      width: 150px;
+    }
+  </style>
+  
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- --mod: menu wrapper custom end -->
+  <? print $this->fetch('/ui_includes/main_navigation.phtml'); ?>
+  <!-- --mod: menu wrapper custom end -->
+  
+  <div class="wrapper page-wrapper">
+
+    <header class="main-header">
+      <? print $this->fetch('/ui_includes/header.phtml'); ?>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <?// print $this->fetch('/ui_includes/leftpanel.phtml'); ?>
+
+    <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+
+
+    <section class="content-header">
+
+      <?php if (isset($_Error) && $_Error == 'error') { ?>
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><? echo $_Message; ?></h4>
+        </div>
+      <?php } ?>
+
+
+      <?php if (isset($_Success) && $_Success == 'success') { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <? echo $_Message;?>
+        </div>
+      <?php } ?>
+
+      
+      
+
+      <?php if ($hasSuccess == 2) { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-check"></i> Updated!</h4>
+          Successfully Updated!
+        </div>
+      <?php } ?>
+
+      <?php if ($hasSuccess == 3) { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-check"></i> Deleted!</h4>
+          Successfully deleted!
+        </div>
+      <?php } ?>
+      <!-- /.row -->
+
+      <div class="row">
+        <div class="col-md-4">
+
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" src="<?php echo $baseUrl.$usrimg; ?>" alt="User profile picture">
+
+              <h3 class="profile-username text-center"><?php echo $user->name; ?></h3>
+
+
+              <p class="text-muted text-center"><?php echo $user->description; ?></p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>Role</b> <a class="pull-right"><?php echo AdminRole::find($user->role)->name; ?></a>
+                </li>
+                <li class="list-group-item">
+                  <b>Username</b> <a class="pull-right"><?php echo $user->username; ?></a>
+                </li>
+                <li class="list-group-item">
+                  <b>Mobile No.</b> <a class="pull-right"><?php echo $user->mobile; ?></a>
+                </li>
+                
+                <li class="list-group-item">
+                  <b>Email</b> <a class="pull-right"><?php echo $user->email; ?></a>
+                </li>
+                <li class="list-group-item">
+                  <b>National ID</b> <a class="pull-right"><?php echo $user->nid; ?></a>
+                </li>
+                <li class="list-group-item" style="overflow: auto;">
+                  <b>Address</b> <a class="pull-right" ><?php echo $user->address; ?></a>
+                </li>
+                <li class="list-group-item" style="overflow: auto;">
+                  <b>Monthly Salary</b> <a class="pull-right" ><?php echo $user->salary; ?></a>
+                </li>
+                <li class="list-group-item" style="overflow: auto;">
+                  <b>Status</b> <a class="pull-right" ><?php if ($user->is_active==1) {
+                    echo "<span class='text-green'>Enabled</span>";
+                  } else echo "<span class='text-red'>Disabled</span>"; ?></a>
+                </li>
+              </ul>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+          <!-- <p class=""><b>ঠিকানা</b></p> <p class="text-right"><a><?php echo $address; ?></a></p> -->
+
+          
+        </div>
+        <div class="col-md-8">
+          <div class="col-md-7">
+            <div class="box box-primary">
+              <div class="box-header">
+                <h3 class="box-title">Last Login Information:</h3>
+                <a href="/user/loginhistory/<? echo $user->id; ?>" class="pull-right">View Full login History</a>
+              </div>
+              <div class="box-body">
+                <table id="self-login-history" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+
+                    <th>SL</th>
+                    <th>Login Date - Time</th>
+                    <th>Logout Date - Time</th>
+                    <th>Session Time</th>
+
+                  </tr>
+                  </thead>
+                    
+                  <tbody>
+
+                    <?
+
+                    $userid = $user->id;
+                    $sql = "SELECT user, login_time, logout_time, TIMEDIFF(logout_time, login_time) AS logtime FROM admin_login WHERE user=$userid ORDER BY id DESC LIMIT 6;";
+                    $result = mysqli_query($db_conx,$sql );
+                
+                    $total_result = mysqli_num_rows($result);
+                
+                    if($total_result>0){
+                  
+                    $count = 0;
+                    while($row = mysqli_fetch_array($result)){
+
+                    ?>
+                    <tr role="row">
+                      <td><? echo ++$count; ?></td>
+                      <td><? echo date('m/d/Y - h:i:s A', strtotime($row['login_time'])); ?></td>
+                      <td><?
+
+                      if ($row['logout_time']==null) {
+                        echo "Not Available";
+                      } else echo date('m/d/Y - h:i:s A', strtotime($row['logout_time'])); ?></td>
+                      <td><?
+                          if ($row['logout_time'] > 0) {
+                            echo $row['logtime'];
+                      } else echo "Not Available"; ?></td
+                    </tr>
+                  
+                    <?
+                      }}
+                    ?>
+                  
+                  </tbody>
+
+                  <tfoot>
+
+                  </tfoot>
+
+                </table>
+              </div>
+
+            </div>
+          </div>
+          
+
+        </div>
+
+
+
+        <!-- /.col -->
+
+        <!-- /.col -->
+
+        <!-- --------------------- modals block for edit profile --------------------- -->
+
+
+
+
+      </div>
+
+      
+      <!-- /.row -->
+
+      
+      <!-- /.row -->
+      
+    </section>
+
+
+    
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+  <!-- footer -->
+  <? print $this->fetch('/ui_includes/footer.phtml'); ?>
+
+  <!-- Control Sidebar -->
+  <? print $this->fetch('/ui_includes/control-sidebar.phtml'); ?>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap.min.js"></script>
+
+<!-- bootstrap-confirmation.min.js -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap-confirmation.min.js"></script>
+
+<!-- DataTables -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
+
+<!-- FastClick -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/app.min.js"></script>
+<!-- sidebar toggle -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/sidebar-toggle.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/demo.js"></script>
+
+<script>
+
+    //data table for products
+
+  $(document).ready(function() {
+
+      //edit sequrity question
+      //triggered when modal is about to be shown
+      var securityId = null;
+
+      $(document).on("click", "#securityClose", function () {
+
+          //get data-id attribute of the clicked element
+          securityId = null;
+          $("#securityQusId").val('');
+          $('#securityChkPassword').val('');
+          $("#passwordErr").html("");
+          $("#securityQuestion").val('');
+          $("#securityAnswer").val('');
+          $("#securityAction").hide();
+          $("#securitybox").hide();
+
+
+      });
+
+      
+
+      $(document).on("click", "#securityedit", function () {
+
+          //get data-id attribute of the clicked element
+          securityId = $(this).data('ques-id');
+
+          
+          $("#securityQusId").val(securityId);
+
+      });
+
+      $(document).on("click", "#securityChkpass", function () {
+
+          //get data-id attribute of the clicked element
+          var pass = $('#securityChkPassword').val();
+
+          jQuery.ajax({
+
+            url : '/public/auth/checkpass',
+            type : 'post',
+            data : {
+              pass :  pass
+            },
+            success : function(data) {
+                  
+                    if (data=='valid') {
+
+                      $("#passwordErr").html("");
+
+                      editQuestion(securityId);
+
+                      $("#securitybox").show();
+                      $("#securityAction").show();
+                      // $("#securityQusDel").attr('href', '/user/deletequs/'+securityId)
+
+                    } else {
+
+                      $("#passwordErr").html("Wrong Password!");
+                      $("#securityAction").hide();
+                      $("#securitybox").hide();
+                    }
+                  
+                    
+                  }
+              
+          });  
+
+      });
+
+      function editQuestion(id) {
+        
+        jQuery.ajax({
+
+            url : '/public/user/getquestion',
+            type : 'post',
+            data : {
+              id :  id
+            },
+            success : function(data) {
+
+                  
+                     var question = JSON.parse(data);
+
+                      $("#securityQuestion").val(question.question);
+
+                      $("#securityAnswer").val(question.answer);
+                  
+                    
+                  }
+              
+          });
+
+      }
+
+      $('[data-toggle=confirmation]').confirmation({
+              rootSelector: '[data-toggle=confirmation]',
+              // other options
+              onConfirm: function() {
+
+                window.location.replace('/user/deletequs/'+securityId);
+              
+              }
+      });
+
+
+        //show modal if validation error!!
+
+        <?
+        if (isset($_SESSION['show_modal']) && $_SESSION['show_modal']=='editProfile') {
+        ?>
+          $('#editProfile').modal('show');
+
+        <?
+
+        $_SESSION['show_modal'] = '';
+
+         } ?>
+
+        <?
+        if (isset($_SESSION['show_modal']) && $_SESSION['show_modal']=='addSecurityQus') {
+        ?>
+          $('#addSecurityQus').modal('show');
+
+        <?
+
+        $_SESSION['show_modal'] = '';
+
+         } ?>
+
+         <?
+        if (isset($_SESSION['show_modal']) && $_SESSION['show_modal']=='addUser') {
+        ?>
+          $('#addUser').modal('show');
+
+        <?
+
+        $_SESSION['show_modal'] = '';
+
+         } ?>
+         
+         
+
+
+
+        $('#username').keyup(function () {
+
+            var username = jQuery('#username').val();
+
+            
+
+            if (username!='<? echo $user->username; ?>') {
+
+              jQuery("#usernameWarning").hide();
+
+              jQuery("#usernamecheckok").hide();
+                      
+              jQuery("#usernamecheck").show();
+
+              jQuery.ajax({
+                  url : '/public/user/checkusername',
+                  type : 'post',
+                  data : {
+                    username : username
+                  },
+                  success : function(data) {
+                    
+                        jQuery("#usernamecheck").hide();
+                          
+                            if(data=='taken'){
+                                jQuery("#usernameWarning").show();
+                                jQuery("#usernameWarning").html("This username has already been used. Please use a different one.");
+                                
+                            }
+                            if(data=='nottaken'){
+                                jQuery("#usernamecheckok").show();
+
+
+                            } 
+                          
+                        }
+                    
+               });
+
+            }
+
+            
+
+          });
+
+        //for creating new user
+
+        $('#newusername').keyup(function () {
+
+            var username = jQuery('#newusername').val();
+
+          
+              jQuery("#newusernameWarning").hide();
+
+              jQuery("#newusernamecheckok").hide();
+                      
+              jQuery("#newusernamecheck").show();
+
+              jQuery.ajax({
+                  url : '/public/user/checkusername',
+                  type : 'post',
+                  data : {
+                    username : username
+                  },
+                  success : function(data) {
+                    
+                        jQuery("#newusernamecheck").hide();
+                          
+                            if(data=='taken'){
+                                jQuery("#newusernameWarning").show();
+                                jQuery("#newusernameWarning").html("This username has already been used. Please use a different one.");
+                                
+                            }
+                            if(data=='nottaken'){
+                                jQuery("#newusernamecheckok").show();
+                            }  
+                        }
+               });      
+          });
+
+        
+        
+        
+      } );
+</script>
+
+
+
+</body>
+</html>

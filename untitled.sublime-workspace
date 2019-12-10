@@ -1,0 +1,1067 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ite",
+				"itemProblem"
+			],
+			[
+				"ser",
+				"ServicingItems"
+			],
+			[
+				"age",
+				"agentId"
+			],
+			[
+				"Servicing",
+				"ServicingAgents"
+			],
+			[
+				"text",
+				"text-right"
+			],
+			[
+				"to",
+				"totalProfit"
+			],
+			[
+				"toa",
+				"totalCharge"
+			],
+			[
+				"item",
+				"itemFee"
+			],
+			[
+				"tot",
+				"totalCost"
+			],
+			[
+				"fee",
+				"fee"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"col",
+				"col-md-8"
+			],
+			[
+				"cusmr",
+				"customer"
+			],
+			[
+				"delive",
+				"delivery"
+			],
+			[
+				"de",
+				"delivered_at"
+			],
+			[
+				"custme",
+				"customer"
+			],
+			[
+				"Dis",
+				"Discarded"
+			],
+			[
+				"rep",
+				"reported_problem"
+			],
+			[
+				"Se",
+				"ServicingItemProblem"
+			],
+			[
+				"seria",
+				"serial_id"
+			],
+			[
+				"border",
+				"with-border"
+			],
+			[
+				"box",
+				"box-header"
+			],
+			[
+				"Supp",
+				"SupplierInvoiceItemSerials"
+			],
+			[
+				"products",
+				"ProductSerial"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"js",
+				"json_encode"
+			],
+			[
+				"produc",
+				"productSerial"
+			],
+			[
+				"Products",
+				"Products"
+			],
+			[
+				"invo",
+				"invoiceSerial"
+			],
+			[
+				"Sal",
+				"SalesInvoiceItems"
+			],
+			[
+				"produ",
+				"product"
+			],
+			[
+				"Product",
+				"ProductSerial"
+			],
+			[
+				"cha",
+				"change"
+			],
+			[
+				"custom_cg",
+				"custom_charge"
+			],
+			[
+				"Pro",
+				"Probable"
+			],
+			[
+				"gepar",
+				"getParam"
+			],
+			[
+				"da",
+				"date2"
+			],
+			[
+				"Servi",
+				"Servicing"
+			],
+			[
+				"sta",
+				"status"
+			],
+			[
+				"use",
+				"user"
+			],
+			[
+				"Admin",
+				"AdminRole"
+			],
+			[
+				"wi",
+				"width\tproperty"
+			],
+			[
+				"st",
+				"style\tAttr"
+			],
+			[
+				"deli",
+				"delivery_slip"
+			],
+			[
+				"sli",
+				"slip"
+			],
+			[
+				"cus",
+				"customer_mobile"
+			],
+			[
+				"mode",
+				"model"
+			],
+			[
+				"crea",
+				"created_at"
+			],
+			[
+				"customer",
+				"customer_name"
+			],
+			[
+				"tra",
+				"trackingNo"
+			],
+			[
+				"Process",
+				"Processing"
+			],
+			[
+				"del",
+				"delivery_slip"
+			],
+			[
+				"De",
+				"Delivery"
+			],
+			[
+				"Crea",
+				"Created"
+			],
+			[
+				"it",
+				"item"
+			],
+			[
+				"wh",
+				"where"
+			],
+			[
+				"Ser",
+				"ServicingSlip"
+			],
+			[
+				"pro",
+				"processing"
+			],
+			[
+				"sol",
+				"solved_at"
+			],
+			[
+				"final",
+				"finalize"
+			],
+			[
+				"out",
+				"outsourced"
+			],
+			[
+				"if",
+				"if\tif …"
+			],
+			[
+				"end",
+				"endif"
+			],
+			[
+				"re",
+				"required\tAttr"
+			],
+			[
+				"est",
+				"est_days"
+			],
+			[
+				"prio",
+				"priorityPost"
+			],
+			[
+				"pir",
+				"priorityPost"
+			],
+			[
+				"Su",
+				"Successfully"
+			],
+			[
+				"pos",
+				"post"
+			],
+			[
+				"Proce",
+				"processing"
+			],
+			[
+				"ac",
+				"action\tAttr"
+			],
+			[
+				"tech",
+				"technician"
+			],
+			[
+				"dia",
+				"diagnosed_problem"
+			],
+			[
+				"tr",
+				"tracking_no"
+			],
+			[
+				"t",
+				"tracking_no"
+			],
+			[
+				"strt",
+				"strtotime"
+			],
+			[
+				"ca",
+				"category"
+			],
+			[
+				"trac",
+				"tracking_no"
+			],
+			[
+				"slip",
+				"slipItems"
+			],
+			[
+				"rmase",
+				"RmaserviceController"
+			],
+			[
+				"has",
+				"has_serial"
+			],
+			[
+				"serv",
+				"servicing"
+			],
+			[
+				"n",
+				"null"
+			],
+			[
+				"custom_",
+				"custom_serial"
+			],
+			[
+				"te",
+				"text-center"
+			],
+			[
+				"tex",
+				"text-red"
+			],
+			[
+				"acti",
+				"active"
+			],
+			[
+				"inc",
+				"increasedQty"
+			],
+			[
+				"seri",
+				"serialfield"
+			],
+			[
+				"itemc",
+				"itemcount"
+			],
+			[
+				"productc",
+				"productcategory"
+			],
+			[
+				"serial",
+				"serial"
+			],
+			[
+				"productp",
+				"productproblem"
+			],
+			[
+				"propr",
+				"proproblem"
+			],
+			[
+				"proit",
+				"proitemserial"
+			],
+			[
+				"productse",
+				"productserial"
+			],
+			[
+				"val",
+				"val"
+			],
+			[
+				"RM",
+				"RmaserviceController"
+			],
+			[
+				"joi",
+				"JOIN"
+			],
+			[
+				"cre",
+				"credit_pay"
+			],
+			[
+				"Co",
+				"Collected"
+			],
+			[
+				"suppl",
+				"supplier_edited"
+			],
+			[
+				"pos_payment",
+				"pos_paymentC"
+			],
+			[
+				"payme",
+				"paymentslip"
+			],
+			[
+				"pos_",
+				"pos_amount"
+			],
+			[
+				"fa",
+				"false"
+			],
+			[
+				"Retur",
+				"Returned"
+			],
+			[
+				"amoun",
+				"amount_to_pay"
+			],
+			[
+				"invoi",
+				"invoice-"
+			],
+			[
+				"Sales",
+				"SalesInvoice"
+			],
+			[
+				"else",
+				"elseif\telseif …"
+			],
+			[
+				"Salesin",
+				"salesInvoice"
+			],
+			[
+				"sc",
+				"schedule"
+			],
+			[
+				"sche",
+				"schedule"
+			],
+			[
+				"sale",
+				"sales_due_schedules"
+			],
+			[
+				"sal",
+				"sales_due_schedules"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"user",
+				"users"
+			],
+			[
+				"Sale",
+				"SalesInvoiceItemSerials"
+			],
+			[
+				"sid",
+				"supplierId"
+			],
+			[
+				"supp",
+				"supplierId"
+			],
+			[
+				"getP",
+				"getParam"
+			],
+			[
+				"sa",
+				"save"
+			],
+			[
+				"sei",
+				"serial"
+			],
+			[
+				"na",
+				"name"
+			],
+			[
+				"RMA",
+				"RmaSlip"
+			],
+			[
+				"req",
+				"request-"
+			],
+			[
+				"form",
+				"form-control"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/Controllers/HomeController.php",
+			"settings":
+			{
+				"buffer_size": 1570,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/routes.php",
+			"settings":
+			{
+				"buffer_size": 972,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Controllers/Auth/AuthController.php",
+			"settings":
+			{
+				"buffer_size": 2214,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/auth/register.phtml",
+			"settings":
+			{
+				"buffer_size": 3483,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/modules/auth/login.phtml",
+			"settings":
+			{
+				"buffer_size": 3175,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Database/DbConnect.php",
+			"settings":
+			{
+				"buffer_size": 931,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 389.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 524.0
+	},
+	"console":
+	{
+		"height": 153.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/Rubel/Documents/leavelab/leaveapp",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Controllers",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Controllers/Auth",
+		"/Users/Rubel/Documents/leavelab/leaveapp/app/Database",
+		"/Users/Rubel/Documents/leavelab/leaveapp/bootstrap",
+		"/Users/Rubel/Documents/leavelab/leaveapp/bootstrap/sys",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules",
+		"/Users/Rubel/Documents/leavelab/leaveapp/templates/modules/auth"
+	],
+	"file_history":
+	[
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingDeliverItems.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/ServicingItems.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/CollectionController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingDailyReportResult.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/ServicingItemProblem.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingItemsDeliverable.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/newServicing.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingInvoiceView.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingDailyReport.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingTaskByTechnician.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/NotificationsController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/ui_includes/footer.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/ui_includes/header.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Helper/AdminDetails.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingItemsProcessing.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/newPurchase.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/AccountController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingItemDetails.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/RmaserviceController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/servicingItemsAll.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/ServicingDeliverySlip.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/outsourceAgentSetup.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/allOutsourceAgents.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/SuppliersController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/ServicingAgents.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/public/plugins/ckeditor/plugins/pastefromword/filter/default.js",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/auth/login.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/printServicingTracking.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/ServicingSlip.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/inventory/serialTrackingResult.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/returnPurchase.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/SalesController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/newRmaSlip.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/editInvoice.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/allrescSchedules.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/scheduledDueCollection.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/dueCollection.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/report/salesreport/dailyCombinedReport2.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/report/salesreport/dailyCombinedReport.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/invoicePayment.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/advanceSlip.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/collectionSlipDetails.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/PaymentCollectionslip.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/editHistory.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/SupInvItemsEdited.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/SupplierInvoice.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/viewMissedSchedules.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/returnInvoice.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/viewRescheduledDetails.phtml",
+		"/Users/Rubel/Downloads/inoERP-master/inoerp/inoerp_server/modules/inv/receipt/class_inv_receipt_v.inc",
+		"/Users/Rubel/Documents/leavelab/leaveapp/vendor/monolog/monolog/tests/Monolog/Processor/GitProcessorTest.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/collectionComSlipDetails.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/Sales/SalesDueSchedules.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/Sales/AdvanceSlip.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/rmaSlip.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/rmaInvItemSelection.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/Sales/SalesReturnSlip.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/returneSlipFull.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/returneSlipPatrial.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/pendingRmaItems.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/bootstrap/app.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/newRmaReceiveSelection.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/customers/ledgerResult.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/newRmaReceive.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/rmaShippingSlip.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/RmaItems.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/RmaSerials.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/RmaShipping.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/advSlipEdit.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/ui_includes/head.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/home/home.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/colSlipEdit.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/public/plugins/ckeditor/ckeditor.js",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/rmaservice/allRmaSlips.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/customers/creditNoteView.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/customers/paybackSlip.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/payments/viewSlip.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/bak.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/cancelReturne.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/inv_payment_backup.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/invoiceDetailsInfo.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/oldInvoicePayment.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/returnedInvoice.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/returnInvoiceCC.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/view_Details_Full_backp.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/invoiceDetails.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/returnedInvoice.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/shippingPay.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/viewInvoiceDetails.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/invoiceDetails.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/viewShipping.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/balance/chequeDetails.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/viewInvDetailsFull.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/viewInvDetailsCombined.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/viewInvDetailsCheckonly.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/viewInvDetailsCashonly.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/ProductSerial.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/Sales/SalesInvoiceItemSerials.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/Sales/SalesInvoiceItems.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/RMA/RmaSlip.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/ui_includes/main_navigation.phtml",
+		"/Users/Rubel/Desktop/EvolutionX_whyred-9.0-20190620-1946-OFFICIAL/META-INF/com/google/android/updater-script",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/newSale.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/editInvoice.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/ProductsController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/CustomersController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/Model/SalesModel.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/Model/ProductsModel.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/collection/viewSchedules.phtml",
+		"/Users/Rubel/Desktop/esheba.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/Model/Sales/SalesInvoice.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/allUnpaidInvoice.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/allReturnSlips.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/report/salesreport/dailySalesReport.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/public/dist/css/main-nav-styles.css",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/report/salesreport/monthlyCombinedReport.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/report/salesreport/todaysSales.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/customers/customerDetails.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/PaymentSlip.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/PaymentController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/report/salesreport/individualDue.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/reportResult.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/Sales/SalesReturnItemSerials.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Models/Accounts/AccountChecks.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/ledgerResult.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/app/Controllers/HomeController.php",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/suppliers/supBalanceReport.phtml",
+		"/Users/Rubel/Documents/ems.rrrlab/EMS.rrrlab/templates/modules/sales/returneSlip.phtml"
+	],
+	"find":
+	{
+		"height": 42.0
+	},
+	"find_in_files":
+	{
+		"height": 110.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"plugins"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/Controllers/HomeController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1570,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								440,
+								445
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 179.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/routes.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 972,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								726,
+								717
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/Controllers/Auth/AuthController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2214,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								669,
+								669
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 389.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "templates/modules/auth/register.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3483,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3082,
+								3082
+							],
+							[
+								3180,
+								3180
+							],
+							[
+								3266,
+								3266
+							],
+							[
+								3350,
+								3350
+							],
+							[
+								3431,
+								3431
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1257.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "templates/modules/auth/login.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3175,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2329,
+								2329
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 831.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/Database/DbConnect.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 931,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								304,
+								304
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 138.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 44.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "",
+	"project": "untitled.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 772.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 327.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

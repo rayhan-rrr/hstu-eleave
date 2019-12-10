@@ -1,0 +1,569 @@
+<?php
+
+ use App\Helper\Includes\NumberToWord;
+ use App\Helper\AdminDetails;
+
+ use App\Models\FixedUsers;
+ use App\Models\LeaveTypes;
+
+
+include $this->getTemplatePath().'php_includes/db_conx.php';
+
+  $hasSuccess = '';
+
+  if (isset($_SESSION['success'])) {
+      
+      $_Success = $_SESSION['success'];
+
+      $_SESSION['success'] = '';
+    }
+
+  if (isset($_SESSION['error'])) {
+      
+      $_Error = $_SESSION['error'];
+
+      $_SESSION['error'] = '';
+    }
+
+  if (isset($_SESSION['msg'])) {
+    
+    $_Message = $_SESSION['msg'];
+
+    $_SESSION['msg'] = '';
+  }
+
+?>
+
+
+<?php
+if ($auth['user']->img!="") {
+    $usrimg = 'profileimg/'.$auth['user']->img;
+  } else {
+    $usrimg = 'dist/img/avatar.png';
+  }
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+<? print $this->fetch('/ui_includes/head.phtml'); ?>
+  
+  <!-- Select2 -->
+<link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2.min.css">
+<!-- <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2-flat-theme.min.css"> -->
+<link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2-bootstrap.min.css">
+
+<!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <style type="text/css">
+    
+    .profile-user-img{
+      width: 150px;
+    }
+  </style>
+  
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+  
+  <div class="wrapper page-wrapper">
+
+    <header class="main-header">
+      <? print $this->fetch('/ui_includes/header.phtml'); ?>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <? print $this->fetch('/ui_includes/leftpanel.phtml'); ?>
+
+    <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+
+
+    <section class="content-header">
+
+      <?php if (isset($_Error) && $_Error == 'error') { ?>
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <? echo $_Message; ?>
+        </div>
+      <?php } ?>
+
+
+      <?php if (isset($_Success) && $_Success == 'success') { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <? echo $_Message;?>
+        </div>
+      <?php } ?>
+
+      <!-- /.row -->
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-header">
+              <h3 class="box-title">Edit Application</h3>
+            </div>
+            <div class="box-body">
+              <form class="form-horizontal" role="form" action="/public/editapplication/<?= $application->id ?>" method="post" enctype="multipart/form-data">
+                <?php echo $csrf['field']; ?>
+
+                <div class="form-group <? if(isset($errors['type'])) echo 'has-error' ?>">
+                  <label for="type" class="col-sm-2 control-label">Leave Type</label>
+
+                  <div class="col-sm-6">
+                    <select name="type" class="form-control select2" required>
+                      <option value="">Select Leave Type</option>
+                      <?
+                      $leaveTypes = LeaveTypes::where('active', 1)->get();
+                      foreach ($leaveTypes as $leaveType) {
+                        ?>
+                        
+                        <option value="<?= $leaveType->id ?>" <? if ($application->type==$leaveType->id) { echo "selected"; } ?>><?= $leaveType->name ?></option>
+                        <?
+                      }
+                      ?>
+                    </select>
+                  
+                    <? if(isset($errors['type'])) { ?>
+                    <span class="help-block"><? echo $errors['type'][0]; ?></span>
+
+                    <? } ?>
+                  </div>
+                </div>
+
+                <div class="form-group <? if(isset($errors['subject'])) echo 'has-error' ?>">
+                  <label for="subject" class="col-sm-2 control-label">Apllication Subject</label>
+
+                  <div class="col-sm-10">
+                    <input name="subject" type="text" class="form-control" id="subject" placeholder="Enter Application Subject" value="<?= $application->subject ?>" required>
+                  
+                    <? if(isset($errors['subject'])) { ?>
+                    <span class="help-block"><? echo $errors['subject'][0]; ?></span>
+
+                    <? } ?>
+                  </div>
+                </div>
+
+                <div class="form-group <? if(isset($errors['days'])) echo 'has-error' ?>">
+                  <label for="days" class="col-sm-2 control-label">Leave For Days</label>
+
+                  <div class="col-sm-6">
+                    <input name="days" type="number" class="form-control" id="days" placeholder="Enter Number of Days" value="<?= $application->days ?>" required>
+                  
+                    <? if(isset($errors['days'])) { ?>
+                    <span class="help-block"><? echo $errors['days'][0]; ?></span>
+
+                    <? } ?>
+                  </div>
+                </div>
+
+                <div class="form-group <? if(isset($errors['memorandum'])) echo 'has-error' ?>">
+                  <label for="memorandum" class="col-sm-2 control-label">Departmental Memorandum</label>
+
+                  <div class="col-sm-6">
+                    <input name="memorandum" type="text" class="form-control" id="memorandum" placeholder="Enter Departmental Memorandum" value="<?= $application->d_memorandum ?>" required>
+                  
+                    <? if(isset($errors['memorandum'])) { ?>
+                    <span class="help-block"><? echo $errors['memorandum'][0]; ?></span>
+
+                    <? } ?>
+                  </div>
+                </div>
+
+                <h5><b>Application Body:</b></h5>
+                <div class="form-group col-md-12 <? if(isset($errors['mobile'])) echo 'has-error' ?>">
+                  <textarea id="compose-textarea" name="applicationbody" class="form-control" style="height: 300px" required><?= $application->body ?></textarea>
+                </div>
+
+
+                <div class="form-group col-md-12 <? if(isset($errors['attached'])) echo 'has-error' ?>">
+                  <div>
+                    <i class="fa fa-paperclip"></i> Apllication Attachment(Max. 5MB)
+                    <p><b>Valid type:</b>jpg, gif, png, pdf, txt, xls, doc</p>
+                    <input type="file" name="attached" />
+                  </div>
+                </div>
+                
+
+                <button type="submit" class="btn btn-success col-sm-3 pull-right" style="margin-top: 0px;"><i class="fa fa-check"></i> Submit Application</button>  
+              </form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+          <!-- <p class=""><b>ঠিকানা</b></p> <p class="text-right"><a><?php echo $address; ?></a></p> -->
+
+          
+        </div>
+
+
+
+
+        <!-- /.col -->
+
+        <!-- /.col -->
+
+        <!-- --------------------- modals block for edit profile --------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+      <div class="row">
+
+        <?// include $this->getTemplatePath().'/modules/user/AdminAllUsers.phtml'; ?>
+
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+
+        <?// include $this->getTemplatePath().'/modules/user/AdminRoles.phtml'; ?>
+
+      </div>
+      <!-- /.row -->
+      
+    </section>
+
+
+    
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+  <!-- footer -->
+  <? print $this->fetch('/ui_includes/footer.phtml'); ?>
+
+  <!-- Control Sidebar -->
+  <? print $this->fetch('/ui_includes/control-sidebar.phtml'); ?>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap.min.js"></script>
+
+<!-- bootstrap-confirmation.min.js -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap-confirmation.min.js"></script>
+
+<!-- DataTables -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
+
+<!-- FastClick -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/app.min.js"></script>
+<!-- sidebar toggle -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/sidebar-toggle.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/demo.js"></script>
+<!-- Select2 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2.full.min.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script>
+  $(function () {
+    //Add text editor
+    $("#compose-textarea").wysihtml5();
+  });
+</script>
+<script>
+
+    //data table for products
+
+  $(document).ready(function() {
+
+    $('.select2').select2();
+
+
+      //edit sequrity question
+      //triggered when modal is about to be shown
+      var securityId = null;
+
+      $(document).on("click", "#securityClose", function () {
+
+          //get data-id attribute of the clicked element
+          securityId = null;
+          $("#securityQusId").val('');
+          $('#securityChkPassword').val('');
+          $("#passwordErr").html("");
+          $("#securityQuestion").val('');
+          $("#securityAnswer").val('');
+          $("#securityAction").hide();
+          $("#securitybox").hide();
+
+
+      });
+
+      
+
+      $(document).on("click", "#securityedit", function () {
+
+          //get data-id attribute of the clicked element
+          securityId = $(this).data('ques-id');
+
+          
+          $("#securityQusId").val(securityId);
+
+      });
+
+      $(document).on("click", "#securityChkpass", function () {
+
+          //get data-id attribute of the clicked element
+          var pass = $('#securityChkPassword').val();
+
+          jQuery.ajax({
+
+            url : '/public/auth/checkpass',
+            type : 'post',
+            data : {
+              pass :  pass
+            },
+            success : function(data) {
+                  
+                    if (data=='valid') {
+
+                      $("#passwordErr").html("");
+
+                      editQuestion(securityId);
+
+                      $("#securitybox").show();
+                      $("#securityAction").show();
+                      // $("#securityQusDel").attr('href', '/user/deletequs/'+securityId)
+
+                    } else {
+
+                      $("#passwordErr").html("Wrong Password!");
+                      $("#securityAction").hide();
+                      $("#securitybox").hide();
+                    }
+                  
+                    
+                  }
+              
+          });  
+
+      });
+
+      function editQuestion(id) {
+        
+        jQuery.ajax({
+
+            url : '/public/user/getquestion',
+            type : 'post',
+            data : {
+              id :  id
+            },
+            success : function(data) {
+
+                  
+                     var question = JSON.parse(data);
+
+                      $("#securityQuestion").val(question.question);
+
+                      $("#securityAnswer").val(question.answer);
+                  
+                    
+                  }
+              
+          });
+
+      }
+
+      $('[data-toggle=confirmation]').confirmation({
+              rootSelector: '[data-toggle=confirmation]',
+              // other options
+              onConfirm: function() {
+
+                window.location.replace('/user/deletequs/'+securityId);
+              
+              }
+      });
+
+
+        //show modal if validation error!!
+
+        <?
+        if (isset($_SESSION['show_modal']) && $_SESSION['show_modal']=='editProfile') {
+        ?>
+          $('#editProfile').modal('show');
+
+        <?
+
+        $_SESSION['show_modal'] = '';
+
+         } ?>
+
+        <?
+        if (isset($_SESSION['show_modal']) && $_SESSION['show_modal']=='addSecurityQus') {
+        ?>
+          $('#addSecurityQus').modal('show');
+
+        <?
+
+        $_SESSION['show_modal'] = '';
+
+         } ?>
+
+         <?
+        if (isset($_SESSION['show_modal']) && $_SESSION['show_modal']=='addUser') {
+        ?>
+          $('#addUser').modal('show');
+
+        <?
+
+        $_SESSION['show_modal'] = '';
+
+         } ?>
+         
+         
+
+
+
+        $('#username').keyup(function () {
+
+            var username = jQuery('#username').val();
+
+              jQuery("#usernameWarning").hide();
+
+              jQuery("#usernamecheckok").hide();
+                      
+              jQuery("#usernamecheck").show();
+
+              jQuery.ajax({
+                  url : '/public/user/checkusername',
+                  type : 'post',
+                  data : {
+                    username : username
+                  },
+                  success : function(data) {
+                    
+                        jQuery("#usernamecheck").hide();
+                          
+                            if(data=='taken'){
+                                jQuery("#usernameWarning").show();
+                                jQuery("#usernameWarning").html("This username has already been used. Please use a different one.");
+                                
+                            }
+                            if(data=='nottaken'){
+                                jQuery("#usernamecheckok").show();
+
+
+                            } 
+                          
+                        }
+                    
+               });
+
+            
+
+          });
+
+        //for creating new user
+
+        $('#newusername').keyup(function () {
+
+            var username = jQuery('#newusername').val();
+
+          
+              jQuery("#newusernameWarning").hide();
+
+              jQuery("#newusernamecheckok").hide();
+                      
+              jQuery("#newusernamecheck").show();
+
+              jQuery.ajax({
+                  url : '/public/user/checkusername',
+                  type : 'post',
+                  data : {
+                    username : username
+                  },
+                  success : function(data) {
+                    
+                        jQuery("#newusernamecheck").hide();
+                          
+                            if(data=='taken'){
+                                jQuery("#newusernameWarning").show();
+                                jQuery("#newusernameWarning").html("This username has already been used. Please use a different one.");
+                                
+                            }
+                            if(data=='nottaken'){
+                                jQuery("#newusernamecheckok").show();
+                            }  
+                        }
+               });      
+          });
+
+
+
+        $(document).on("click", "#changepasswordCheck", function () {
+
+          //get data-id attribute of the clicked element
+          var pass = $('#changePasswordCurrent').val();
+
+          jQuery.ajax({
+
+            url : '/public/auth/checkpass',
+            type : 'post',
+            data : {
+              pass :  pass
+            },
+            success : function(data) {
+                  
+                    if (data=='valid') {
+
+                      $("#changepasswordErr").html("");
+
+                      $("#changepasswordBox").show();
+                      $("#changepasswordAction").show();
+                      // $("#securityQusDel").attr('href', '/user/deletequs/'+securityId)
+
+                    } else {
+
+                      $("#changepasswordErr").html("Wrong Password!");
+                      $("#changepasswordBox").hide();
+                      $("#changepasswordAction").hide();
+                    }
+                  
+                    
+                  }
+              
+          });  
+
+        });
+      } );
+</script>
+
+
+
+</body>
+</html>

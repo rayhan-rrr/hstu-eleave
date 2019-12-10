@@ -1,0 +1,1169 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pro",
+				"product"
+			],
+			[
+				"pos",
+				"post"
+			],
+			[
+				"bra",
+				"brand"
+			],
+			[
+				"pr",
+				"productid"
+			],
+			[
+				"us",
+				"user"
+			],
+			[
+				"s",
+				"_SESSION"
+			],
+			[
+				"prod",
+				"product"
+			],
+			[
+				"db",
+				"db_conx"
+			],
+			[
+				"getcon",
+				"getcon"
+			],
+			[
+				"Db",
+				"DbCon"
+			],
+			[
+				"da",
+				"databas"
+			],
+			[
+				"bo",
+				"boxqty"
+			],
+			[
+				"qt",
+				"qty"
+			],
+			[
+				"sell",
+				"sellrate"
+			],
+			[
+				"buy",
+				"buyrate"
+			],
+			[
+				"cod",
+				"code"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"cre",
+				"create"
+			],
+			[
+				"q",
+				"qtyf"
+			],
+			[
+				"unse",
+				"unset"
+			],
+			[
+				"brand_co",
+				"brand_country"
+			],
+			[
+				"co",
+				"country"
+			],
+			[
+				"b",
+				"brand"
+			],
+			[
+				"prin",
+				"print_r"
+			],
+			[
+				"va",
+				"var_dump"
+			],
+			[
+				"br",
+				"brands"
+			],
+			[
+				"pu",
+				"pull-right"
+			],
+			[
+				"col",
+				"col-sm-2"
+			],
+			[
+				"bg-gr",
+				"bg-green"
+			],
+			[
+				"ca",
+				"category"
+			],
+			[
+				"el",
+				"else"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"de",
+				"deleted"
+			],
+			[
+				"com",
+				"comment"
+			],
+			[
+				"na",
+				"name"
+			],
+			[
+				"btn-s",
+				"btn-success"
+			],
+			[
+				"le",
+				"left"
+			],
+			[
+				"is",
+				"isset"
+			],
+			[
+				"in",
+				"inventory"
+			],
+			[
+				"des",
+				"description"
+			],
+			[
+				"che",
+				"check"
+			],
+			[
+				"en",
+				"en2bn"
+			],
+			[
+				"incl",
+				"include_once"
+			],
+			[
+				"u",
+				"user"
+			],
+			[
+				"A",
+				"Auth"
+			],
+			[
+				"Vali",
+				"Validation"
+			],
+			[
+				"ac",
+				"action\tAttr"
+			],
+			[
+				"C",
+				"Controllers"
+			],
+			[
+				"Con",
+				"Controller"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"val",
+				"validation"
+			],
+			[
+				"vali",
+				"Validator"
+			],
+			[
+				"arr",
+				"array"
+			],
+			[
+				"Val",
+				"Validator"
+			],
+			[
+				"req",
+				"request"
+			],
+			[
+				"e",
+				"echo"
+			],
+			[
+				"th",
+				"this"
+			],
+			[
+				"rou",
+				"route"
+			],
+			[
+				"con",
+				"container"
+			],
+			[
+				"DO",
+				"DOCUMENT_ROOT"
+			],
+			[
+				"sql",
+				"sqlretail"
+			],
+			[
+				"mysqli_f",
+				"mysqli_fetch_assoc"
+			],
+			[
+				"DI",
+				"display"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"bg-",
+				"bg-red"
+			],
+			[
+				"pa",
+				"paidAmount"
+			],
+			[
+				"cu",
+				"curDue"
+			],
+			[
+				"cur",
+				"curTotalBuy"
+			],
+			[
+				"pre",
+				"prevCredit"
+			],
+			[
+				"r",
+				"row"
+			],
+			[
+				"par",
+				"parseFloat"
+			],
+			[
+				"fa",
+				"false"
+			],
+			[
+				"a",
+				"alert"
+			],
+			[
+				"du",
+				"duetotal"
+			],
+			[
+				"bi",
+				"billtotal"
+			],
+			[
+				"form",
+				"form-group"
+			],
+			[
+				"tex",
+				"text-indent"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"who",
+				"wholesalereport"
+			],
+			[
+				"item",
+				"items"
+			],
+			[
+				"this",
+				"thisbill"
+			],
+			[
+				"thi",
+				"thisbill"
+			],
+			[
+				"ret",
+				"returned_amount"
+			],
+			[
+				"due_",
+				"due_amount"
+			],
+			[
+				"pai",
+				"paid_amount"
+			],
+			[
+				"reta",
+				"retailreport"
+			],
+			[
+				"row",
+				"rowBills"
+			],
+			[
+				"tota",
+				"total_amount"
+			],
+			[
+				"border-",
+				"border-top"
+			],
+			[
+				"te",
+				"text-center"
+			],
+			[
+				"margi",
+				"margin-top"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"prow",
+				"prowholesale"
+			],
+			[
+				"del",
+				"delid"
+			],
+			[
+				"sty",
+				"style"
+			],
+			[
+				"dele",
+				"deletefromcart"
+			],
+			[
+				"on",
+				"onclick"
+			],
+			[
+				"emo",
+				"employeethis"
+			],
+			[
+				"su",
+				"submit"
+			],
+			[
+				"tot",
+				"totalprofit"
+			],
+			[
+				"las",
+				"lastprice"
+			],
+			[
+				"_",
+				"_SERVER"
+			],
+			[
+				"text",
+				"text-center"
+			],
+			[
+				"Se",
+				"Sep"
+			],
+			[
+				"Ju",
+				"Jul"
+			],
+			[
+				"Ma",
+				"May"
+			],
+			[
+				"wh",
+				"wholesale"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"num",
+				"num_rowsM"
+			],
+			[
+				"fo",
+				"foreach\tforeach …"
+			],
+			[
+				"bg",
+				"bg-yellow"
+			],
+			[
+				"ma",
+				"marker-mid"
+			],
+			[
+				"crea",
+				"create_function"
+			],
+			[
+				"seller",
+				"seller_name"
+			],
+			[
+				"total",
+				"totalpay"
+			],
+			[
+				"ta",
+				"table-hover"
+			],
+			[
+				"ba",
+				"balance"
+			],
+			[
+				"no",
+				"notnulltotal"
+			],
+			[
+				"bill",
+				"billtotal"
+			],
+			[
+				"se",
+				"sellerinfo"
+			],
+			[
+				"sel",
+				"sellerinfo"
+			],
+			[
+				"sessio",
+				"session_start"
+			],
+			[
+				"v",
+				"val"
+			],
+			[
+				"sho",
+				"showall"
+			],
+			[
+				"onc",
+				"onclick\tAttr"
+			],
+			[
+				"submit",
+				"submit1"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/Rubel/Documents/slim/app/routes.php",
+			"settings":
+			{
+				"buffer_size": 2656,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Rubel/Documents/slim/templates/ui_includes/header.phtml",
+			"settings":
+			{
+				"buffer_size": 2360,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Rubel/Documents/slim/app/Controllers/ProductsController.php",
+			"settings":
+			{
+				"buffer_size": 18181,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Rubel/Documents/slim/app/Auth/Auth.php",
+			"settings":
+			{
+				"buffer_size": 705,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Rubel/Documents/slim/app/Models/ProductsHistory.php",
+			"settings":
+			{
+				"buffer_size": 322,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Rubel/Documents/slim/bootstrap/app.php",
+			"settings":
+			{
+				"buffer_size": 3547,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Rubel/Documents/slim/templates/products/addInventory.phtml",
+			"settings":
+			{
+				"buffer_size": 10911,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Rubel/Documents/slim/templates/products/allProducts.phtml",
+			"settings":
+			{
+				"buffer_size": 8867,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 389.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 524.0
+	},
+	"console":
+	{
+		"height": 153.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/Rubel/Documents/slim",
+		"/Users/Rubel/Documents/slim/app",
+		"/Users/Rubel/Documents/slim/app/Auth",
+		"/Users/Rubel/Documents/slim/bootstrap",
+		"/Users/Rubel/Documents/slim/vendor",
+		"/Users/Rubel/Documents/slim/vendor/illuminate",
+		"/Users/Rubel/Documents/slim/vendor/illuminate/database",
+		"/Users/Rubel/Documents/store",
+		"/Users/Rubel/Documents/store/pages",
+		"/Users/Rubel/Documents/store/pages/inventory"
+	],
+	"file_history":
+	[
+		"/Users/Rubel/Documents/slim/bootstrap/app.php",
+		"/Users/Rubel/Documents/slim/app/Auth/Auth.php",
+		"/Users/Rubel/Documents/slim/templates/products/productDetails.phtml",
+		"/Users/Rubel/Documents/slim/app/Controllers/Auth/AuthController.php",
+		"/Users/Rubel/Documents/slim/app/Controllers/InventoryController.php",
+		"/Users/Rubel/Documents/store/pages/check/getproductsdata.php",
+		"/Users/Rubel/Documents/slim/app/Database/DbConnect.php",
+		"/Users/Rubel/Documents/slim/app/Database/DbCon.php",
+		"/Users/Rubel/Documents/slim/templates/products/allProducts.phtml",
+		"/Users/Rubel/Documents/slim/vendor/illuminate/database/Connection.php",
+		"/Users/Rubel/Documents/slim/app/Protected/DbConnect.php",
+		"/Users/Rubel/Documents/slim/templates/products/addProduct.phtml",
+		"/Users/Rubel/Documents/slim/app/Models/Products.php",
+		"/Users/Rubel/Documents/slim/app/Middleware/MyCsrfMiddleware.php",
+		"/Users/Rubel/Desktop/instruction.txt",
+		"/Users/Rubel/Documents/slim/app/Middleware/CsrfViewMiddleware.php",
+		"/Users/Rubel/Documents/slim/app/Middleware/OldInputMiddleware.php",
+		"/Users/Rubel/Documents/slim/app/Controllers/ProductsController.php",
+		"/Users/Rubel/Documents/slim/vendor/respect/validation/library/Validator.php",
+		"/Users/Rubel/Documents/slim/vendor/slim/php-view/src/PhpRenderer.php",
+		"/Users/Rubel/Documents/slim/public/bootstrap/css/bootstrap.css",
+		"/Users/Rubel/Documents/slim/templates/inventory/categoryEdit.phtml",
+		"/Users/Rubel/Documents/slim/templates/inventory/category.phtml",
+		"/Users/Rubel/Documents/slim/templates/inventory/brands.phtml",
+		"/Users/Rubel/Documents/slim/templates/inventory/brandEdit.phtml",
+		"/Users/Rubel/Documents/slim/templates/ui_includes/leftpanel.phtml",
+		"/Users/Rubel/Documents/slim/app/Models/Brands.php",
+		"/Users/Rubel/Documents/store/pages/inventory/brands.php",
+		"/Users/Rubel/Documents/slim/templates/ui_includes/head.phtml",
+		"/Users/Rubel/Documents/slim/public/plugins/select2/select2.js",
+		"/Users/Rubel/Documents/slim/app/routes.php",
+		"/Users/Rubel/Documents/slim/templates/ui_includes/header.phtml",
+		"/Users/Rubel/Documents/slim/templates/home/home.phtml",
+		"/Users/Rubel/Documents/slim/templates/auth/login.phtml",
+		"/Users/Rubel/Documents/slim/app/Models/Category.php",
+		"/Users/Rubel/Documents/slim/app/Models/Employee.php",
+		"/Users/Rubel/Documents/slim/app/Controllers/HomeController.php",
+		"/Users/Rubel/Documents/slim/app/Validation/Validator.php",
+		"/Users/Rubel/Documents/slim/app/Middleware/ValidationErrorMiddleware.php",
+		"/Users/Rubel/Documents/slim/templates/php_includes/db_conx.php",
+		"/Users/Rubel/Documents/store/ui_includes/footer.php",
+		"/Users/Rubel/Documents/store/ui_includes/leftpanel.php",
+		"/Users/Rubel/Documents/store/login.php",
+		"/Users/Rubel/Documents/slim/public/index.php",
+		"/Users/Rubel/Desktop/D set solve.txt",
+		"/Users/Rubel/Documents/slim/app/Helper/Includes/NumberToWord.php",
+		"/Users/Rubel/Documents/slim/app/Helper/Includes/BanglaConverter.php",
+		"/Users/Rubel/Documents/slim/templates/php_includes/en2bn.phtml",
+		"/Users/Rubel/Documents/slim/templates/chk.phtml",
+		"/Users/Rubel/Documents/slim/templates/base.phtml",
+		"/Users/Rubel/Documents/slim/templates/home/test.phtml",
+		"/Users/Rubel/Documents/slim/templates/ui_includes/control-sidebar.phtml",
+		"/Users/Rubel/Documents/slim/templates/ui_includes/footer.phtml",
+		"/Users/Rubel/Documents/slim/test.phtml",
+		"/Users/Rubel/Documents/slim/app/Middleware/Middleware.php",
+		"/Users/Rubel/Documents/slim/app/Controllers/FormController.php",
+		"/Users/Rubel/Documents/slim/vendor/slim/twig-view/src/TwigExtension.php",
+		"/Users/Rubel/Documents/slim/composer.json",
+		"/Users/Rubel/Documents/slim/app/Helper/Includes",
+		"/Users/Rubel/Documents/slim/resources/views/templates/partials/leftpanel.php",
+		"/Users/Rubel/Documents/slim/resources/views/templates/base.twig",
+		"/Users/Rubel/Documents/slim/public/modules/banking/allaccount.php",
+		"/Users/Rubel/Documents/slim/public/modules/banking/pages/allaccount.php",
+		"/Users/Rubel/Documents/slim/public/index2.php",
+		"/Users/Rubel/Documents/slim/public/ui_includes/leftpanel.php",
+		"/Users/Rubel/Documents/slim/public/login.php",
+		"/Users/Rubel/Documents/slim/public/.htaccess",
+		"/Users/Rubel/Desktop/store.sql",
+		"/Users/Rubel/Documents/slim/resources/views/banking/allaccounts.twig",
+		"/Users/Rubel/Documents/slim/templates/login.phtml",
+		"/Users/Rubel/Documents/slim/app/Controllers/Controller.php",
+		"/Users/Rubel/Documents/slim/vendor/illuminate/database/Eloquent/Model.php",
+		"/Users/Rubel/Documents/slim/resources/views/templates/partials/header.twig",
+		"/Users/Rubel/Documents/slim/resources/views/home.twig",
+		"/Users/Rubel/Documents/slim/app/Models/User.php",
+		"/Users/Rubel/Documents/store/dist/css/AdminLTE.min.css",
+		"/Users/Rubel/Documents/store/ui_includes/header.php",
+		"/Users/Rubel/Documents/store/pages/sales/newsale-wholesale.php",
+		"/Users/Rubel/Documents/store/index.php",
+		"/Users/Rubel/Documents/store/pages/report/dailyreport.php",
+		"/Users/Rubel/Documents/store/pages/sales/newsale.php",
+		"/Users/Rubel/Documents/store/pages/inventory/editproduct.php",
+		"/Users/Rubel/Documents/store/pages/inventory/productdetails.php",
+		"/Users/Rubel/Documents/store/pages/inventory/products.php",
+		"/Users/Rubel/Documents/store/dist/css/skins/_all-skins.min.css",
+		"/Users/Rubel/Documents/store/pages/salary/bak.php",
+		"/Users/Rubel/Documents/store/pages/seller/sellerinv.php",
+		"/Users/Rubel/Documents/store/pages/seller/createinvoice.php",
+		"/Users/Rubel/Documents/store/pages/seller/sellerdetails.php",
+		"/Users/Rubel/Documents/store/pages/seller/deleteinvoice.php",
+		"/Users/Rubel/Documents/store/pages/seller/sellerreport.php",
+		"/Users/Rubel/Documents/store/pages/check/getallbuy.php",
+		"/Users/Rubel/Desktop/videomac/enc.keyinfo",
+		"/Users/Rubel/Documents/store/pages/seller/sellerall.php",
+		"/Users/Rubel/Documents/store/pages/seller/createdeposite.php",
+		"/Users/Rubel/Documents/store/selleredit.php",
+		"/Users/Rubel/Documents/store/pages/inventory/addproduct.php",
+		"/Users/Rubel/Documents/store/pages/inventory/addtoproduct.php",
+		"/Users/Rubel/Documents/store/pages/sales/viewbill.php",
+		"/Users/Rubel/Documents/store/dailyreport.php",
+		"/Users/Rubel/Documents/store/pages/seller/deletedeposite.php",
+		"/Users/Rubel/Documents/store/sellernewdeposit.php",
+		"/Users/Rubel/Documents/store/pages/seller/sellernewdeposit.php",
+		"/Users/Rubel/Documents/store/sellerdetails.php",
+		"/Users/Rubel/Documents/store/pages/seller/sellernewcredit.php",
+		"/Users/Rubel/Documents/store/php_includes/db_conx.php",
+		"/Users/Rubel/Documents/store/pages/seller/sellerinvoice.php",
+		"/Users/Rubel/Documents/store/pages/seller/selleredit.php",
+		"/Users/Rubel/Documents/store/pages/sales/invoice.bak.php",
+		"/Users/Rubel/Documents/store/pages/sales/invoice.php",
+		"/Users/Rubel/Documents/store/pages/check/getproductName.php",
+		"/Users/Rubel/Documents/store/pages/check/getproducts.php",
+		"/Users/Rubel/Documents/store/pages/salary/salaryall.php",
+		"/Users/Rubel/Documents/store/pages/salary/salarynew.php",
+		"/Users/Rubel/Documents/store/pages/inventory/category.php",
+		"/Users/Rubel/Documents/store/productdetails.php",
+		"/Users/Rubel/Documents/store/pages/employee/employeeedit.php",
+		"/Users/Rubel/Documents/store/pages/employee/employeenew.php",
+		"/Users/Rubel/Documents/store/dist/js/pages/dashboard.js",
+		"/Users/Rubel/Documents/store/pages/employee/employeall.php",
+		"/Users/Rubel/Documents/store/pages/seller/sellernew.php",
+		"/Users/Rubel/Documents/store/pages/sales/retail.php",
+		"/Users/Rubel/Documents/store/pages/sales/wholesale.php",
+		"/Users/Rubel/Documents/store/pages/sales/refundedbill.php",
+		"/Users/Rubel/Documents/store/pages/sales/cancelledbill.php",
+		"/Users/Rubel/Documents/store/pages/dailyexpense/dailyexpense.php",
+		"/Users/Rubel/Documents/store/ui_includes/control-sidebar.php",
+		"/Users/Rubel/Documents/store/pages/employee/employee.php"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+			"<current file>",
+			"<current file>,,<open folders>",
+			"<current file>",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"<?php if (isset($_Success) && $_Success == 'created') { ?>\n        <div class=\"alert alert-success alert-dismissible\">\n          <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>\n          <h4><i class=\"icon fa fa-check\"></i> Added!</h4>\n          পণ্যটি সফলভাবে এন্ট্রি করা হয়েছে।\n        </div>",
+			"update",
+			"produc",
+			"productid",
+			"bn",
+			"en",
+			"get products",
+			"productid",
+			"logout",
+			"$product",
+			"container",
+			"DbConnect",
+			"getconfig",
+			"addproductform",
+			"Products",
+			"`",
+			"get",
+			"post",
+			"processRequest(",
+			"code",
+			"addProductPostAction",
+			"<h5 class=\"description-header\">35</h5>",
+			"PHP_SELF",
+			"এম. বি. ট্রেডার্স",
+			"index",
+			"indes",
+			"templatePath",
+			"NumberToWord",
+			"<input type=\"hidden\" name=\"\" value=\"\">",
+			"middleware",
+			"pages",
+			"url",
+			"base_url",
+			"base_url(",
+			"protected",
+			"include_once"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"'",
+			"REQUEST_URI"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/Rubel/Documents/slim/app/routes.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2656,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2478,
+								2460
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 889.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/Rubel/Documents/slim/templates/ui_includes/header.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2360,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2032,
+								2032
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 413.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/Rubel/Documents/slim/app/Controllers/ProductsController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 18181,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								504,
+								504
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 411.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/Rubel/Documents/slim/app/Auth/Auth.php",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 705,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								244,
+								227
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 30.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/Rubel/Documents/slim/app/Models/ProductsHistory.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 322,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								239,
+								239
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/Rubel/Documents/slim/bootstrap/app.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3547,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2531,
+								2537
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2210.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/Users/Rubel/Documents/slim/templates/products/addInventory.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10911,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2629,
+								2629
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1584.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/Users/Rubel/Documents/slim/templates/products/allProducts.phtml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8867,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2205,
+								2205
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 39.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "",
+	"project": "slim.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 293.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

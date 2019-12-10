@@ -1,0 +1,794 @@
+<?php
+
+ use App\Helper\Includes\NumberToWord;
+ use App\Helper\AdminDetails;
+
+
+include $this->getTemplatePath().'php_includes/db_conx.php';
+
+  $hasSuccess = '';
+
+  if (isset($_SESSION['success'])) {
+      
+      $_Success = $_SESSION['success'];
+
+      $_SESSION['success'] = '';
+    }
+
+  if (isset($_SESSION['error'])) {
+      
+      $_Error = $_SESSION['error'];
+
+      $_SESSION['error'] = '';
+    }
+
+  if (isset($_SESSION['msg'])) {
+    
+    $_Message = $_SESSION['msg'];
+
+    $_SESSION['msg'] = '';
+  }
+
+?>
+
+
+<?php
+if ($auth['user']->img!="") {
+    $usrimg = 'profileimg/'.$auth['user']->img;
+  } else {
+    $usrimg = 'dist/img/avatar.png';
+  }
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+<? print $this->fetch('/ui_includes/head.phtml'); ?>
+
+  <style type="text/css">
+    
+    .profile-user-img{
+      width: 150px;
+    }
+  </style>
+  
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- --mod: menu wrapper custom end -->
+  <?// print $this->fetch('/ui_includes/main_navigation.phtml'); ?>
+  <!-- --mod: menu wrapper custom end -->
+  
+  <div class="wrapper page-wrapper">
+
+    <header class="main-header">
+      <? print $this->fetch('/ui_includes/header.phtml'); ?>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <? print $this->fetch('/ui_includes/leftpanel.phtml'); ?>
+
+    <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+
+
+    <section class="content-header">
+
+      <?php if (isset($_Error) && $_Error == 'error') { ?>
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <? echo $_Message; ?>
+        </div>
+      <?php } ?>
+
+
+      <?php if (isset($_Success) && $_Success == 'success') { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <? echo $_Message;?>
+        </div>
+      <?php } ?>
+
+      <!-- /.row -->
+
+      <div class="row">
+        <div class="col-md-6">
+
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" src="<?php echo $baseUrl.$usrimg; ?>" alt="User profile picture">
+
+              <h3 class="profile-username text-center"><?php echo $user->name; ?></h3>
+
+
+              <p class="text-muted text-center"><?php echo $user->description; ?></p>
+
+              <ul class="list-group list-group-unbordered">
+                <? 
+                if ($user->type=='Academic') {
+                  $teacher = AdminDetails::getTeacherInfo($user->id);
+                ?>
+                <p><b>Username:</b> <?php echo $user->username; ?></p>
+                <p><b>Email:</b> <?php echo $user->email; ?></p>
+                <br>
+                <p><b>Department:</b> <?php echo $teacher->department_name; ?></p>
+                <p><b>Faculty:</b> <?php echo $teacher->faculty_name; ?></p>
+                <p><b>Designation:</b> <?php echo $teacher->designation; ?></p>
+                <hr>
+                <p><b>First Name:</b> <?php echo $teacher->fname; ?></p>
+                <p><b>Last Name:</b> <?php echo $teacher->lname; ?></p>
+                <p><b>Mobile:</b> <?php echo $teacher->mobile_no; ?></p>
+                
+                
+                <p><b>Gender:</b> <? if($teacher->gender=='F'){ echo "Female"; } else echo "Male";?></p>
+                <p><b>Research Interest:</b> <?php echo $teacher->research_interest; ?></p>
+                <p><b>Last Degree:</b> <?php echo $teacher->last_degree; ?></p>
+                
+                <?
+                } else {
+                ?>
+                <p><b>Username:</b> <?php echo $user->username; ?></p>
+                <p><b>Name:</b> <?php echo $user->name; ?></p>
+                <p><b>Email:</b> <?php echo $user->email; ?></p>
+                <p><b>Description:</b> <?php echo $user->description; ?></p>
+                <p><b>Type:</b> <?php echo $user->type; ?></p>
+
+                <?
+                }
+                ?>
+                
+                  
+                
+              </ul>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+          <!-- <p class=""><b>ঠিকানা</b></p> <p class="text-right"><a><?php echo $address; ?></a></p> -->
+
+          
+        </div>
+        <div class="col-md-6">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header">
+                <h3 class="box-title">Last Login Information:</h3>
+                
+              </div>
+              <div class="box-body">
+                <table id="self-login-history" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+
+                    <th>SL</th>
+                    <th>Login Date - Time</th>
+                    <th>Logout Date - Time</th>
+                    <th>Session Time</th>
+
+                  </tr>
+                  </thead>
+                    
+                  <tbody>
+
+                    <?
+
+                    $userid = $_SESSION['user'];
+                    $sql = "SELECT user, login_time, logout_time, TIMEDIFF(logout_time, login_time) AS logtime FROM admin_login WHERE user=$userid ORDER BY id DESC LIMIT 6;";
+                    $result = mysqli_query($db_conx,$sql );
+                
+                    $total_result = mysqli_num_rows($result);
+                
+                    if($total_result>0){
+                  
+                    $count = 0;
+                    while($row = mysqli_fetch_array($result)){
+
+                    ?>
+                    <tr role="row">
+                      <td><? echo ++$count; ?></td>
+                      <td><? echo date('m/d/Y - h:i:s A', strtotime($row['login_time'])); ?></td>
+                      <td><?
+
+                      if ($row['logout_time']==null) {
+                        echo "Not Available";
+                      } else echo date('m/d/Y - h:i:s A', strtotime($row['logout_time'])); ?></td>
+                      <td><?
+                          if ($row['logout_time'] > 0) {
+                            echo $row['logtime'];
+                      } else echo "Not Available"; ?></td>
+                    </tr>
+                  
+                    <?
+                      }}
+                    ?>
+                  
+                  </tbody>
+
+                  <tfoot>
+
+                  </tfoot>
+
+                </table>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-md-5">
+
+
+          </div>
+
+        </div>
+
+
+
+        <!-- /.col -->
+
+        <!-- /.col -->
+
+        <!-- --------------------- modals block for edit profile --------------------- -->
+
+
+        <!-- Modal Popup for edit profile-->
+        <div class="modal fade no-print" id="editProfile" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header bg-yellow">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="box-title">Edit Your Account Information:</h3>
+              </div>
+              <form class="form-horizontal" role="form" action="/user/edit" method="post">
+              <div class="modal-body">
+                <div class="box-body" id="refundcontent">
+
+                  
+
+                    <?php echo $csrf['field']; ?>
+
+                    
+                      <div class="form-group <? if(isset($errors['username'])) echo 'has-error' ?>">
+                        <label for="username" class="col-sm-3 control-label">Username</label>
+
+                        <div class="col-sm-9">
+                          <input name="username" type="text" class="form-control" id="username" placeholder="Enter Username" value="<?php echo $user->username; ?>" disabled>
+
+                          <div class='overlay' id="usernamecheck" style="display: none;"><i class='fa fa-refresh fa-spin'></i></div>
+                          <div class='overlay' id="usernamecheckok" style="display: none;"><i class='fa fa-check' style='color: green;'></i></div>
+                          <div class="col-sm-10" id="usernameWarning"> </div>
+
+                        
+                          <? if(isset($errors['username'])) { ?>
+                          <span class="help-block"><? echo $errors['username'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+
+                        
+
+
+                      </div>
+                      
+                      <div class="form-group <? if(isset($errors['mobile'])) echo 'has-error' ?>">
+                        <label for="mobile" class="col-sm-3 control-label">Mobile Number</label>
+
+                        <div class="col-sm-9">
+                          <input name="mobile" type="text" class="form-control" id="mobile" placeholder="Enter Mobile Number" value="<?php echo $user->mobile; ?>">
+                        
+                          <? if(isset($errors['mobile'])) { ?>
+                          <span class="help-block"><? echo $errors['mobile'][0]; ?> </span>
+
+                          <? } ?>
+                        </div>
+
+                        
+
+
+                      </div>
+
+
+                      <div class="form-group <? if(isset($errors['email'])) echo 'has-error' ?>">
+                        <label for="email" class="col-sm-3 control-label">Email</label>
+
+                        <div class="col-sm-9">
+                          <input name="email" type="text" class="form-control" id="email" placeholder="Enter Email" value="<?php echo $user->email; ?>">
+                        
+                          <? if(isset($errors['email'])) { ?>
+                          <span class="help-block"><? echo $errors['email'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+
+                        
+
+
+                      </div>
+
+                      <div class="form-group <? if(isset($errors['nid'])) echo 'has-error' ?>">
+                        <label for="nid" class="col-sm-3 control-label">National ID</label>
+
+                        <div class="col-sm-9">
+                          <input name="nid" type="text" class="form-control" id="nid" placeholder="Enter National ID" value="<?php echo $user->nid; ?>">
+                        
+                          <? if(isset($errors['nid'])) { ?>
+                          <span class="help-block"><? echo $errors['nid'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+
+                        
+
+
+                      </div>
+                      
+
+                      <div class="form-group <? if(isset($errors['address'])) echo 'has-error' ?>">
+                        <label for="address" class="col-sm-3 control-label">Address</label>
+
+                        <div class="col-sm-9">
+                          <input name="address" type="text" class="form-control" id="address" placeholder="Enter Address" value="<?php echo $user->address; ?>">
+                        
+                          <? if(isset($errors['address'])) { ?>
+                          <span class="help-block"><? $errors['address'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+
+                        
+
+
+                      </div>
+                  
+
+                      
+
+                      
+                      
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-success" style="margin-top: 0px;"><i class="fa fa-check"></i> Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa  fa-remove"></i>Close</button>
+              </div>
+              </form>
+              
+            </div>
+            
+          </div>
+        </div>
+
+
+
+
+
+        <!-- change password -->
+        <div class="modal fade no-print" id="changePassword" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header bg-yellow">
+                <h3 class="box-title">Change Password</h3>
+              </div>
+              <form class="form-horizontal" role="form" action="/user/changepassword" method="post">
+              <div class="modal-body">
+                <div class="box-body" id="changepasswordContent">
+
+                  
+
+                  <?php echo $csrf['field']; ?>
+
+                  <div class="form-group <? if(isset($errors['password'])) echo 'has-error' ?>">
+                    <label for="password" class="col-sm-5 control-label">Enter Current Password:</label>
+
+                    <div class="col-sm-5">
+                      <input name="password" type="password" class="form-control" id="changePasswordCurrent" placeholder="Enter your password to varify it's you." title="Enter your password to varify it's you.">
+                    
+                      
+                      <span class="help-block" id="changepasswordErr" style="color: red;">
+                        <? if(isset($errors['password'])) { echo $errors['password'][0]; }  ?>
+                      </span>
+
+                      
+                    </div>
+
+                    <button type="button" class="btn btn-success" id="changepasswordCheck"><i class="fa fa-check"></i> Submit</button>
+
+                    
+
+
+                  </div>
+
+                  <div class="col-md-12" id="changepasswordBox" style="display: none;">
+                    
+                    <div class="form-group <? if(isset($errors['question'])) echo 'has-error' ?>">
+                      <label for="question" class="col-sm-4 control-label">New Password:</label>
+
+                      <div class="col-sm-8">
+                        <input name="changepassword1" type="password" class="form-control editques" id="changepassword1" placeholder="Type new password" required>
+                      
+                        
+                      </div>
+                    </div>
+                    <div class="form-group <? if(isset($errors['answer'])) echo 'has-error' ?>">
+                      <label for="answer" class="col-sm-4 control-label">Retype Password: </label>
+
+                      <div class="col-sm-8">
+                        <input name="changepassword2" type="password" class="form-control" id="securityAnswer" placeholder="Retype new password" required>
+                      
+                        
+                      </div>
+                    </div>
+
+                  </div>  
+                
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="col-md-8" style="display: none;" id="changepasswordAction">
+                  <button type="submit" class="btn btn-success" style="margin-top: 0px;"><i class="fa fa-check"></i> Update Password</button>
+                </div>
+                
+                <button class="btn btn-default" data-dismiss="modal" id="securityClose"><i class="fa  fa-remove"></i>Close</button>
+              </div>
+              </form>
+              
+            </div>
+            
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+      <div class="row">
+
+        <?// include $this->getTemplatePath().'/modules/user/AdminAllUsers.phtml'; ?>
+
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+
+        <?// include $this->getTemplatePath().'/modules/user/AdminRoles.phtml'; ?>
+
+      </div>
+      <!-- /.row -->
+      
+    </section>
+
+
+    
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+  <!-- footer -->
+  <? print $this->fetch('/ui_includes/footer.phtml'); ?>
+
+  <!-- Control Sidebar -->
+  <? print $this->fetch('/ui_includes/control-sidebar.phtml'); ?>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap.min.js"></script>
+
+<!-- bootstrap-confirmation.min.js -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap-confirmation.min.js"></script>
+
+<!-- DataTables -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
+
+<!-- FastClick -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/app.min.js"></script>
+<!-- sidebar toggle -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/sidebar-toggle.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/demo.js"></script>
+
+<script>
+
+    //data table for products
+
+  $(document).ready(function() {
+
+      //edit sequrity question
+      //triggered when modal is about to be shown
+      var securityId = null;
+
+      $(document).on("click", "#securityClose", function () {
+
+          //get data-id attribute of the clicked element
+          securityId = null;
+          $("#securityQusId").val('');
+          $('#securityChkPassword').val('');
+          $("#passwordErr").html("");
+          $("#securityQuestion").val('');
+          $("#securityAnswer").val('');
+          $("#securityAction").hide();
+          $("#securitybox").hide();
+
+
+      });
+
+      
+
+      $(document).on("click", "#securityedit", function () {
+
+          //get data-id attribute of the clicked element
+          securityId = $(this).data('ques-id');
+
+          
+          $("#securityQusId").val(securityId);
+
+      });
+
+      $(document).on("click", "#securityChkpass", function () {
+
+          //get data-id attribute of the clicked element
+          var pass = $('#securityChkPassword').val();
+
+          jQuery.ajax({
+
+            url : '/public/auth/checkpass',
+            type : 'post',
+            data : {
+              pass :  pass
+            },
+            success : function(data) {
+                  
+                    if (data=='valid') {
+
+                      $("#passwordErr").html("");
+
+                      editQuestion(securityId);
+
+                      $("#securitybox").show();
+                      $("#securityAction").show();
+                      // $("#securityQusDel").attr('href', '/user/deletequs/'+securityId)
+
+                    } else {
+
+                      $("#passwordErr").html("Wrong Password!");
+                      $("#securityAction").hide();
+                      $("#securitybox").hide();
+                    }
+                  
+                    
+                  }
+              
+          });  
+
+      });
+
+      function editQuestion(id) {
+        
+        jQuery.ajax({
+
+            url : '/public/user/getquestion',
+            type : 'post',
+            data : {
+              id :  id
+            },
+            success : function(data) {
+
+                  
+                     var question = JSON.parse(data);
+
+                      $("#securityQuestion").val(question.question);
+
+                      $("#securityAnswer").val(question.answer);
+                  
+                    
+                  }
+              
+          });
+
+      }
+
+      $('[data-toggle=confirmation]').confirmation({
+              rootSelector: '[data-toggle=confirmation]',
+              // other options
+              onConfirm: function() {
+
+                window.location.replace('/user/deletequs/'+securityId);
+              
+              }
+      });
+
+
+        //show modal if validation error!!
+
+        <?
+        if (isset($_SESSION['show_modal']) && $_SESSION['show_modal']=='editProfile') {
+        ?>
+          $('#editProfile').modal('show');
+
+        <?
+
+        $_SESSION['show_modal'] = '';
+
+         } ?>
+
+        <?
+        if (isset($_SESSION['show_modal']) && $_SESSION['show_modal']=='addSecurityQus') {
+        ?>
+          $('#addSecurityQus').modal('show');
+
+        <?
+
+        $_SESSION['show_modal'] = '';
+
+         } ?>
+
+         <?
+        if (isset($_SESSION['show_modal']) && $_SESSION['show_modal']=='addUser') {
+        ?>
+          $('#addUser').modal('show');
+
+        <?
+
+        $_SESSION['show_modal'] = '';
+
+         } ?>
+         
+         
+
+
+
+        $('#username').keyup(function () {
+
+            var username = jQuery('#username').val();
+
+            
+
+            if (username!='<? echo $user->username; ?>') {
+
+              jQuery("#usernameWarning").hide();
+
+              jQuery("#usernamecheckok").hide();
+                      
+              jQuery("#usernamecheck").show();
+
+              jQuery.ajax({
+                  url : '/public/user/checkusername',
+                  type : 'post',
+                  data : {
+                    username : username
+                  },
+                  success : function(data) {
+                    
+                        jQuery("#usernamecheck").hide();
+                          
+                            if(data=='taken'){
+                                jQuery("#usernameWarning").show();
+                                jQuery("#usernameWarning").html("This username has already been used. Please use a different one.");
+                                
+                            }
+                            if(data=='nottaken'){
+                                jQuery("#usernamecheckok").show();
+
+
+                            } 
+                          
+                        }
+                    
+               });
+
+            }
+
+            
+
+          });
+
+        //for creating new user
+
+        $('#newusername').keyup(function () {
+
+            var username = jQuery('#newusername').val();
+
+          
+              jQuery("#newusernameWarning").hide();
+
+              jQuery("#newusernamecheckok").hide();
+                      
+              jQuery("#newusernamecheck").show();
+
+              jQuery.ajax({
+                  url : '/public/user/checkusername',
+                  type : 'post',
+                  data : {
+                    username : username
+                  },
+                  success : function(data) {
+                    
+                        jQuery("#newusernamecheck").hide();
+                          
+                            if(data=='taken'){
+                                jQuery("#newusernameWarning").show();
+                                jQuery("#newusernameWarning").html("This username has already been used. Please use a different one.");
+                                
+                            }
+                            if(data=='nottaken'){
+                                jQuery("#newusernamecheckok").show();
+                            }  
+                        }
+               });      
+          });
+
+
+
+        $(document).on("click", "#changepasswordCheck", function () {
+
+          //get data-id attribute of the clicked element
+          var pass = $('#changePasswordCurrent').val();
+
+          jQuery.ajax({
+
+            url : '/public/auth/checkpass',
+            type : 'post',
+            data : {
+              pass :  pass
+            },
+            success : function(data) {
+                  
+                    if (data=='valid') {
+
+                      $("#changepasswordErr").html("");
+
+                      $("#changepasswordBox").show();
+                      $("#changepasswordAction").show();
+                      // $("#securityQusDel").attr('href', '/user/deletequs/'+securityId)
+
+                    } else {
+
+                      $("#changepasswordErr").html("Wrong Password!");
+                      $("#changepasswordBox").hide();
+                      $("#changepasswordAction").hide();
+                    }
+                  
+                    
+                  }
+              
+          });  
+
+        });
+
+        
+        
+        
+      } );
+</script>
+
+
+
+</body>
+</html>

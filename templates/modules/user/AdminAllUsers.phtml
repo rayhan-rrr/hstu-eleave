@@ -1,0 +1,356 @@
+<?
+use App\Helper\Permission\AccessControl;
+?>
+
+<div class="col-md-12">
+  <div class="box box-primary">
+    <div class="box-header">
+      <? 
+      //access control
+      //view user -> resource=64
+      if (AccessControl::getPermission(64)) {
+       ?>
+      <h2 class="box-title col-sm-4">Available Users/Employees</h2>
+        
+      <?}?>
+
+      
+      <? 
+      //access control
+      //create user -> resource=5
+      if (AccessControl::getPermission(5)) {
+       ?>
+      <button type="button" id="refundbtnmain" data-toggle="modal" data-target="#addUser" class="btn btn-info pull-right col-sm-3" style="margin-top: 0px;">
+          <i class="fa fa-plus-square"></i> Create New User/Employee
+        </button>
+
+      <?}?>
+    </div>
+    <? 
+    //access control
+    //view user -> resource=64
+    if (AccessControl::getPermission(64)) {
+     ?>
+
+
+     <div class="box-body">
+      <table id="self-login-history" class="table table-bordered table-hover">
+        <thead>
+        <tr>
+
+          <th>SL</th>
+          <th>Username</th>
+          <th>Name</th>
+          <th>Mobile</th>
+          <th>Role</th>
+          <th>Last Login</th>
+          <th>Status</th>
+          <? 
+          //access control
+          //edit users -> resource=66
+          if (AccessControl::getPermission(66)) {
+           ?>
+          <th>Action</th>
+          <?}?>
+        </tr>
+        </thead>
+          
+        <tbody>
+
+          <?
+
+          $userid = $_SESSION['user'];
+          $sql = "SELECT * FROM admin_user;";
+          $result = mysqli_query($db_conx,$sql );
+      
+          $total_result = mysqli_num_rows($result);
+      
+          if($total_result>0){
+        
+          $count = 0;
+          while($row = mysqli_fetch_array($result)){
+
+          ?>
+          <tr role="row" <? if ($row['is_active']==0) {
+                            echo "class='text-red'";
+                          } else echo "class='text-green'"; ?>>
+            <td><? echo ++$count; ?></td>
+            <td><a href="/user/<? echo $row['id']; ?>"><? echo $row['username'] ?></a></td>
+            <td><? echo $row['name'] ?></td>
+            <td><? echo $row['mobile'] ?></td>
+            <td>
+              <?
+              $role = $row['role'];
+              $sql = "SELECT * FROM `admin_role` WHERE `id`='$role';";
+              $roleresult = mysqli_query($db_conx,$sql );
+              $selectedrole = mysqli_fetch_assoc($roleresult);
+
+              echo $selectedrole['name'];
+              ?>
+
+            </td>
+            <td><? echo date('m/d/Y - h:i:s A', strtotime($row['logdate']))?></td>
+            <td><?
+                  if ($row['is_active']==1) {
+                    echo "Enabled";
+                  } else echo "Disabled";
+                  ?>      
+            </td>
+            <? 
+            //access control
+            //edit users -> resource=66
+            if (AccessControl::getPermission(66)) {
+             ?>
+            <td><a href="/user/edituser/<? echo $row['id'] ?>">Edit</a></td>
+            <?}?>
+          </tr>
+        
+          <?
+            }}
+          ?>
+        
+        </tbody>
+
+        <tfoot>
+
+        </tfoot>
+
+      </table>
+    </div>
+    
+
+
+    <?}?>
+
+
+    
+
+  </div>
+</div>
+
+
+<!-- Modal Popup for Create Admin User-->
+<div class="modal fade no-print" id="addUser" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header bg-aqua-active">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="box-title">Create New User Account</h3>
+      </div>
+      <form class="form-horizontal" role="form" action="/user/create" method="post">
+      <div class="modal-body">
+        <div class="box-body" id="refundcontent">
+
+          
+
+            <?php echo $csrf['field']; ?>
+
+              <div class="form-group <? if(isset($errors['role'])) echo 'has-error' ?>">
+                <label for="role" class="col-md-3 control-label">User Role *</label>
+                <div class="col-md-9">
+                  <select name="role" required id="role" class="form-control">
+                    <option value="">Please Select</option>
+                  <?php
+
+
+                  $sql = "SELECT * FROM `admin_role` WHERE `active`=1;";
+                  $result = mysqli_query($db_conx,$sql );
+                  $total_cat = mysqli_num_rows($result);
+                  if($total_cat>0){
+                    
+                    while($row = mysqli_fetch_array($result)){
+                      echo "<option value=".$row['id'].">".$row['name']."</option>";
+                      }
+                    }
+                  ?>
+                    
+                  </select>
+                  <? if(isset($errors['role'])) { ?>
+                    <span class="help-block"><? //echo $errors['password'][0]; ?> Select a Role</span>
+                  <? } ?>
+                </div>
+              </div>
+
+            
+              <div class="form-group <? if(isset($errors['username'])) echo 'has-error' ?>">
+                <label for="username" class="col-sm-3 control-label">Username</label>
+
+                <div class="col-sm-9">
+                  <input name="username" type="text" required class="form-control" id="newusername" placeholder="Enter Username" value="<? if(isset($old['username'])) echo $old['username']; ?>">
+
+                  <div class='overlay' id="usernamecheck" style="display: none;"><i class='fa fa-refresh fa-spin'></i></div>
+                  <div class='overlay' id="newusernamecheckok" style="display: none;"><i class='fa fa-check' style='color: green;'></i></div>
+                  <div class="col-sm-10" id="newusernameWarning"> </div>
+
+                
+                  <? if(isset($errors['username'])) { ?>
+                  <span class="help-block"><? echo $errors['username'][0]; ?></span>
+
+                  <? } ?>
+                </div>
+
+                
+
+
+              </div>
+
+              <div class="form-group <? if(isset($errors['name'])) echo 'has-error' ?>">
+                <label for="name" class="col-sm-3 control-label">Name</label>
+
+                <div class="col-sm-9">
+                  <input name="name" type="text" required class="form-control" id="name" placeholder="Enter Name" value="<? if(isset($old['name'])) echo $old['name']; ?>">
+                
+                  <? if(isset($errors['name'])) { ?>
+                  <span class="help-block"><? echo $errors['name'][0]; ?></span>
+
+                  <? } ?>
+                </div>
+
+                
+
+
+              </div>
+
+              <div class="form-group <? if(isset($errors['description'])) echo 'has-error' ?>">
+                <label for="description" class="col-sm-3 control-label">Description</label>
+
+                <div class="col-sm-9">
+                  <input name="description" type="text" class="form-control" id="description" placeholder="Enter Description" value="<? if(isset($old['description'])) echo $old['description']; ?>">
+                
+                  <? if(isset($errors['description'])) { ?>
+                  <span class="help-block"><? echo $errors['description'][0]; ?></span>
+
+                  <? } ?>
+                </div>
+
+                
+
+
+              </div>
+
+
+              
+              <div class="form-group <? if(isset($errors['mobile'])) echo 'has-error' ?>">
+                <label for="mobile" class="col-sm-3 control-label">Mobile Number</label>
+
+                <div class="col-sm-9">
+                  <input name="mobile" type="text" class="form-control" id="mobile" placeholder="Enter Mobile Number" value="<? if(isset($old['mobile'])) echo $old['mobile']; ?>">
+                
+                  <? if(isset($errors['mobile'])) { ?>
+                  <span class="help-block"><? echo $errors['mobile'][0]; ?> </span>
+
+                  <? } ?>
+                </div>
+
+                
+
+
+              </div>
+
+
+              <div class="form-group <? if(isset($errors['email'])) echo 'has-error' ?>">
+                <label for="email" class="col-sm-3 control-label">Email</label>
+
+                <div class="col-sm-9">
+                  <input name="email" type="text" class="form-control" id="email" placeholder="Enter Email" value="<? if(isset($old['email'])) echo $old['email']; ?>">
+                
+                  <? if(isset($errors['email'])) { ?>
+                  <span class="help-block"><? echo $errors['email'][0]; ?></span>
+
+                  <? } ?>
+                </div>
+
+                
+
+
+              </div>
+
+              <div class="form-group <? if(isset($errors['nid'])) echo 'has-error' ?>">
+                <label for="nid" class="col-sm-3 control-label">National ID</label>
+
+                <div class="col-sm-9">
+                  <input name="nid" type="text" class="form-control" id="nid" placeholder="Enter National ID" value="<? if(isset($old['nid'])) echo $old['nid']; ?>">
+                
+                  <? if(isset($errors['nid'])) { ?>
+                  <span class="help-block"><? echo $errors['nid'][0]; ?></span>
+
+                  <? } ?>
+                </div>
+
+                
+
+
+              </div>
+              
+
+              <div class="form-group <? if(isset($errors['address'])) echo 'has-error' ?>">
+                <label for="address" class="col-sm-3 control-label">Address</label>
+
+                <div class="col-sm-9">
+                  <input name="address" type="text" class="form-control" id="address" placeholder="Enter Address" value="<? if(isset($old['address'])) echo $old['address']; ?>">
+                
+                  <? if(isset($errors['address'])) { ?>
+                  <span class="help-block"><? $errors['address'][0]; ?></span>
+
+                  <? } ?>
+                </div>
+              </div>
+
+              <div class="form-group <? if(isset($errors['salary'])) echo 'has-error' ?>">
+                        <label for="salary" class="col-sm-3 control-label">Salary</label>
+
+                        <div class="col-sm-9">
+                          <input name="salary" type="text" class="form-control" id="salary" placeholder="Enter Monthly Salary" value="<? if(isset($old['salary'])) echo $old['salary']; ?>">
+                        
+                          <? if(isset($errors['salary'])) { ?>
+                          <span class="help-block"><? echo $errors['salary'][0]; ?></span>
+
+                          <? } ?>
+                        </div>
+                      </div>
+
+              <div class="form-group <? if(isset($errors['password'])) echo 'has-error' ?>">
+                <label for="password" class="col-sm-3 control-label">Set Password</label>
+
+                <div class="col-sm-9">
+                  <input name="password" type="password" required class="form-control" id="password" placeholder="Enter password">
+                
+                  <? if(isset($errors['password'])) { ?>
+                  <span class="help-block"><? $errors['password'][0]; ?></span>
+
+                  <? } ?>
+                </div>
+              </div>
+
+              <div class="form-group <? if(isset($errors['retypepassword'])) echo 'has-error' ?>">
+                <label for="retypepassword" class="col-sm-3 control-label">Retype Password</label>
+
+                <div class="col-sm-9">
+                  <input name="retypepassword" type="password" required class="form-control" id="retypepassword" placeholder="Enter password again">
+                
+                  <? if(isset($errors['retypepassword'])) { ?>
+                  <span class="help-block"><? $errors['retypepassword'][0]; ?></span>
+
+                  <? } ?>
+                </div>
+              </div>
+          
+
+              
+
+              
+              
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" style="margin-top: 0px;"><i class="fa fa-check"></i> Create User</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa  fa-remove"></i>Close</button>
+      </div>
+      </form>
+      
+    </div>
+    
+  </div>
+</div>

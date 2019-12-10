@@ -1,0 +1,988 @@
+<?php
+
+ use App\Helper\Includes\NumberToWord;
+ use App\Helper\AdminDetails;
+
+ use App\Models\Admin;
+ use App\Models\FixedUsers;
+ use App\Models\LeaveTypes;
+ use App\Models\ApplicationForwarding;
+
+
+include $this->getTemplatePath().'php_includes/db_conx.php';
+
+  $hasSuccess = '';
+
+  if (isset($_SESSION['success'])) {
+      
+      $_Success = $_SESSION['success'];
+
+      $_SESSION['success'] = '';
+    }
+
+  if (isset($_SESSION['error'])) {
+      
+      $_Error = $_SESSION['error'];
+
+      $_SESSION['error'] = '';
+    }
+
+  if (isset($_SESSION['msg'])) {
+    
+    $_Message = $_SESSION['msg'];
+
+    $_SESSION['msg'] = '';
+  }
+
+?>
+
+
+<?php
+if ($auth['user']->img!="") {
+    $usrimg = 'profileimg/'.$auth['user']->img;
+  } else {
+    $usrimg = 'dist/img/avatar.png';
+  }
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+<? print $this->fetch('/ui_includes/head.phtml'); ?>
+  
+  <!-- Select2 -->
+<link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2.min.css">
+<!-- <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2-flat-theme.min.css"> -->
+<link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2-bootstrap.min.css">
+
+<!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <style type="text/css">
+    
+    .profile-user-img{
+      width: 150px;
+    }
+
+    @media print{
+      a[href]:after {
+        content: none !important;
+        text-decoration: none;
+      }
+    }
+  </style>
+  
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+  
+  <div class="wrapper page-wrapper">
+
+    <header class="main-header">
+      <? print $this->fetch('/ui_includes/header.phtml'); ?>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <? print $this->fetch('/ui_includes/leftpanel.phtml'); ?>
+
+    <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+
+
+    <section class="content-header no-print">
+      <?php if (isset($_Error) && $_Error == 'error') { ?>
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <? echo $_Message; ?>
+        </div>
+      <?php } ?>
+
+
+      <?php if (isset($_Success) && $_Success == 'success') { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <? echo $_Message;?>
+        </div>
+      <?php } ?>
+
+    </section>
+
+
+    <section class="content-header no-print">
+      <h1>
+        Leave Application:
+        <!-- <small><? echo $slip->invoice; ?></small> -->
+      </h1>
+      <h3 class="box-title"></h3>
+
+    </section>
+
+    <section class="invoice">
+      <!-- /.row -->
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <!-- Profile Image -->
+            <div class="box-body">
+              <h4 <? if ($application->final_action=="Approved") {
+                echo "class='text-green'";
+              } else if($application->final_action=="Declined"){
+                echo "class='text-red'"; 
+              } ?>><b><?= LeaveTypes::find($application->type)->name ?> </b>(<?= $application->days ?> Days)
+                <? if ($application->submitted==0){
+                  ?>
+                  <span class="pull-right text-yellow">Draft Apllication</span>
+                  <?
+                } else {
+                  ?>
+                  <span class="pull-right text-light-blue"><b>Status: </b><?= $application->status ?></span>
+                  <?
+                }?></h4>
+              <hr>
+              <?
+              if ($application->office_order) {
+
+                if ($user->type=='Administrative') {
+                  ?>
+                  <a class="pull-right" href="/application/officeorder/<?= $application->id ?>" target="_blank"><h4>View Office Order</h4></a>
+                  <?
+                } else {
+                  if ($application->confirmed==1) {
+                    ?>
+                    <a class="pull-right" href="/application/officeorder/<?= $application->id ?>" target="_blank"><h4>View Office Order</h4></a>
+                    <?
+                  }
+                }
+              }
+              ?>
+              <p><b>Date:</b> <?= date('d M, Y h:i:sA', strtotime($application->created_at)) ?></p>
+              <p><b>Departmental Memorandum:</b> <?= $application->d_memorandum ?></p>
+              <p>To,</p>
+              <p>Registrar,</p>
+              <p>Hajee Mohammad Danesh Science & Technology University</p>
+              <p>Dinajpur</p>
+              <br>
+              <p><b>Subject:</b> <?= $application->subject ?></p>
+              <br>
+              <?= $application->body ?>
+              <br>
+              <p>Sincerely,</p>
+              <br><br>
+              <?
+              $teacher = Admin::find($application->user);
+              $teacherInfo = AdminDetails::getTeacherInfo($application->user);
+              ?>
+              <p><?= $teacher->name  ?></p>
+              <p><?= $teacherInfo->designation  ?></p>
+              <p>Dept. of <?= $teacherInfo->department_name  ?></p>
+              <p>Faculty of <?= $teacherInfo->faculty_name  ?></p>
+              
+              <?
+              if ($application->attachment) { ?>
+                <br><br>
+              <p><b>Attachment:</b>
+                
+                  <a style="text-decoration: none;" href="/attachments/<?= $application->user."/".$application->attachment ?>" target="_blank"><?= $application->attachment ?></a>
+                  </p>
+              <?
+              }
+              ?>
+              <hr>
+              <h4><b>Application Forwardings:</b></h4>
+              <?
+              $count =0;
+              $forwardings = ApplicationForwarding::where('application', $application->id)->get();
+              foreach ($forwardings as $forwarding) {
+                ?>
+                <div class="col-md-12">
+                  
+                  <?
+                  if ($forwarding->to_designation=='Chairman') {
+
+                    $to_user = Admin::where('teacher_id',  $forwarding->to_user)->first();
+                    ?>
+                    <div class="col-md-6">
+                      <span><b>Submitted to:</b></span><br>
+                      <span><?= $to_user->name ?></span><br>
+                      <span><?= $forwarding->to_designation ?></span><br>
+                      <span>Dept. of 
+                      <?= AdminDetails::getTeacherInfo($to_user->id)->department_name
+                      ?></span><br>
+                      <span><b>Submitted By:</b> Self</span>
+                    </div>
+
+                    <div class="col-md-6">
+                      <span><b>Submitted On:</b> <?= date('d M, Y h:i:sA', strtotime($application->created_at)) ?></span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <?
+                  } else if ($forwarding->to_designation=='Dean') {
+
+                    $to_user = Admin::where('teacher_id',  $forwarding->to_user)->first();
+                    $by_user = Admin::find($forwarding->forwarded_by);
+                    
+                    ?>
+                    <div class="col-md-6">
+                      <span><b>Submitted to:</b></span><br>
+                      <span><?= $to_user->name ?></span><br>
+                      <span><?= $forwarding->to_designation ?></span><br>
+                      <span>Faculty of 
+                      <?= AdminDetails::getTeacherInfo($to_user->id)->faculty_name ?>
+                      </span><br>
+                      <span><b>Forwarded By:</b></span><br>
+                      <span><?= $by_user->name ?></span><br>
+                      <span><?= $forwarding->by_designation ?></span><br>
+                      <span>Dept. of 
+                      <?= AdminDetails::getTeacherInfo($by_user->id)->department_name
+                      ?></span>
+                      <br>
+                    </div>
+
+                    <div class="col-md-6">
+                      <span><b>Recommendation:</b> <?= $forwarding->forward_remark ?></span><br><br>
+                      <span><b>Forwarded On:</b> <?= date('d M, Y h:i:sA', strtotime($application->created_at)) ?></span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <?
+                  } else if ($forwarding->to_designation=='Registrar' && $forwarding->by_designation=='Dean'){
+
+                    $to_user = Admin::find($forwarding->to_user);
+                    $by_user = Admin::find($forwarding->forwarded_by);
+                    
+                    ?>
+                    <div class="col-md-6">
+                      <span><b>Submitted to:</b></span><br>
+                      <span><?= $to_user->name ?></span><br>
+                      <span><?= $forwarding->to_designation ?></span><br>
+                      
+                      <span><b>Forwarded By:</b></span><br>
+                      <span><?= $by_user->name ?></span><br>
+                      <span><?= $forwarding->by_designation ?></span>
+                      <span>Faculty of 
+                      <?= AdminDetails::getTeacherInfo($by_user->id)->faculty_name ?>
+                      </span>
+                      <br>
+                    </div>
+
+                    <div class="col-md-6">
+                      <span><b>Recommendation:</b> <?= $forwarding->forward_remark ?></span><br><br>
+                      <span><b>Forwarded On:</b> <?= date('d M, Y h:i:sA', strtotime($application->created_at)) ?></span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <?
+                  }else {
+
+                    $to_user = Admin::find($forwarding->to_user);
+                    $by_user = Admin::find($forwarding->forwarded_by);
+                    
+                    ?>
+                    <div class="col-md-6">
+                      <span><b>Submitted to:</b></span><br>
+                      <span><?= $to_user->name ?></span><br>
+                      <span><?= $forwarding->to_designation ?></span><br>
+                      
+                      <span><b>Forwarded By:</b></span><br>
+                      <span><?= $by_user->name ?></span><br>
+                      <span><?= $forwarding->by_designation ?></span>
+                      <br>
+                    </div>
+
+                    <div class="col-md-6">
+                      <span><b>Recommendation:</b> <?= $forwarding->forward_remark ?>
+                      <br>
+                      <?
+                      if ($forwarding->docket) {
+                      ?>
+                      <span><b>Docket:</b> <?= $forwarding->docket ?></span>
+                      <?
+                      }
+                      ?>
+                      <br><br>
+                      <span><b>Marked On:</b> <?= date('d M, Y h:i:sA', strtotime($application->created_at)) ?></span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <?
+                  }
+                  ?>
+                  
+                </div>
+                <p></p>
+                <?
+              }
+              ?>
+
+
+            </div>
+            <!-- /.box-body -->
+            
+            <div>
+              
+                <a class="btn btn-info pull-right no-print" onclick="window.print();"> <i class="fa fa-print"></i> Print Application</a>
+                <? if ($application->submitted==0): ?>
+                  <a class="btn btn-success no-print" href="/submitapplication/<?= $application->id ?>"> <i class="fa  fa-check-circle"></i> Submit Application</a>
+                  
+                   <a class="btn btn-warning no-print" href="/editapplication/<?= $application->id ?>"> <i class="fa  fa-edit"></i> Edit Application</a>
+                <? endif ?>
+
+                <? if (AdminDetails::checkIfChairman($_SESSION['user']) && $application->status=='Submitted to Chairman'){ ?>
+
+                  <a class="btn btn-warning no-print" data-toggle="modal" data-target="#forwardApplication"> <i class="fa fa-mail-forward"></i> Recommend & Forward</a>
+
+                <? } ?>
+
+                <? if (AdminDetails::checkIfDean($_SESSION['user']) && $application->status=='Recommended and Forwarded to Dean by Chairman'){ ?>
+
+                  <a class="btn btn-warning no-print" data-toggle="modal" data-target="#forwardApplication"> <i class="fa fa-mail-forward"></i> Recommend & Forward</a>
+
+                <? } ?>
+
+                <?
+                  $forwaedtoVC = ApplicationForwarding::where('application', $application->id)->where('to_designation','VC')->where('active', 1)->first();
+
+                  if ($user->designation=='Registrar'){
+                    if ($application->status=='Recommended and Forwarded to Registrar by Dean') {
+                      ?>
+
+                      <a class="btn btn-warning no-print" data-toggle="modal" data-target="#markApplication"> <i class="fa fa-mail-forward"></i> Mark/Forward</a>
+                    <?
+                    } else if($application->status=='Approved by VC'){
+                    ?>
+                      <a class="btn btn-warning no-print" data-toggle="modal" data-target="#markApplication"> <i class="fa fa-mail-forward"></i> Mark/Forward For Office Order</a>
+                    <?
+                    } else if($application->status=="Memorandum assigned. Submitted for finalization"){
+                      ?>
+                      <a href="/application/confirmfinalization/<?= $application->id ?>" class="btn btn-success no-print"> <i class="fa fa-check-circle-o"></i> Confirm Finalization</a>
+                      <?
+
+                    } else if($application->status!='Recommended and Forwarded to VC by Registrar') {
+                      //problem!!!
+                      ?>
+                      <a class="btn btn-warning no-print" data-toggle="modal" data-target="#recommendToVC"> <i class="fa fa-mail-forward"></i> Recommend To VC</a>
+                      <?
+                    }
+                  } ?>
+
+                <? if ($user->designation=='VC' && $application->final_action==''){
+
+                 ?>
+
+                    <a class="btn btn-warning no-print" data-toggle="modal" data-target="#finalActionVC"> <i class="fa fa-check-square-o"></i> Final Action</a>
+
+                <? } ?>
+
+
+                <? if ($user->designation!='Registrar' && $user->designation!='VC' && $user->designation!='Computer Operator' && $_SESSION['type']=='Administrative'){
+                  //user is general administrative user
+                  $forward = ApplicationForwarding::where('application', $application->id)->where('to_user', $user->id)->where('active', 1)->count();
+                  if ($forward>0 && $application->status!='Office Order Generated. Waiting for approval') {
+                   ?>
+
+                  <a class="btn btn-warning no-print" data-toggle="modal" data-target="#markApplication"> <i class="fa fa-mail-forward"></i> Mark/Forward</a>
+
+                <? }
+                  if ($forward>0 && $application->status=='Office Order Generated. Waiting for approval') {
+                  ?>
+                  <a href="/application/officeorder/<?= $application->id ?>" class="btn btn-warning no-print"> <i class="fa fa-edit"></i> Assign Memorandum</a>
+                  <?
+
+                 }}?>
+
+                <? if ($user->designation=='Computer Operator' && $_SESSION['type']=='Administrative'){
+                  //user is general administrative user
+                  $forward = ApplicationForwarding::where('application', $application->id)->where('to_user', $user->id)->where('active', 1)->count();
+                  if ($forward>0) {
+                   ?>
+
+                  <a class="btn btn-success" href="/application/generateorder/<?= $application->id ?>" target="_blank"> <i class="fa fa-edit"></i> Generate Office Order</a>
+
+                <? } }?>
+
+
+                
+            </div>
+
+          
+        </div>
+
+
+
+
+        <!-- /.col -->
+
+        <!-- /.col -->
+
+        <!-- --------------------- modals block for edit profile --------------------- -->
+
+        <div class="modal fade no-print" id="forwardApplication" role="dialog"  >
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <form action="/public/application/recommend/<?= $application->id ?>" method="post">
+              <div class="modal-header bg-yellow">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="box-title">Recommend  & Forward Application to 
+                <?
+                if (AdminDetails::checkIfChairman($_SESSION['user'])){
+                  echo "Dean";
+                } else echo "Registrar";
+                  ?></h3>
+              </div>
+              
+              <div class="modal-body">
+
+                <div class="box-body">
+
+                  <div class="checkpasswordsec form-group <? if(isset($errors['password'])) echo 'has-error' ?>">
+                    <label for="password" class="col-sm-5 control-label">Enter Your Password to Continue.</label>
+
+                    <div class="col-sm-5">
+                      <input name="password" type="password" class="form-control" id="securityChkPassword" placeholder="Enter your password to varify it's you.">
+                    
+                      
+                      <span class="help-block" id="passwordErr" style="color: red;">
+                        <? if(isset($errors['password'])) { echo $errors['password'][0]; }  ?>
+                      </span>
+
+                      
+                    </div>
+
+                    <button type="button" class="btn btn-success col-sm-2 pull-right" id="securityChkpass"><i class="fa fa-check"></i> Submit</button>
+
+                    
+
+
+                  </div>
+                  
+                  <!-- range format for  INDIVIDUAL SERIAL -->
+                  <div class="col-md-12 diagnoseSection" style="display: none;">
+
+                    <div class="box-item individualslbox" id="itemsform">
+                      <?php echo $csrf['field']; ?>
+
+                      <div class="form-group">
+                        <label class="col-md-4 text-right" for="note"><h5><b>Rocommendation: </b></h5></label>
+                        <div class="col-md-8">
+                          <textarea class="col-md-8 form-control" name="note" required></textarea>
+                        </div>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="col-md-8 diagnoseSection" style="display: none;" id="securityAction">
+                  <button type="submit" class="btn btn-success col-md-6 pull-right" style="margin-top: 0px;"><i class="fa fa-check"></i> Submit</button>
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa  fa-remove"></i>Close</button>
+              </div>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+
+
+
+        <!-------------------- mark application -->
+
+        <div class="modal fade no-print" id="markApplication" role="dialog"  >
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <form action="/public/application/mark/<?= $application->id ?>" method="post">
+              <div class="modal-header bg-yellow">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="box-title">Mark Or Forward Application</h3>
+              </div>
+              
+              <div class="modal-body">
+
+                <div class="box-body">
+
+                  <div class="checkpasswordsecMark form-group <? if(isset($errors['password'])) echo 'has-error' ?>">
+                    <label for="password" class="col-sm-5 control-label">Enter Your Password to Continue.</label>
+
+                    <div class="col-sm-5">
+                      <input name="password" type="password" class="form-control" id="securityChkPasswordMark" placeholder="Enter your password to varify it's you.">
+                    
+                      <span class="help-block" id="passwordErrMark" style="color: red;">
+                        <? if(isset($errors['password'])) { echo $errors['password'][0]; }  ?>
+                      </span>
+
+                      
+                    </div>
+
+                    <button type="button" class="btn btn-success col-sm-2 pull-right" id="securityChkpassMark"><i class="fa fa-check"></i> Submit</button>
+
+                    
+
+
+                  </div>
+                  
+                  <!-- range format for  INDIVIDUAL SERIAL -->
+                  <div class="col-md-12 diagnoseSectionMark" style="display: none;">
+
+                    <div class="box-item individualslbox" id="itemsform">
+                      <?php echo $csrf['field']; ?>
+
+                      <div class="form-group">
+                        <label class="col-md-4 text-right" for="designation"><h5><b>To Designation: </b></h5></label>
+                        <div class="col-md-8">
+                          <select name="designation" id="designation" class=" select2" required style="width: 100% !important;">
+                            <option value="">Please Select</option>
+                            <?
+                            if ($user->designation!='Registrar') {
+                            ?>
+                            <option value="Registrar">Registrar</option>
+                            <?
+                            }
+                            ?>
+
+                            <option value="Deputy Registrar">Deputy Registrar</option>
+                            <option value="Assistant Registrar">Assistant Registrar</option>
+                            <option value="Deputy Director">Deputy Director</option>
+                            <option value="Assistant Director">Assistant Director</option>
+                            <option value="Assistant Administrative Officer">Assistant Administrative Officer</option>
+                            <option value="Section Officer">Section Officer</option>
+                            <option value="Computer Operator">Computer Operator</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+                      <div class="form-group">
+                        <label class="col-md-4 text-right" for="touser"><h5><b>To User: </b></h5></label>
+                        <div class="col-md-8">
+                          <select name="touser" id="touser" class=" select2" required style="width: 100% !important;">
+                          </select>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+
+                      <div class="form-group">
+                        <label class="col-md-4 text-right" for="note"><h5><b>Rocommendation: </b></h5></label>
+                        <div class="col-md-8">
+                          <textarea class="col-md-8 form-control" name="note" required></textarea>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div><br>
+                      <div class="form-group">
+                        <label class="col-md-4 text-right" for="docket"><h5><b>Docket: </b></h5></label>
+                        <div class="col-md-8">
+                          <input type="text" class="form-control" name="docket" placeholder="Enter Docket If Any">
+                        </div>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="col-md-8 diagnoseSectionMark" style="display: none;" id="securityAction">
+                  <button type="submit" class="btn btn-success col-md-6 pull-right" style="margin-top: 0px;"><i class="fa fa-check"></i> Submit</button>
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa  fa-remove"></i>Close</button>
+              </div>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- RECOMMEND TO VC -->
+        <div class="modal fade no-print" id="recommendToVC" role="dialog"  >
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <form action="/public/application/recommendtovc/<?= $application->id ?>" method="post">
+              <div class="modal-header bg-yellow">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="box-title">Recommend  & Forward Application VC</h3>
+              </div>
+              
+              <div class="modal-body">
+
+                <div class="box-body">
+
+                  <div class="checkpasswordsecRcVC form-group <? if(isset($errors['password'])) echo 'has-error' ?>">
+                    <label for="password" class="col-sm-5 control-label">Enter Your Password to Continue.</label>
+
+                    <div class="col-sm-5">
+                      <input name="password" type="password" class="form-control" id="securityChkPasswordRcVC" placeholder="Enter your password to varify it's you.">
+                    
+                      
+                      <span class="help-block" id="passwordErrRcVC" style="color: red;">
+                        <? if(isset($errors['password'])) { echo $errors['password'][0]; }  ?>
+                      </span>
+
+                      
+                    </div>
+
+                    <button type="button" class="btn btn-success col-sm-2 pull-right" id="securityChkpassRcVC"><i class="fa fa-check"></i> Submit</button>
+
+                    
+
+
+                  </div>
+                  
+                  <!-- range format for  INDIVIDUAL SERIAL -->
+                  <div class="col-md-12 diagnoseSectionRcVC" style="display: none;">
+
+                    <div class="box-item individualslbox" id="itemsform">
+                      <?php echo $csrf['field']; ?>
+
+                      <div class="form-group">
+                        <label class="col-md-4 text-right" for="note"><h5><b>Rocommendation: </b></h5></label>
+                        <div class="col-md-8">
+                          <textarea class="col-md-8 form-control" name="note" required></textarea>
+                        </div>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="col-md-8 diagnoseSectionRcVC" style="display: none;" id="securityAction">
+                  <button type="submit" class="btn btn-success col-md-6 pull-right" style="margin-top: 0px;"><i class="fa fa-check"></i> Submit</button>
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa  fa-remove"></i>Close</button>
+              </div>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- FINAL ACTION BY VC -->
+        <div class="modal fade no-print" id="finalActionVC" role="dialog"  >
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <form action="/public/application/finalactionvc/<?= $application->id ?>" method="post">
+              <div class="modal-header bg-yellow">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="box-title">Approval by VC</h3>
+              </div>
+              
+              <div class="modal-body">
+
+                <div class="box-body">
+
+                  <div class="checkpasswordsecVC form-group <? if(isset($errors['password'])) echo 'has-error' ?>">
+                    <label for="password" class="col-sm-5 control-label">Enter Your Password to Continue.</label>
+
+                    <div class="col-sm-5">
+                      <input name="password" type="password" class="form-control" id="securityChkPasswordVC" placeholder="Enter your password to varify it's you.">
+                    
+                      
+                      <span class="help-block" id="passwordErrVC" style="color: red;">
+                        <? if(isset($errors['password'])) { echo $errors['password'][0]; }  ?>
+                      </span>
+
+                      
+                    </div>
+
+                    <button type="button" class="btn btn-success col-sm-2 pull-right" id="securityChkpassVC"><i class="fa fa-check"></i> Submit</button>
+
+                    
+
+
+                  </div>
+                  
+                  <!-- range format for  INDIVIDUAL SERIAL -->
+                  <div class="col-md-12 diagnoseSectionVC" style="display: none;">
+
+                    <div class="box-item individualslbox" id="itemsform">
+                      <?php echo $csrf['field']; ?>
+
+                      <div class="form-group">
+                        <label class="col-md-4 text-right" for="approval"><h5><b>Approval: </b></h5></label>
+                        <div class="col-md-8">
+                          <select name="approval" id="approval" class=" select2" required style="width: 100% !important;">
+                            <option value="">Please Select An Option</option>
+                            <option value="Approved">Approve</option>
+                            <option value="Declined">Decline</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+
+                      <div class="form-group">
+                        <label class="col-md-4 text-right" for="note"><h5><b>Note: </b></h5></label>
+                        <div class="col-md-8">
+                          <textarea class="col-md-8 form-control" name="note" required></textarea>
+                        </div>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="col-md-8 diagnoseSectionVC" style="display: none;" id="securityAction">
+                  <button type="submit" class="btn btn-success col-md-6 pull-right" style="margin-top: 0px;"><i class="fa fa-check"></i> Submit</button>
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa  fa-remove"></i>Close</button>
+              </div>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+
+      </div>
+      <!-- /.row -->
+      
+    </section>
+
+
+    
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+  <!-- footer -->
+  <? print $this->fetch('/ui_includes/footer.phtml'); ?>
+
+  <!-- Control Sidebar -->
+  <? print $this->fetch('/ui_includes/control-sidebar.phtml'); ?>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap.min.js"></script>
+
+<!-- bootstrap-confirmation.min.js -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap-confirmation.min.js"></script>
+
+<!-- DataTables -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
+
+<!-- FastClick -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/app.min.js"></script>
+<!-- sidebar toggle -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/sidebar-toggle.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/demo.js"></script>
+<!-- Select2 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2.full.min.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script>
+  $(function () {
+    //Add text editor
+    $("#compose-textarea").wysihtml5();
+  });
+</script>
+
+<script>
+
+    //data table for products
+
+  $(document).ready(function() {
+
+    
+
+    $('.select2').select2();
+
+      
+
+    $(document).on("click", "#securityedit", function () {
+
+          //get data-id attribute of the clicked element
+          securityId = $(this).data('ques-id');
+
+          
+          $("#securityQusId").val(securityId);
+
+    });
+
+      
+    $(document).on("click", "#securityChkpassVC", function () {
+
+        var pass = $('#securityChkPasswordVC').val();
+
+        jQuery.ajax({
+
+         url : '/public/auth/checkpass',
+              type : 'post',
+              data : {
+                pass :  pass
+              },
+          success : function(data) {
+                
+                  if (data=='valid') {
+
+                    $("#passwordErrVC").html("");
+
+                    $(".checkpasswordsecVC").hide(500);
+
+                    $(".diagnoseSectionVC").show(300);
+
+                  } else {
+
+                    $("#passwordErrVC").html("Wrong Password!");
+                    $(".diagnoseSectionVC").hide();
+                  }
+                }
+            
+        });  
+
+    });
+
+    $(document).on("click", "#securityChkpass", function () {
+
+        var pass = $('#securityChkPassword').val();
+
+        jQuery.ajax({
+
+         url : '/public/auth/checkpass',
+              type : 'post',
+              data : {
+                pass :  pass
+              },
+          success : function(data) {
+                
+                  if (data=='valid') {
+
+                    $("#passwordErr").html("");
+
+                    $(".checkpasswordsec").hide(500);
+
+                    $(".diagnoseSection").show(300);
+
+                  } else {
+
+                    $("#passwordErr").html("Wrong Password!");
+                    $(".diagnoseSection").hide();
+                  }
+                
+                  
+                }
+            
+        });  
+
+    });
+
+    $(document).on("click", "#securityChkpassMark", function () {
+
+        var pass = $('#securityChkPasswordMark').val();
+
+        jQuery.ajax({
+
+         url : '/public/auth/checkpass',
+              type : 'post',
+              data : {
+                pass :  pass
+              },
+          success : function(data) {
+                
+                  if (data=='valid') {
+
+                    $("#passwordErrMark").html("");
+
+                    $(".checkpasswordsecMark").hide(500);
+
+                    $(".diagnoseSectionMark").show(300);
+
+                  } else {
+
+                    $("#passwordErrMark").html("Wrong Password!");
+                    $(".diagnoseSectionMark").hide();
+                  }
+                
+                  
+                }
+            
+        });  
+
+    });
+
+    $(document).on("click", "#securityChkpassRcVC", function () {
+
+        var pass = $('#securityChkPasswordRcVC').val();
+
+        jQuery.ajax({
+
+         url : '/public/auth/checkpass',
+              type : 'post',
+              data : {
+                pass :  pass
+              },
+          success : function(data) {
+                
+                  if (data=='valid') {
+
+                    $("#passwordErrRcVC").html("");
+
+                    $(".checkpasswordsecRcVC").hide(500);
+
+                    $(".diagnoseSectionRcVC").show(300);
+
+                  } else {
+
+                    $("#passwordErrRcVC").html("Wrong Password!");
+                    $(".diagnoseSectionRcVC").hide();
+                  }
+                
+                  
+                }
+            
+        });  
+
+    });
+
+    $("#designation").change(function() {
+      var designation = $(this).val();
+      if (designation=='') {
+        $.alert("Please select a designation!");
+      } else {
+        jQuery.ajax({
+
+         url : '/public/users/getusersofdesignation',
+              type : 'post',
+              data : {
+                designation :  designation
+              },
+          success : function(data) {
+                $("#touser").html(data);
+                  
+          }
+            
+        }); 
+      }
+    })
+     
+ 
+  } );
+</script>
+
+
+
+</body>
+</html>

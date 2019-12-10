@@ -1,0 +1,493 @@
+<?php
+
+ use App\Helper\Includes\NumberToWord;
+
+use App\Models\Admin;
+use App\Models\Applications;
+use App\Models\ApplicationForwarding;
+
+use App\Helper\AdminDetails;
+
+include $this->getTemplatePath().'php_includes/NumberToWord.php';
+
+include $this->getTemplatePath().'php_includes/db_conx.php';
+
+ $hasSuccess = '';
+
+  if (isset($_SESSION['success'])) {
+      
+      $_Success = $_SESSION['success'];
+
+      $_SESSION['success'] = '';
+    }
+
+  if (isset($_SESSION['error'])) {
+      
+      $_Error = $_SESSION['error'];
+
+      $_SESSION['error'] = '';
+    }
+
+  if (isset($_SESSION['msg'])) {
+    
+    $_Message = $_SESSION['msg'];
+
+    $_SESSION['msg'] = '';
+  }
+
+?>
+
+
+<?php
+if ($auth['user']->img!="") {
+    $usrimg = 'profileimg/'.$auth['user']->img;
+  } else {
+    $usrimg = 'dist/img/avatar.png';
+  }
+?>
+ 
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+<? print $this->fetch('/ui_includes/head.phtml'); ?>
+
+    <!-- autocomplete -->
+    <link rel="stylesheet" href="<? echo $baseUrl ?>dist/css/easy-autocomplete.css">
+    <!-- autocomplete -->
+      <link rel="stylesheet" href="<? echo $baseUrl ?>dist/css/easy-autocomplete.themes.css">
+      <!-- Select2 -->
+<link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2.min.css">
+<!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/datatables/dataTables.bootstrap.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/iCheck/all.css">
+  
+<!-- jQuery Confirmation -->
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>dist/css/jquery-confirm.min.css">
+
+  <!-- rating -->
+  <link href="<?php echo htmlspecialchars($baseUrl); ?>plugins/rating/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="<?php echo htmlspecialchars($baseUrl); ?>plugins/rating/themes/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
+  <style type="text/css">
+   
+
+
+
+
+  </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <header class="main-header">
+    <? print $this->fetch('/ui_includes/header.phtml'); ?>
+  </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <? print $this->fetch('/ui_includes/leftpanel.phtml'); ?>
+
+    <!-- Content Wrapper. Contains page content -->
+
+  <div class="content-wrapper">
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      
+      <?php if (isset($_Error) && $_Error == 'error') { ?>
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><? echo $_Message; ?></h4>
+        </div>
+      <?php } ?>
+
+
+      <?php if (isset($_Success) && $_Success == 'success') { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <? echo $_Message;?>
+        </div>
+      <?php } ?>
+      
+    </section>
+
+    
+
+
+    <!-- Main content -->
+    <section class="content">
+      <!-- title row -->
+      <div class="row">
+        <div class="col-lg-12 col-xs-12">
+          
+          <?
+          if ($_SESSION['type']=="Academic"): ?>
+            <h4>My Applications</h4>
+            <div class="col-lg-3 col-xs-3">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h4><b>All Applications</b></h4>
+
+                  <p><?= Applications::where('user', $_SESSION['user'])->where('submitted', 1)->where('active', 1)->count(); ?></p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-th-list"></i>
+                </div>
+                <a href="/allapplications" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-xs-3">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h4><b>Applications Processing</b></h4>
+
+                  <p><?= Applications::where('user', $_SESSION['user'])->where('submitted', 1)->where('active', 1)->where('confirmed', 0)->Where('status', '!=', 'Pending')->where('status', '!=', 'Granted')->where('status', '!=', 'Rejected')->count(); ?></p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-edit"></i>
+                </div>
+                <a href="#" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            
+
+
+            <div class="col-lg-3 col-xs-3">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h4><b>Draft Applications</b></h4>
+
+                  <p><?= Applications::where('user', $_SESSION['user'])->where('submitted', 0)->where('active', 1)->count(); ?></p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-list-alt"></i>
+                </div>
+                <a href="/alldrafts" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-xs-3">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h4><b>Confirmed Applications</b></h4>
+
+                  <p><?= Applications::where('user', $_SESSION['user'])->where('submitted', 1)->where('active', 1)->where('confirmed', 1)->Where('status', '!=', 'Pending')->where('status', '!=', 'Granted')->where('status', '!=', 'Rejected')->count(); ?></p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-edit"></i>
+                </div>
+                <a href="#" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+          <? endif ?>
+
+
+
+          <!------------ CHAIRMAN SECTION -------------->
+          <? if (AdminDetails::checkIfChairman($_SESSION['user'])): ?>
+            <div class="clearfix"></div>
+
+            <h4>Chairman's Action</h4>
+            <div class="col-lg-3 col-xs-3">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h4><b>Awaiting Recommendation</b></h4>
+
+                  <p><?
+                  echo ApplicationForwarding::where('to_designation', 'Chairman')->where('department', $user->department)->where('active', 1)->count(); ?></p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-list-alt"></i>
+                </div>
+                <a href="/applications/waitingforrecom" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-xs-3">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h4><b>All Applications</b></h4>
+
+                  <p><?
+                  echo ApplicationForwarding::where('to_designation', 'Chairman')->where('department', $user->department)->count(); ?></p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-th-list"></i>
+                </div>
+                <a href="/applications/recommend/allapplications" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+          <? endif ?>
+
+
+          <!------------ DEAN SECTION -------------->
+          <? if (AdminDetails::checkIfDean($_SESSION['user'])): ?>
+            <div class="clearfix"></div>
+
+            <h4>Dean's Action</h4>
+            <div class="col-lg-3 col-xs-3">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h4><b>Awaiting Recommendation</b></h4>
+
+                  <p><?
+                  echo ApplicationForwarding::where('to_designation', 'Dean')->where('faculty', $user->faculty)->where('active', 1)->count(); ?></p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-list-alt"></i>
+                </div>
+                <a href="/applications/waitingforrecom" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-xs-3">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h4><b>All Applications</b></h4>
+
+                  <p><?
+                  echo ApplicationForwarding::where('to_designation', 'Dean')->where('faculty', $user->faculty)->count(); ?></p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-th-list"></i>
+                </div>
+                <a href="/applications/recommend/allapplications" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+          <? endif ?>
+
+
+          <!------------ Registrar SECTION -------------->
+          <? if ($user->designation=='Registrar'): ?>
+            <div class="clearfix"></div>
+
+            <h4>Registrar's Action</h4>
+            <div class="col-lg-3 col-xs-3">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h4><b>Pending Applications</b></h4>
+
+                  <p><?
+                  echo ApplicationForwarding::where('to_designation', 'Registrar')->where('active', 1)->count(); ?></p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-list-alt"></i>
+                </div>
+                <a href="/applications/pendingtoregistrar" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-xs-3">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h4><b>All Applications</b></h4>
+
+                  <p><?
+                  
+                  echo Applications::where('status', '!=', 'Pending')->where('status', '!=', 'Submitted to Chairman')->where('status', '!=', 'Recommended and Forwarded to Dean by Chairman')->count(); ?></p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-th-list"></i>
+                </div>
+                <a href="/applications/allapplications/registrar" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+          <? endif ?>
+
+          <!------------ Administrative users SECTION -------------->
+          <? if ($user->designation!='Registrar' && $user->designation!='VC' && $_SESSION['type']=='Administrative'): ?>
+            <div class="clearfix"></div>
+
+            <h4><?= $user->designation ?>'s Action</h4>
+            <div class="col-lg-3 col-xs-3">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h4><b>Pending Applications</b></h4>
+
+                  <p><?
+                  echo ApplicationForwarding::where('to_designation', '!=', 'Dean')->where('to_designation', '!=', 'Chairman')->where('to_user', $user->id)->where('active', 1)->count(); ?></p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-list-alt"></i>
+                </div>
+                <a href="/applications/administrative/pending" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-xs-3">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h4><b>All Forwardings</b></h4>
+
+                  <p><?
+                  
+                  echo ApplicationForwarding::where('to_user', $user->id)->where('to_designation', '!=', 'Dean')->where('to_designation', '!=', 'Chairman')->count(); ?></p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-th-list"></i>
+                </div>
+                <a href="/applications/administrative/all" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+          <? endif ?>
+
+          <!------------ VC SECTION -------------->
+          <? if ($user->designation=='VC'): ?>
+            <div class="clearfix"></div>
+
+            <h4>VC's Action</h4>
+            <div class="col-lg-3 col-xs-3">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h4><b>Pending Applications</b></h4>
+
+                  <p><?
+                  echo ApplicationForwarding::where('to_designation', 'VC')->where('active', 1)->count(); ?></p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-list-alt"></i>
+                </div>
+                <a href="/applications/pendingtovc" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-xs-3">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h4><b>All Applications</b></h4>
+
+                  <p><?
+                  
+                  echo ApplicationForwarding::where('to_designation', 'VC')->count();?></p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-th-list"></i>
+                </div>
+                <a href="/applications/allapplications/vc" class="small-box-footer">View <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+          <? endif ?>
+
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- info row -->
+      
+      <!-- /.row -->
+
+      <!-- Table row -->
+    
+      <!-- /.row -->
+
+      
+      <!-- /.row -->
+
+      <!-- this row will not appear when printing -->
+      
+    </section>
+    <!-- /.content -->
+    <div class="clearfix"></div>
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+
+  <!-- footer -->
+  <? print $this->fetch('/ui_includes/footer.phtml'); ?>
+
+  <!-- Control Sidebar -->
+  <? print $this->fetch('/ui_includes/control-sidebar.phtml'); ?>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap.min.js"></script>
+
+
+<!-- bootstrap-confirmation.min.js -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap-confirmation.min.js"></script>
+
+
+<!-- FastClick -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/app.min.js"></script>
+<!-- sidebar toggle -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/sidebar-toggle.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/demo.js"></script>
+
+<!-- iCheck 1.0.1 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/iCheck/icheck.min.js"></script>
+
+<!-- jQuery Confirmation -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/jquery-confirm.min.js"></script>
+
+<!-- rating -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/rating/js/star-rating.min.js" type="text/javascript"></script>
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/rating/themes/krajee-svg/theme.min.js"></script>
+
+<!-- bootstrap datepicker -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/datepicker/bootstrap-datepicker.js"></script>
+
+
+
+<script>
+ 
+ $(document).ready(function() {
+
+
+  //Date picker
+  $('.datepicker').datepicker({
+     todayHighlight: true,
+    autoclose: true
+  });
+
+
+  
+  $('[data-toggle=confirmation]').confirmation({
+  rootSelector: '[data-toggle=confirmation]',
+  // other options
+  });
+
+  //Flat red color scheme for iCheck
+  $('input[type="checkbox"].flat-red, input[type="checkbox"].itemId, input[type="radio"].flat-red').iCheck({
+    checkboxClass: 'icheckbox_flat-green',
+    radioClass: 'iradio_flat-green'
+  });
+
+ 
+  $(".itemcost").keyup(function() {
+    var totalcost = 0
+    $(".itemcost").each(function() {
+        totalcost += parseFloat($(this).val());
+    });
+    $("#totalcost").html(totalcost);
+  })
+
+ }); 
+ 
+</script>
+
+</body>
+</html>

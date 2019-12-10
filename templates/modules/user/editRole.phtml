@@ -1,0 +1,392 @@
+<?php
+
+ use App\Helper\Includes\NumberToWord;
+ use App\Helper\Includes\BanglaConverter;
+
+  include $this->getTemplatePath().'php_includes/db_conx.php';
+
+  $hasSuccess = '';
+
+  if (isset($_SESSION['success'])) {
+      
+      $hasSuccess = $_SESSION['success'];
+
+      $_SESSION['success'] = '';
+    }  
+
+  
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+<? print $this->fetch('/ui_includes/head.phtml'); ?>
+
+<!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/iCheck/all.css">
+
+
+
+</style>
+<!-- jQuery Confirmation -->
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>dist/css/jquery-confirm.min.css">
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-treeview/bootstrap-treeview.min.css"></script>
+
+
+<style type="text/css">
+.list-group-item {
+padding: 5px 15px !important;
+}
+</style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- --mod: menu wrapper custom end -->
+  <? print $this->fetch('/ui_includes/main_navigation.phtml'); ?>
+  <!-- --mod: menu wrapper custom end -->
+  
+  <div class="wrapper page-wrapper">
+
+    <header class="main-header">
+      <? print $this->fetch('/ui_includes/header.phtml'); ?>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <?// print $this->fetch('/ui_includes/leftpanel.phtml'); ?>
+
+    <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    
+
+
+
+    <!-- Main content -->
+    <section class="content">
+      <h2 class="page-header">Add New Admin Role</h2>
+
+      <div class="row">
+        <div class="col-md-12">
+          <!-- here -->
+            <!-- Horizontal Form -->
+          <div class="box box-info">
+            
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" id="addproductform" role="form" action="#" method="post">
+              
+
+              <?php echo $csrf['field']; ?>
+
+
+              <div class="box-body">
+                <!-- name -->
+                <div class="form-group <? if(isset($errors['name'])) echo 'has-error' ?>" id="categoryf">
+                  <label for="name" class="col-sm-2 control-label">Role Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="name" id="rolename" required class="form-control" style="width: 100%;" placeholder="Enter the role name." value="<? echo $role->name; ?>">
+                      
+                  
+                  </div>
+                </div>
+
+                <div class="form-group <? if(isset($errors['description'])) echo 'has-error' ?>" id="categoryf">
+                  <label for="description" class="col-sm-2 control-label">Role Description</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="description" id="roledescription" required class="form-control" style="width: 100%;" placeholder="Enter the role description." value="<? echo $role->description; ?>">
+
+                  </div>
+                </div>
+
+                <!-- Module wise permissions -->
+                  <div class="col-md-4"></div>
+                  <div class="form-group col-md-8">
+                    <hr>
+                    <h2>Select permissions for the the role.</h2>
+                    
+                    <div class="col-sm-8">
+                      <div id="treeview-checkable" class=""></div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="form-group row">
+                        <div class="col-sm-6">
+                          <button type="button" class="btn btn-success" id="btn-check-all">Check All</button>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-danger" id="btn-uncheck-all">Uncheck All</button>
+                    </div>
+                  </div>
+
+
+
+
+
+  
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <div class="col-md-8 pull-right">
+                  <button type="button" id="submitbtn" class="col-sm-4 btn btn-success">
+                    <i class="fa fa-plus-square"> </i> Update Role</button>
+                </div>
+                
+                
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+          <!-- /.box -->
+          <!-- here end -->
+          <!-- /.box -->
+        </div>
+        <!-- end of add category form -->
+
+        <div class="col-md-6">
+          
+        </div>
+        <!-- /.col -->
+      </div>
+    </section>
+
+    <!-- /.content -->
+
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+
+  <!-- footer -->
+  <? print $this->fetch('/ui_includes/footer.phtml'); ?>
+
+  <!-- Control Sidebar -->
+  <? print $this->fetch('/ui_includes/control-sidebar.phtml'); ?>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap.min.js"></script>
+
+<!-- bootstrap-confirmation.min.js -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap-confirmation.min.js"></script>
+
+
+<!-- FastClick -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/app.min.js"></script>
+<!-- sidebar toggle -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/sidebar-toggle.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/demo.js"></script>
+
+<!-- Select2 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2.full.min.js"></script>
+
+<!-- iCheck 1.0.1 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/iCheck/icheck.min.js"></script>
+
+<!-- bootstrap-confirmation.min.js -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap-confirmation.min.js"></script>
+<!-- jQuery Confirmation -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/jquery-confirm.min.js"></script>
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+
+<script>
+  
+  $('[data-toggle=confirmation]').confirmation({
+  rootSelector: '[data-toggle=confirmation]',
+  // other options
+  });
+</script>
+
+<script>
+
+  //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass: 'iradio_flat-green'
+    });
+
+  
+</script>
+
+<script type="text/javascript">
+
+      $(function() {
+
+        var checkedResources = [];
+
+        var resources = null;
+
+         jQuery.ajax({
+            url : '/user/geteditresources/<? echo $role->id;?>',
+            type : 'get',
+            data : {
+              user : <? echo $_SESSION['user'];?>, 
+            },
+            success : function(data) {
+              
+                  output = JSON.parse(data);
+
+                  resources = output.treeview;
+
+                  var allresources = output.all;
+
+                  checkedResources =  output.inresource;
+
+
+
+                  var $checkableTree = $('#treeview-checkable').treeview({
+                    data: resources,
+                    showIcon: false,
+                    expanded: true,
+                    showCheckbox: true,
+                    multiSelect: true,
+                    expanded: true,
+                    levels: 3,
+                    onNodeChecked: function(event, node) {
+
+                      checkedResources.push(node.tag);
+
+                    },
+                    onNodeUnchecked: function (event, node) {
+
+                      for (var i = 0; i < checkedResources.length; i++) {
+                        if (checkedResources[i]) {
+
+                          if (checkedResources[i]==node.tag) {
+                          
+                            checkedResources.splice(i, 1);
+
+                          }
+                        }
+                        
+                      }
+
+
+                    }
+                  });
+
+                  var findCheckableNodess = function() {
+                    return $checkableTree.treeview('search', [ $('#input-check-node').val(), { ignoreCase: false, exactMatch: false } ]);
+                  };
+                  var checkableNodes = findCheckableNodess();
+
+
+                  // Check/uncheck all
+                  $('#btn-check-all').on('click', function (e) {
+                    $checkableTree.treeview('checkAll', { silent: $('#chk-check-silent').is(':checked') });
+
+                    checkedResources = [];
+
+                    checkedResources = allresources;
+
+                  });
+
+                  $('#btn-uncheck-all').on('click', function (e) {
+                    $checkableTree.treeview('uncheckAll', { silent: $('#chk-check-silent').is(':checked') });
+
+                    checkedResources = [];
+
+                  });
+
+
+                  
+
+
+                  jQuery('#submitbtn').click(function () {
+
+
+
+                    var inverrors = new Array();
+
+                    var rolename = $("#rolename").val();
+                    var roledescription = $("#roledescription").val();
+
+
+                    if (!rolename) {
+                      inverrors.push(" <b>Role Name</b>")
+                    }
+
+                    if (!roledescription) {
+                      inverrors.push(" <b>Role Description</b>")
+                    }
+
+                    if (inverrors[0]) {
+
+                      $.alert("<h4 class='text-red'>Please give the role informations: </h4> "+inverrors )
+                    
+                    } else {
+
+                      if (checkedResources.length<1) {
+
+                        $.alert("<h4 class='text-red'>Please check some role permissions.</h4> " )
+
+                      } else {
+
+                        jQuery('#submitbtn').attr('disabled', true);
+                        jQuery('#submitbtn').html("Processing...");
+
+                        jQuery.ajax({
+
+                              url : '/public/editrole/<? echo $role->id ?>',
+                              type : 'post',
+                              data : {
+                                name :        rolename,
+                                description : roledescription,
+                                resources :   checkedResources
+                                
+                              },
+                              success : function(data) {
+
+                                if (data=='done') {
+
+                                  $.confirm({
+
+                                      title: 'Role Edited!',
+                                      content: 'Continue to view.',
+                                      
+                                      buttons: {
+                                          continue: function () {
+                                              // $.alert('Confirmed!');
+
+                                              var url = "/user/role/details/"+'<? echo $role->id; ?>';
+                                              window.location.replace(url);
+
+                                          }
+                                          
+                                      }
+                                  });
+                                }
+                              }
+                                
+                        });
+
+                      }
+
+                    }
+
+                  });
+
+
+                    
+            }
+              
+         });
+
+         
+      });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!-- jQuery 2.2.3 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script>
+
+$(document).ready(function() {
+
+  var notification = 0;
+  var tasks = 0;
+
+  // function checkNotification() {
+  //   $.ajax({
+  //       url : '/public/notifications/check',
+  //       type : 'post',
+  //       data : {
+  //         type :        'accounts',
+  //       },
+  //       success : function(data) {
+  //         var returndata = JSON.parse(data);
+  //         if (returndata.invoice_num >0) {
+  //           if (notification != returndata.invoice_num) {
+  //             $('#notf_invoices').html('');
+  //             notification = returndata.invoice_num;
+  //             $("#notification").html(notification);
+  //             if (notification==1) {  
+  //               $("#notf_title").html("You have "+notification+"new invoice.");
+  //             }
+  //             if (notification>1) {
+  //               $("#notf_title").html("You have "+notification+" new invoices.");
+  //             }
+  //             for (var i = returndata.invoices.length - 1; i >= 0; i--) {
+  //               $('#notf_invoices').append('<li><a href="/sales/invoice/view/'+returndata.invoices[i].id+'">'+returndata.invoices[i].invoice+'</a></li>');
+  //             }
+  //           }
+  //         }
+  //       }
+  //     });
+  // }
+
+  // setInterval(function(){ 
+  //     //code goes here that will be run every 5 seconds.
+  //     checkNotification();
+  // }, 5000);
+  // checkNotification();
+
+
+  // function checkTasks() {
+  //   $.ajax({
+  //       url : '/public/tasks/check',
+  //       type : 'post',
+  //       data : {
+  //         type :        'accounts',
+  //       },
+  //       success : function(data) {
+  //         var returndata = JSON.parse(data);
+  //         if (returndata.taskscount >0) {
+  //           if (tasks != returndata.taskscount) {
+  //             $('#notf_tasks').html('');
+  //             returndata.taskscount;
+  //             $(".servicing_tasks").html(returndata.taskscount);
+             
+  //             for (var i = returndata.tasks.length - 1; i >= 0; i--) {
+  //               $('#notf_tasks').append('<li><a href="/servicing/item/'+returndata.tasks[i].tracking_no+'">'+returndata.tasks[i].tracking_no+' - '+returndata.tasks[i].priority+'</a></li>');
+  //             }
+  //           }
+  //         }
+  //       }
+  //     });
+  // }
+  // setInterval(function(){ 
+  //     //code goes here that will be run every 5 seconds.
+  //     checkTasks();
+  // }, 5000);
+  // checkTasks();
+
+
+  
+});
+
+
+ 
+</script>
+
+<script>
+
+  //main navigation
+  $(".nav_parent").click(function() {
+
+    $('.nav_parent').not(this).removeClass('_show');
+    $('.nav_parent').not(this).removeClass('_active');
+
+    $(this).toggleClass("_show");
+    $(this).toggleClass("_active");
+  });
+
+  $(".wrapper").click(function() {
+    $(".nav_parent").removeClass('_show');
+    $(".nav_parent").removeClass('_active');
+  });
+
+</script>
+
+
+<footer class="main-footer no-print">
+
+  <div class="pull-right hidden-xs">
+    <b>Version</b> 2.0.0
+  </div>
+
+      
+  <strong> Copyright &copy; <a href="http://rrrlab.com" target="_blank">rrrLab</a>.</strong> All rights
+  reserved.
+</footer>

@@ -1,0 +1,574 @@
+<?php
+
+ use App\Helper\Includes\NumberToWord;
+ use App\Helper\AdminDetails;
+
+ use App\Models\Admin;
+ use App\Models\FixedUsers;
+ use App\Models\LeaveTypes;
+ use App\Models\ApplicationForwarding;
+
+
+include $this->getTemplatePath().'php_includes/db_conx.php';
+
+  $hasSuccess = '';
+
+  if (isset($_SESSION['success'])) {
+      
+      $_Success = $_SESSION['success'];
+
+      $_SESSION['success'] = '';
+    }
+
+  if (isset($_SESSION['error'])) {
+      
+      $_Error = $_SESSION['error'];
+
+      $_SESSION['error'] = '';
+    }
+
+  if (isset($_SESSION['msg'])) {
+    
+    $_Message = $_SESSION['msg'];
+
+    $_SESSION['msg'] = '';
+  }
+
+?>
+
+
+<?php
+if ($auth['user']->img!="") {
+    $usrimg = 'profileimg/'.$auth['user']->img;
+  } else {
+    $usrimg = 'dist/img/avatar.png';
+  }
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+<? print $this->fetch('/ui_includes/head.phtml'); ?>
+  
+  <!-- Select2 -->
+<link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2.min.css">
+<!-- <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2-flat-theme.min.css"> -->
+<link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2-bootstrap.min.css">
+
+<!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <style type="text/css">
+    
+    .profile-user-img{
+      width: 150px;
+    }
+
+    @media print{
+      a[href]:after {
+        content: none !important;
+        text-decoration: none;
+      }
+    }
+  </style>
+  
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+  
+  <div class="wrapper page-wrapper">
+
+    <header class="main-header">
+      <? print $this->fetch('/ui_includes/header.phtml'); ?>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <? print $this->fetch('/ui_includes/leftpanel.phtml'); ?>
+
+    <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+
+
+    <section class="content-header no-print">
+      <?php if (isset($_Error) && $_Error == 'error') { ?>
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <? echo $_Message; ?>
+        </div>
+      <?php } ?>
+
+
+      <?php if (isset($_Success) && $_Success == 'success') { ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <? echo $_Message;?>
+        </div>
+      <?php } ?>
+
+    </section>
+
+
+    <section class="content-header no-print">
+      <h1>
+        Leave Application:
+        <!-- <small><? echo $slip->invoice; ?></small> -->
+      </h1>
+      <h3 class="box-title"></h3>
+
+    </section>
+
+    <section class="invoice">
+      <!-- /.row -->
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <!-- Profile Image -->
+            <div class="box-body">
+              
+              <p><b>Date:</b> <?= date('d M, Y h:i:sA', strtotime($order->created_at)) ?></p>
+              <p><b>Memorandum: </b> <?= $order->memorandum ?></p>
+              
+              <?= $order->office_order ?>
+              
+
+
+            </div>
+            <!-- /.box-body -->
+            
+            <div>
+                <a class="btn btn-info pull-right no-print" onclick="window.print();"> <i class="fa fa-print"></i> Print Order</a>
+
+                <? if ($user->designation=='Computer Operator' && $_SESSION['type']=='Administrative'){
+                  //user is general administrative user
+                
+                  if (!$order->memorandum && $order->submitted==0) {
+                   ?>
+
+                  <a class="btn btn-success" href="/application/submitorder/<?= $application->id ?>"> <i class="fa fa-edit"></i> Submit to Deputy Director</a>
+
+                <? } }?>
+
+                <? if ($user->designation!='Registrar' && $user->designation!='VC' && $user->designation!='Computer Operator' && $_SESSION['type']=='Administrative'){
+
+                    $forward = ApplicationForwarding::where('application', $application->id)->where('to_user', $user->id)->where('active', 1)->count();
+
+                    if ($forward>0 && $application->status=='Office Order Generated. Waiting for approval') {
+                      ?>
+
+                       <a class="btn btn-warning no-print" data-toggle="modal" data-target="#assignMemorandum"> <i class="fa fa-edit"></i> Assign Memorandum</a>
+                  <?
+
+                 }}?>
+
+
+
+
+
+                
+            </div>
+
+          
+        </div>
+
+
+
+
+        <!-- /.col -->
+
+        <!-- /.col -->
+
+        <!-- --------------------- modals block for edit profile --------------------- -->
+
+
+
+
+        
+        <!-- RECOMMEND TO VC -->
+        <div class="modal fade no-print" id="assignMemorandum" role="dialog"  >
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <form action="/public/application/assignmemorandum/<?= $application->id ?>" method="post">
+              <div class="modal-header bg-yellow">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="box-title">Assign Memorandum</h3>
+              </div>
+              
+              <div class="modal-body">
+
+                <div class="box-body">
+
+                  <div class="checkpasswordsecRcVC form-group <? if(isset($errors['password'])) echo 'has-error' ?>">
+                    <label for="password" class="col-sm-5 control-label">Enter Your Password to Continue.</label>
+
+                    <div class="col-sm-5">
+                      <input name="password" type="password" class="form-control" id="securityChkPasswordRcVC" placeholder="Enter your password to varify it's you.">
+                    
+                      
+                      <span class="help-block" id="passwordErrRcVC" style="color: red;">
+                        <? if(isset($errors['password'])) { echo $errors['password'][0]; }  ?>
+                      </span>
+                    </div>
+
+                    <button type="button" class="btn btn-success col-sm-2 pull-right" id="securityChkpassRcVC"><i class="fa fa-check"></i> Submit</button>
+
+                    
+
+
+                  </div>
+                  
+                  <!-- range format for  INDIVIDUAL SERIAL -->
+                  <div class="col-md-12 diagnoseSectionRcVC" style="display: none;">
+
+                    <div class="box-item individualslbox" id="itemsform">
+                      <?php echo $csrf['field']; ?>
+
+                      <div class="form-group">
+                        <label class="col-md-4 text-right" for="memorandum"><h5><b>Memorandum: </b></h5></label>
+                        <div class="col-md-8">
+                          <textarea class="col-md-8 form-control" name="memorandum" required></textarea>
+                        </div>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="col-md-8 diagnoseSectionRcVC" style="display: none;" id="securityAction">
+                  <button type="submit" class="btn btn-success col-md-6 pull-right" style="margin-top: 0px;"><i class="fa fa-check"></i> Submit</button>
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa  fa-remove"></i>Close</button>
+              </div>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- FINAL ACTION BY VC -->
+        <div class="modal fade no-print" id="finalActionVC" role="dialog"  >
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <form action="/public/application/finalactionvc/<?= $application->id ?>" method="post">
+              <div class="modal-header bg-yellow">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="box-title">Approval by VC</h3>
+              </div>
+              
+              <div class="modal-body">
+
+                <div class="box-body">
+
+                  <div class="checkpasswordsecVC form-group <? if(isset($errors['password'])) echo 'has-error' ?>">
+                    <label for="password" class="col-sm-5 control-label">Enter Your Password to Continue.</label>
+
+                    <div class="col-sm-5">
+                      <input name="password" type="password" class="form-control" id="securityChkPasswordVC" placeholder="Enter your password to varify it's you.">
+                    
+                      
+                      <span class="help-block" id="passwordErrVC" style="color: red;">
+                        <? if(isset($errors['password'])) { echo $errors['password'][0]; }  ?>
+                      </span>
+
+                      
+                    </div>
+
+                    <button type="button" class="btn btn-success col-sm-2 pull-right" id="securityChkpassVC"><i class="fa fa-check"></i> Submit</button>
+
+                    
+
+
+                  </div>
+                  
+                  <!-- range format for  INDIVIDUAL SERIAL -->
+                  <div class="col-md-12 diagnoseSectionVC" style="display: none;">
+
+                    <div class="box-item individualslbox" id="itemsform">
+                      <?php echo $csrf['field']; ?>
+
+                      <div class="form-group">
+                        <label class="col-md-4 text-right" for="approval"><h5><b>Approval: </b></h5></label>
+                        <div class="col-md-8">
+                          <select name="approval" id="approval" class=" select2" required style="width: 100% !important;">
+                            <option value="">Please Select An Option</option>
+                            <option value="Approved">Approve</option>
+                            <option value="Declined">Decline</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="clearfix"></div>
+
+                      <div class="form-group">
+                        <label class="col-md-4 text-right" for="note"><h5><b>Note: </b></h5></label>
+                        <div class="col-md-8">
+                          <textarea class="col-md-8 form-control" name="note" required></textarea>
+                        </div>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="col-md-8 diagnoseSectionVC" style="display: none;" id="securityAction">
+                  <button type="submit" class="btn btn-success col-md-6 pull-right" style="margin-top: 0px;"><i class="fa fa-check"></i> Submit</button>
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa  fa-remove"></i>Close</button>
+              </div>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+
+      </div>
+      <!-- /.row -->
+      
+    </section>
+
+
+    
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+  <!-- footer -->
+  <? print $this->fetch('/ui_includes/footer.phtml'); ?>
+
+  <!-- Control Sidebar -->
+  <? print $this->fetch('/ui_includes/control-sidebar.phtml'); ?>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap.min.js"></script>
+
+<!-- bootstrap-confirmation.min.js -->
+
+<script src="<?php echo htmlspecialchars($baseUrl); ?>bootstrap/js/bootstrap-confirmation.min.js"></script>
+
+<!-- DataTables -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
+
+<!-- FastClick -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/app.min.js"></script>
+<!-- sidebar toggle -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/sidebar-toggle.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>dist/js/demo.js"></script>
+<!-- Select2 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/select2/select2.full.min.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?php echo htmlspecialchars($baseUrl); ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script>
+  $(function () {
+    //Add text editor
+    $("#compose-textarea").wysihtml5();
+  });
+</script>
+
+<script>
+
+    //data table for products
+
+  $(document).ready(function() {
+
+    
+
+    $('.select2').select2();
+
+      
+
+    $(document).on("click", "#securityedit", function () {
+
+          //get data-id attribute of the clicked element
+          securityId = $(this).data('ques-id');
+
+          
+          $("#securityQusId").val(securityId);
+
+    });
+
+      
+    $(document).on("click", "#securityChkpassVC", function () {
+
+        var pass = $('#securityChkPasswordVC').val();
+
+        jQuery.ajax({
+
+         url : '/public/auth/checkpass',
+              type : 'post',
+              data : {
+                pass :  pass
+              },
+          success : function(data) {
+                
+                  if (data=='valid') {
+
+                    $("#passwordErrVC").html("");
+
+                    $(".checkpasswordsecVC").hide(500);
+
+                    $(".diagnoseSectionVC").show(300);
+
+                  } else {
+
+                    $("#passwordErrVC").html("Wrong Password!");
+                    $(".diagnoseSectionVC").hide();
+                  }
+                }
+            
+        });  
+
+    });
+
+    $(document).on("click", "#securityChkpass", function () {
+
+        var pass = $('#securityChkPassword').val();
+
+        jQuery.ajax({
+
+         url : '/public/auth/checkpass',
+              type : 'post',
+              data : {
+                pass :  pass
+              },
+          success : function(data) {
+                
+                  if (data=='valid') {
+
+                    $("#passwordErr").html("");
+
+                    $(".checkpasswordsec").hide(500);
+
+                    $(".diagnoseSection").show(300);
+
+                  } else {
+
+                    $("#passwordErr").html("Wrong Password!");
+                    $(".diagnoseSection").hide();
+                  }
+                
+                  
+                }
+            
+        });  
+
+    });
+
+    $(document).on("click", "#securityChkpassMark", function () {
+
+        var pass = $('#securityChkPasswordMark').val();
+
+        jQuery.ajax({
+
+         url : '/public/auth/checkpass',
+              type : 'post',
+              data : {
+                pass :  pass
+              },
+          success : function(data) {
+                
+                  if (data=='valid') {
+
+                    $("#passwordErrMark").html("");
+
+                    $(".checkpasswordsecMark").hide(500);
+
+                    $(".diagnoseSectionMark").show(300);
+
+                  } else {
+
+                    $("#passwordErrMark").html("Wrong Password!");
+                    $(".diagnoseSectionMark").hide();
+                  }
+                
+                  
+                }
+            
+        });  
+
+    });
+
+    $(document).on("click", "#securityChkpassRcVC", function () {
+
+        var pass = $('#securityChkPasswordRcVC').val();
+
+        jQuery.ajax({
+
+         url : '/public/auth/checkpass',
+              type : 'post',
+              data : {
+                pass :  pass
+              },
+          success : function(data) {
+                
+                  if (data=='valid') {
+
+                    $("#passwordErrRcVC").html("");
+
+                    $(".checkpasswordsecRcVC").hide(500);
+
+                    $(".diagnoseSectionRcVC").show(300);
+
+                  } else {
+
+                    $("#passwordErrRcVC").html("Wrong Password!");
+                    $(".diagnoseSectionRcVC").hide();
+                  }
+                
+                  
+                }
+            
+        });  
+
+    });
+
+    $("#designation").change(function() {
+      var designation = $(this).val();
+      if (designation=='') {
+        $.alert("Please select a designation!");
+      } else {
+        jQuery.ajax({
+
+         url : '/public/users/getusersofdesignation',
+              type : 'post',
+              data : {
+                designation :  designation
+              },
+          success : function(data) {
+                $("#touser").html(data);
+                  
+          }
+            
+        }); 
+      }
+    })
+     
+ 
+  } );
+</script>
+
+
+
+</body>
+</html>
