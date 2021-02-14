@@ -109,7 +109,7 @@ if ($auth['user']->img!="") {
           <!-- Profile Image -->
           <div class="box box-warning">
             <div class="box-header">
-              <h3 class="box-title">All Users</h3>
+              <h3 class="box-title">All teachers</h3>
             </div>
             <div class="box-body">
              <table id="employee-grid" class="table table-bordered table-hover">
@@ -120,6 +120,7 @@ if ($auth['user']->img!="") {
                     <th>Name</th>
                     <th>Department</th>
                     <th>Designation</th>
+                    <th>On Leave</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -136,18 +137,27 @@ if ($auth['user']->img!="") {
 
                        <td><?= $user->name ?></td>
                        <?
-                       if ($user->type=='Academic') {
+
                          $teacherInfo = AdminDetails::getTeacherInfo($user->id);
                          ?>
                          <td><?= strtoupper($teacherInfo->dept_code) ?></td>
                          <td><?= $teacherInfo->designation ?></td>
-                         <?
-                       } else{
-                         ?>
-                        <td>--</td>
-                        <td><?= $user->designation ?></td> 
+                       
+                        <td>
+                          <?
+                          if ($user->leave_end) {
+                            $today_time = strtotime(date('Y-m-d'));
+                            $expire_time = strtotime($user->leave_end);
+                            if ($today_time<$expire_time) {
+                              ?>
+                              <span class="text-yellow">Yes</span>
+                              <?
+                            }
+                          } else echo '<span class="text-green">No</span>';
+                          
+                          ?>
+                          </td> 
 
-                      <? }?>
                         
                      </tr>
                      <?

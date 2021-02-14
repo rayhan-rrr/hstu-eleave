@@ -109,22 +109,25 @@ if ($auth['user']->img!="") {
           <!-- Profile Image -->
           <div class="box box-warning">
             <div class="box-header">
-              <h3 class="box-title">All Users</h3>
+              <h3 class="box-title">All teachers</h3>
             </div>
             <div class="box-body">
              <table id="employee-grid" class="table table-bordered table-hover">
                 <thead>
                   <tr>
                     <th>SL</th>
-                    <th>Type</th>
                     <th>Name</th>
                     <th>Department</th>
                     <th>Designation</th>
+                    <th>Leave Started On</th>
+                    <th>Leave Ends On</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?
                   $count =0;
+                  $chairman = Admin::find($_SESSION['user']);
+                  $users = Admin::where('type', 'Academic')->where('faculty', $chairman->faculty)->where('active', 1)->whereNotNull('leave_end')->whereDate('leave_end','>=', date('Y-m-d'))->get();
                   if (count($users)) {
                     foreach ($users as $user) {
 
@@ -132,22 +135,23 @@ if ($auth['user']->img!="") {
                      ?>
                      <tr>
                        <td><?= ++$count ?></td>
-                       <td><?= $user->type ?></td>
 
                        <td><?= $user->name ?></td>
                        <?
-                       if ($user->type=='Academic') {
+
                          $teacherInfo = AdminDetails::getTeacherInfo($user->id);
                          ?>
                          <td><?= strtoupper($teacherInfo->dept_code) ?></td>
                          <td><?= $teacherInfo->designation ?></td>
-                         <?
-                       } else{
-                         ?>
-                        <td>--</td>
-                        <td><?= $user->designation ?></td> 
+                       
+                        <td>
+                          <?= date('d M, Y', strtotime($user->leave_start)) ?>
+                        </td>
 
-                      <? }?>
+                        <td>
+                          <?= date('d M, Y', strtotime($user->leave_end)) ?>
+                        </td> 
+
                         
                      </tr>
                      <?

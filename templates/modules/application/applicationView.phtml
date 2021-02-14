@@ -125,8 +125,24 @@ if ($auth['user']->img!="") {
       <div class="row">
         <div class="col-md-12">
 
+
+
           <!-- Profile Image -->
             <div class="box-body">
+
+              <?
+              if ($application->confirmed==1 && $application->leave_started==0 && $application->user==$_SESSION['user']) {
+                ?>
+                <a class="btn btn-success" href="/application/startleave/<?= $application->id ?>"> <i class="fa fa-plane"></i> Start My Leave Today</a>
+                <?
+              }
+              if($application->leave_started==1){
+                ?>
+                <h4 class="text-light-blue"> This leave started on <?= $application->leave_started_on ?></h4>
+                <?
+              }
+              ?>
+
               <h4 <? if ($application->final_action=="Approved") {
                 echo "class='text-green'";
               } else if($application->final_action=="Declined"){
@@ -227,7 +243,7 @@ if ($auth['user']->img!="") {
                     
                     ?>
                     <div class="col-md-6">
-                      <span><b>Submitted to:</b></span><br>
+                      <span><b>Forwarded to:</b></span><br>
                       <span><?= $to_user->name ?></span><br>
                       <span><?= $forwarding->to_designation ?></span><br>
                       <span>Faculty of 
@@ -256,7 +272,7 @@ if ($auth['user']->img!="") {
                     
                     ?>
                     <div class="col-md-6">
-                      <span><b>Submitted to:</b></span><br>
+                      <span><b>Forwarded to:</b></span><br>
                       <span><?= $to_user->name ?></span><br>
                       <span><?= $forwarding->to_designation ?></span><br>
                       
@@ -283,7 +299,7 @@ if ($auth['user']->img!="") {
                     
                     ?>
                     <div class="col-md-6">
-                      <span><b>Submitted to:</b></span><br>
+                      <span><b>Forwarded to:</b></span><br>
                       <span><?= $to_user->name ?></span><br>
                       <span><?= $forwarding->to_designation ?></span><br>
                       
@@ -346,28 +362,35 @@ if ($auth['user']->img!="") {
                 <?
                   $forwaedtoVC = ApplicationForwarding::where('application', $application->id)->where('to_designation','VC')->where('active', 1)->first();
 
-                  if ($user->designation=='Registrar'){
-                    if ($application->status=='Recommended and Forwarded to Registrar by Dean') {
-                      ?>
+                  $lastForwarding = ApplicationForwarding::where('application', $application->id)->where('active', 1)->orderBy('id', 'desc')->first();
 
-                      <a class="btn btn-warning no-print" data-toggle="modal" data-target="#markApplication"> <i class="fa fa-mail-forward"></i> Mark/Forward</a>
-                    <?
-                    } else if($application->status=='Approved by VC'){
-                    ?>
-                      <a class="btn btn-warning no-print" data-toggle="modal" data-target="#markApplication"> <i class="fa fa-mail-forward"></i> Mark/Forward For Office Order</a>
-                    <?
-                    } else if($application->status=="Memorandum assigned. Submitted for finalization"){
-                      ?>
-                      <a href="/application/confirmfinalization/<?= $application->id ?>" class="btn btn-success no-print"> <i class="fa fa-check-circle-o"></i> Confirm Finalization</a>
-                      <?
+                  if ($user->designation=='Registrar') {
+                    if ($lastForwarding && $lastForwarding->to_designation==$user->designation){
+                      if ($application->status=='Recommended and Forwarded to Registrar by Dean') {
+                        ?>
 
-                    } else if($application->status!='Recommended and Forwarded to VC by Registrar') {
-                      //problem!!!
-                      ?>
-                      <a class="btn btn-warning no-print" data-toggle="modal" data-target="#recommendToVC"> <i class="fa fa-mail-forward"></i> Recommend To VC</a>
+                        <a class="btn btn-warning no-print" data-toggle="modal" data-target="#markApplication"> <i class="fa fa-mail-forward"></i> Mark/Forward</a>
                       <?
+                      } else if($application->status=='Approved by VC' && !$application->office_order){
+                      ?>
+                        <a class="btn btn-warning no-print" data-toggle="modal" data-target="#markApplication"> <i class="fa fa-mail-forward"></i> Mark/Forward For Office Order</a>
+                      <?
+                      } else if($application->status=="Memorandum assigned. Submitted for finalization"){
+                        ?>
+                        <a href="/application/confirmfinalization/<?= $application->id ?>" class="btn btn-success no-print"> <i class="fa fa-check-circle-o"></i> Confirm Finalization</a>
+                        <?
+
+                      } else if($application->status!='Recommended and Forwarded to VC by Registrar' && $application->status!='Reviewed And Marked to Deputy Director by Registrar') {
+                        //problem!!!
+                        ?>
+                        <a class="btn btn-warning no-print" data-toggle="modal" data-target="#recommendToVC"> <i class="fa fa-mail-forward"></i> Recommend To VC</a>
+                        <?
+                      }
                     }
-                  } ?>
+                    //end of registrar
+                  }
+
+                   ?>
 
                 <? if ($user->designation=='VC' && $application->final_action==''){
 
@@ -403,6 +426,20 @@ if ($auth['user']->img!="") {
                   <a class="btn btn-success" href="/application/generateorder/<?= $application->id ?>" target="_blank"> <i class="fa fa-edit"></i> Generate Office Order</a>
 
                 <? } }?>
+
+                <?
+                //cancelling action
+                // if ($user->type=='Administrative') {
+
+                  $lastForwarding = ApplicationForwarding::where('application', $application->id)->where('active', 1)->orderBy('id', 'desc')->first();
+
+                  if ( $lastForwarding && $lastForwarding->forwarded_by==$user->id && $application->confirmed!=1) {
+                    ?>
+                    <a class="btn btn-danger" href="/application/cancelaction/<?= $application->id ?>"> <i class="fa fa-close"></i> Cancel Action</a>
+                    <?
+                  }
+                // }
+                ?>
 
 
                 

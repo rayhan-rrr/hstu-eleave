@@ -6,8 +6,6 @@
  use App\Models\FixedUsers;
  use App\Models\LeaveTypes;
 use App\Models\Applications;
-use App\Models\ApplicationForwarding;
-use App\Models\Admin;
 
 include $this->getTemplatePath().'php_includes/db_conx.php';
 
@@ -109,7 +107,7 @@ if ($auth['user']->img!="") {
           <!-- Profile Image -->
           <div class="box box-warning">
             <div class="box-header">
-              <h3 class="box-title">All Users</h3>
+              <h3 class="box-title">All Confirmed Applications</h3>
             </div>
             <div class="box-body">
              <table id="employee-grid" class="table table-bordered table-hover">
@@ -117,38 +115,30 @@ if ($auth['user']->img!="") {
                   <tr>
                     <th>SL</th>
                     <th>Type</th>
-                    <th>Name</th>
-                    <th>Department</th>
-                    <th>Designation</th>
+                    <th>Subject</th>
+                    <th>Days</th>
+                    <th>Created</th>
+                    <th>Leave Started</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?
                   $count =0;
-                  if (count($users)) {
-                    foreach ($users as $user) {
-
-                      $teacher = Admin::find($user->id);
+                  $applications = Applications::where('user', $_SESSION['user'])->where('confirmed', 1)->where('active', 1)->get();
+                  if (count($applications)) {
+                    foreach ($applications as $application) {
                      ?>
                      <tr>
                        <td><?= ++$count ?></td>
-                       <td><?= $user->type ?></td>
-
-                       <td><?= $user->name ?></td>
-                       <?
-                       if ($user->type=='Academic') {
-                         $teacherInfo = AdminDetails::getTeacherInfo($user->id);
-                         ?>
-                         <td><?= strtoupper($teacherInfo->dept_code) ?></td>
-                         <td><?= $teacherInfo->designation ?></td>
-                         <?
-                       } else{
-                         ?>
-                        <td>--</td>
-                        <td><?= $user->designation ?></td> 
-
-                      <? }?>
-                        
+                       <td><?= LeaveTypes::find($application->type)->name ?></td>
+                       <td><a href="/application/<?= $application->id ?>" target="_blank"><?= $application->subject ?></a></td>
+                       <td><?= $application->days ?></td>
+                       <td><?= date('d/m/Y h:i:sA', strtotime($application->created_at)) ?></td>
+                       <td><?
+                       if ($application->leave_started==1) {
+                         echo "Yes";
+                       } else echo "No";
+                        ?></td>
                      </tr>
                      <?
                     }
@@ -176,6 +166,21 @@ if ($auth['user']->img!="") {
         <!-- /.col -->
 
         <!-- --------------------- modals block for edit profile --------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       </div>
 

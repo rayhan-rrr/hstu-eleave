@@ -21,6 +21,7 @@ class ApplicationForwarding extends Model
 		'by_designation',
 		'forward_remark',
 		'docket',
+		'status',
 		'created_at',
 		'active'
 	];

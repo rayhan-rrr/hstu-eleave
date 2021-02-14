@@ -98,6 +98,54 @@ if ($auth['user']->img!="") {
         <?
         }
         ?>
+
+        <?
+        $user = Admin::find($_SESSION['user']);
+         if($user->designation=='VC' || $user->designation=='Registrar'): ?>
+
+          <li class="<?php if($_SERVER['REQUEST_URI']=="/allteachers"){echo "active";} ?> treeview menuparent">
+            <a href="/allteachers">
+              <i class="fa fa-users"></i> <span>All Teachers</span>
+            </a>
+          </li>
+
+          <li class="<?php if($_SERVER['REQUEST_URI']=="/teachersonleave"){echo "active";} ?> treeview menuparent">
+            <a href="/teachersonleave">
+              <i class="fa fa-plane"></i> <span>Teachers On Leave</span>
+            </a>
+          </li>
+          
+
+        <? endif ?>
+
+        <? if (AdminDetails::checkIfChairman($_SESSION['user'])): ?>
+          <li class="<?php if($_SERVER['REQUEST_URI']=="/allteachersbydept"){echo "active";} ?> treeview menuparent">
+            <a href="/allteachersbydept">
+              <i class="fa fa-users"></i> <span>All Teachers</span>
+            </a>
+          </li>
+
+          <li class="<?php if($_SERVER['REQUEST_URI']=="/teachersonleavebydept"){echo "active";} ?> treeview menuparent">
+            <a href="/teachersonleavebydept">
+              <i class="fa fa-plane"></i> <span>Teachers On Leave</span>
+            </a>
+          </li>
+        <? endif ?>
+
+
+        <? if (AdminDetails::checkIfDean($_SESSION['user'])): ?>
+          <li class="<?php if($_SERVER['REQUEST_URI']=="/allteachersbyfc"){echo "active";} ?> treeview menuparent">
+            <a href="/allteachersbyfc">
+              <i class="fa fa-users"></i> <span>All Teachers</span>
+            </a>
+          </li>
+
+          <li class="<?php if($_SERVER['REQUEST_URI']=="/teachersonleavebyfc"){echo "active";} ?> treeview menuparent">
+            <a href="/teachersonleavebyfc">
+              <i class="fa fa-plane"></i> <span>Teachers On Leave</span>
+            </a>
+          </li>
+        <? endif ?>
         
 
 

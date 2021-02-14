@@ -166,14 +166,42 @@ $app->post('/public/application/assignmemorandum/{id}', 'FormController:assignMe
 //confirm finalization
 $app->get('/application/confirmfinalization/{id}', 'FormController:confirmFinalization');
 
+//cancel action
+$app->get('/application/cancelaction/{id}','FormController:cancelAction');
 
+//start leave
+$app->get('/application/startleave/{id}','FormController:startLeave');
 
 
 
 //user/allusers
 $app->get('/user/allusers', 'AccountController:allUsers')->setName('users.all');
 
+//confirmed applications
+$app->get('/applications/confirmed', 'FormController:allConfirmedApplications')->setName('application.confirmed');
 
+//confirmed applications
+$app->get('/allteachers', 'AccountController:allTeachers')->setName('allteachers');
+
+//confirmed applications
+$app->get('/teachersonleave', 'AccountController:teachersOnLeave')->setName('teachersonleave');
+
+
+//all teachr
+$app->get('/allteachersbydept', 'AccountController:allTeachersByDept')->setName('allteachersbydept');
+
+//confirmed applications
+$app->get('/teachersonleavebydept', 'AccountController:teachersOnLeaveByDept')->setName('teachersonleave');
+
+//all teachr
+$app->get('/allteachersbyfc', 'AccountController:allTeachersByFaculty')->setName('allteachersbydept');
+
+//confirmed applications
+$app->get('/teachersonleavebyfc', 'AccountController:teachersOnLeaveByFacylty')->setName('teachersonleave');
+
+//confirmed applications
+// $app->get('/applications/confirmed', 'FormController:allConfirmedApplications')->setName('application.confirmed');
+// 
 
 
 

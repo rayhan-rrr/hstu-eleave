@@ -301,7 +301,7 @@ class FormController extends Controller
 			$teacher = AdminDetails::getTeacherInfo($_SESSION['user']);
 			$chairman = AdminDetails::departmentChairman($teacher->dept_id);
 
-			ApplicationForwarding::create([
+			$forwarding = ApplicationForwarding::create([
 					'application'  	=> $application->id,
 					'department'   => $application->department,
 					'faculty'      => $application->faculty,
@@ -316,6 +316,9 @@ class FormController extends Controller
 			$application->submitted = 1;
 			$application->status = "Submitted to Chairman";
 			$application->save();
+
+			$forwarding->status = $application->status;
+			$forwarding->save();
 
 
 			$_SESSION['success'] = 'success';
@@ -359,6 +362,21 @@ class FormController extends Controller
 
 			$this->container->view->addAttribute('Title', "All Draft Applications");
 			return $this->view->render($response, "modules/application/allDraftApplications.phtml");
+		}
+		return $response->withRedirect($this->router->pathFor('access.denied'));
+	}
+	public function allConfirmedApplications($request, $response)
+	{
+
+		if(!$this->auth->check())
+		{
+			return $response->withRedirect($this->router->pathFor('auth.login'));
+		}
+
+		if($_SESSION['type']=="Academic"){
+
+			$this->container->view->addAttribute('Title', "All Draft Applications");
+			return $this->view->render($response, "modules/application/allConfirmedtApplications.phtml");
 		}
 		return $response->withRedirect($this->router->pathFor('access.denied'));
 	}
@@ -491,7 +509,7 @@ class FormController extends Controller
 				}
 			}
 
-			ApplicationForwarding::create([
+			$forwarding = ApplicationForwarding::create([
 					'application'  	=> $application->id,
 					'department'   	=> $application->department,
 					'faculty'      	=> $application->faculty,
@@ -507,6 +525,9 @@ class FormController extends Controller
 			$application->submitted = 1;
 			$application->status = "Recommended and Forwarded to ".$toDesignation ." by ".$byDesignation;
 			$application->save();
+
+			$forwarding->status = $application->status;
+			$forwarding->save();
 
 
 			$_SESSION['success'] = 'success';
@@ -616,7 +637,7 @@ class FormController extends Controller
 				$oldForwarding->save();
 			}
 
-			ApplicationForwarding::create([
+			$forwarding = ApplicationForwarding::create([
 					'application'  	=> $application->id,
 					'department'   	=> $application->department,
 					'faculty'      	=> $application->faculty,
@@ -636,6 +657,9 @@ class FormController extends Controller
 				$application->status = "Reviewed And Marked to ".$toDesignation ." by ".$byUser->designation;
 			}
 			$application->save();
+
+			$forwarding->status = $application->status;
+			$forwarding->save();
 
 			$_SESSION['success'] = 'success';
 			$_SESSION['msg'] = "Successfully Reviewed And Marked to ".$toDesignation;
@@ -721,7 +745,7 @@ class FormController extends Controller
 				$oldForwarding->save();
 			}
 
-			ApplicationForwarding::create([
+			$forwarding = ApplicationForwarding::create([
 					'application'  	=> $application->id,
 					'department'   	=> $application->department,
 					'faculty'      	=> $application->faculty,
@@ -737,6 +761,9 @@ class FormController extends Controller
 			$application->submitted = 1;
 			$application->status = "Recommended and Forwarded to ".$toDesignation ." by ".$byDesignation;
 			$application->save();
+
+			$forwarding->status = $application->status;
+			$forwarding->save();
 
 
 			$_SESSION['success'] = 'success';
@@ -777,7 +804,7 @@ class FormController extends Controller
 				$oldForwarding->save();
 			}
 
-			ApplicationForwarding::create([
+			$forwarding = ApplicationForwarding::create([
 					'application'  	=> $application->id,
 					'department'   	=> $application->department,
 					'faculty'      	=> $application->faculty,
@@ -794,6 +821,9 @@ class FormController extends Controller
 			$application->final_action = $approval;
 			$application->status = $approval." by ".$byDesignation;
 			$application->save();
+
+			$forwarding->status = $application->status;
+			$forwarding->save();
 
 
 			$_SESSION['success'] = 'success';
@@ -988,7 +1018,7 @@ class FormController extends Controller
 				$oldForwarding->save();
 			}
 
-			ApplicationForwarding::create([
+			$forwarding = ApplicationForwarding::create([
 					'application'  	=> $application->id,
 					'department'   	=> $application->department,
 					'faculty'      	=> $application->faculty,
@@ -1003,6 +1033,9 @@ class FormController extends Controller
 
 			$application->status = 'Office Order Generated. Waiting for approval';
 			$application->save();
+
+			$forwarding->status = $application->status;
+			$forwarding->save();
 
 			$_SESSION['success'] = 'success';
 			$_SESSION['msg'] = "Successfully Submitted to ".$toDesignation;
@@ -1045,7 +1078,7 @@ class FormController extends Controller
 				$oldForwarding->save();
 			}
 
-			ApplicationForwarding::create([
+			$forwarding = ApplicationForwarding::create([
 					'application'  	=> $application->id,
 					'department'   	=> $application->department,
 					'faculty'      	=> $application->faculty,
@@ -1060,6 +1093,9 @@ class FormController extends Controller
 
 			$application->status = 'Memorandum assigned. Submitted for finalization';
 			$application->save();
+
+			$forwarding->status = $application->status;
+			$forwarding->save();
 
 			$_SESSION['success'] = 'success';
 			$_SESSION['msg'] = "Successfully Submitted the memorandum!";
@@ -1101,6 +1137,129 @@ class FormController extends Controller
 		}
 
 	}
+
+
+	//cancel action
+	
+	public function cancelAction($request, $response, $args)
+	{
+
+		if(!$this->auth->check())
+		{
+			return $response->withRedirect($this->router->pathFor('auth.login'));
+		}
+
+		$applicationId = $args['id'];
+
+		$application = Applications::find($applicationId);
+		
+		if ($application) {
+			
+			$user = Admin::find($_SESSION['user']);
+
+			$lastForwarding = ApplicationForwarding::where('application', $application->id)->where('active', 1)->orderBy('id', 'desc')->first();
+
+
+
+            if ($lastForwarding->forwarded_by==$user->id) {
+            	$lastForwarding->delete();
+
+            	$newlastForwarding = ApplicationForwarding::where('application', $application->id)->where('active', 0)->orderBy('id', 'desc')->first();
+            	if ($newlastForwarding) {
+            		$newlastForwarding->active=1;
+	            	$newlastForwarding->save();
+	            	$application->status = $newlastForwarding->status;
+	            	$application->save();
+            	}
+            	
+
+            	//for teacher
+            	if ($user->type=='Academic') {
+            		if ($application->user==$user->id) {
+	            		$application->submitted=0;
+	            		$application->save();
+	            	}
+            	} else if($user->type=='Administrative') {
+            		//for administrative
+            		if ($lastForwarding->by_designation=='VC') {
+            			$application->final_action = '';
+            			$application->save();
+            		} else if ($lastForwarding->by_designation=='Computer Operator') {
+            			$application->office_order = '';
+            			$application->save();
+            		}
+            	}
+            	
+
+            	$_SESSION['success'] = 'success';
+					$_SESSION['msg'] = "Successfully cancelled action!";
+
+					return $response->withRedirect('/application/'.$applicationId);
+            }
+
+            $_SESSION['error'] = 'error';
+				$_SESSION['msg'] = "Invalid!";
+
+			return $response->withRedirect('/application/'.$applicationId);
+		}
+
+	}
+
+
+	public function startLeave($request, $response, $args)
+	{
+
+		if(!$this->auth->check())
+		{
+			return $response->withRedirect($this->router->pathFor('auth.login'));
+		}
+
+		$applicationId = $args['id'];
+
+		$application = Applications::find($applicationId);
+		
+		if ($application) {
+
+			$user = Admin::find($_SESSION['user']);
+
+
+         if ($application->user==$user->id && $application->confirmed==1 && $application->leave_started==0) {
+         	
+         	
+       		$application->leave_started = 1;
+       		$application->leave_started_on = date('Y-m-d');
+         	$application->save();
+
+
+         	
+
+         	$Date = date('Y-m-d');
+				$endDate = date('Y-m-d', strtotime($Date. ' + '.$application->days.' days'));
+
+				$user->leave_start = date('Y-m-d');
+				$user->leave_end = $endDate;
+				$user->save();
+         	
+
+         	$_SESSION['success'] = 'success';
+				$_SESSION['msg'] = "Successfully Started Leave!";
+
+				return $response->withRedirect('/application/'.$applicationId);
+         }
+
+         $_SESSION['error'] = 'error';
+			$_SESSION['msg'] = "Invalid!";
+
+			return $response->withRedirect('/application/'.$applicationId);
+		}
+
+	}
+
+
+	
+
+
+
 
 	
 	

@@ -25,6 +25,8 @@ class Admin extends Model
 		'designation',
 		'mobile',
 		'address',
+		'leave_start',
+		'leave_end',
 		'created_at',
 		'logdate',
 		'active'

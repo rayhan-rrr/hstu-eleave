@@ -1615,6 +1615,122 @@ class AccountController extends Controller
 
 	}
 
+
+	public function allTeachers($request, $response)
+	{
+
+		if(!$this->auth->check())
+		{
+			return $response->withRedirect($this->router->pathFor('auth.login'));
+		}
+
+		$user = Admin::find($_SESSION['user']);
+
+		if($user->designation=='VC' || $user->designation=='Registrar'){
+
+			$users = Admin::where('type', 'Academic')->where('active', 1)->orderBy('department', 'ASC')->get();
+
+			$this->container->view->addAttribute('users', $users);
+
+			$this->container->view->addAttribute('Title', "All Teachers");
+			return $this->view->render($response, "modules/user/allTeachers.phtml");
+		}
+		
+	}
+
+	public function allTeachersByDept($request, $response)
+	{
+
+		if(!$this->auth->check())
+		{
+			return $response->withRedirect($this->router->pathFor('auth.login'));
+		}
+
+		$user = Admin::find($_SESSION['user']);
+
+
+
+			$users = Admin::where('type', 'Academic')->where('department', $user->department)->where('active', 1)->orderBy('department', 'ASC')->get();
+
+			$this->container->view->addAttribute('users', $users);
+
+			$this->container->view->addAttribute('Title', "All Teachers");
+			return $this->view->render($response, "modules/user/allTeachers.phtml");
+
+	}
+
+	public function allTeachersByFaculty($request, $response)
+	{
+
+		if(!$this->auth->check())
+		{
+			return $response->withRedirect($this->router->pathFor('auth.login'));
+		}
+
+		$user = Admin::find($_SESSION['user']);
+
+
+
+			$users = Admin::where('type', 'Academic')->where('faculty', $user->faculty)->where('active', 1)->orderBy('department', 'ASC')->get();
+
+			$this->container->view->addAttribute('users', $users);
+
+			$this->container->view->addAttribute('Title', "All Teachers");
+			return $this->view->render($response, "modules/user/allTeachers.phtml");
+
+	}
+
+	public function teachersOnLeave($request, $response)
+	{
+
+		if(!$this->auth->check())
+		{
+			return $response->withRedirect($this->router->pathFor('auth.login'));
+		}
+
+		$user = Admin::find($_SESSION['user']);
+
+		if($user->designation=='VC' || $user->designation=='Registrar'){
+
+
+			$this->container->view->addAttribute('Title', "Teachers On Leave");
+			return $this->view->render($response, "modules/user/teachersOnLeave.phtml");
+		}
+		
+	}
+
+	public function teachersOnLeaveByDept($request, $response)
+	{
+
+		if(!$this->auth->check())
+		{
+			return $response->withRedirect($this->router->pathFor('auth.login'));
+		}
+
+		$user = Admin::find($_SESSION['user']);
+
+
+			$this->container->view->addAttribute('Title', "Teachers On Leave");
+			return $this->view->render($response, "modules/user/teachersOnLeaveByDept.phtml");
+		
+	}
+
+	public function teachersOnLeaveByFacylty($request, $response)
+	{
+
+		if(!$this->auth->check())
+		{
+			return $response->withRedirect($this->router->pathFor('auth.login'));
+		}
+
+		$user = Admin::find($_SESSION['user']);
+
+
+			$this->container->view->addAttribute('Title', "Teachers On Leave");
+			return $this->view->render($response, "modules/user/teachersOnLeaveByFaculty.phtml");
+		
+	}
+
 	
 }
 
